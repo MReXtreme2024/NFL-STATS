@@ -16,6 +16,7 @@ const MODE_KEY = 'playerMode';
 
 let data;
 let playerSort = 'rushRecYds';
+let projectionSort = 'rushRecYds';
 
 const esc = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -87,6 +88,7 @@ function teamPage(t) {
       <div class="buttons">
         <a class="button" href="#/team/${t.id}/games">Games</a>
         <a class="button" href="#/team/${t.id}/players">Players</a>
+        <a class="button wide" href="#/team/${t.id}/projections">Projections</a>
       </div>
     </section>`;
 }
@@ -128,6 +130,50 @@ function playersPage(t) {
   return `${bar(`${t.name} players`, `#/team/${t.id}`)}${body}`;
 }
 
+// The All team games / Games he played switch, shared by the Projections and Player pages.
+function modeSwitch(mode) {
+  const btn = (m, label) => `<button data-mode="${m}" aria-pressed="${mode === m}">${label}</button>`;
+  return `<div class="switch" role="group" aria-label="Share based on">
+      ${btn(MODES.ALL, 'All team games')}${btn(MODES.PLAYED, 'Games he played')}
+    </div>`;
+}
+
+// One player's projection for every stat in the given mode.
+function projections(t, p, mode) {
+  return Object.fromEntries(STATS.map((s) => [s, playerStat({
+    teamTotal: t.totals[s], teamGP: t.gp, playerTotal: p.totals[s],
+    teamTotalInHisGames: p.teamTotalsInHisGames[s], playerGP: p.gp,
+  }, mode, TENTHS_STATS.has(s)).projection]));
+}
+
+// 4b. Projections: players with any projection other than 0; zero projections are left blank.
+function projectionsPage(t) {
+  const mode = readMode();
+  const rows = t.players
+    .map((p) => ({ p, proj: projections(t, p, mode) }))
+    .filter(({ proj }) => STATS.some((s) => proj[s] !== null && proj[s] !== 0))
+    .sort((a, b) => {
+      if (projectionSort === 'name') return a.p.name.localeCompare(b.p.name);
+      if (projectionSort === 'gp') return b.p.gp - a.p.gp || a.p.name.localeCompare(b.p.name);
+      return (b.proj[projectionSort] ?? 0) - (a.proj[projectionSort] ?? 0)
+        || (b.proj.rushRecYds ?? 0) - (a.proj.rushRecYds ?? 0) || a.p.name.localeCompare(b.p.name);
+    });
+  const cols = [['name', 'Player'], ['gp', 'GP'], ...STATS.map((s) => [s, SHORT[s]])];
+  const head = cols.map(([key, label]) =>
+    `<th scope="col"${key === projectionSort ? ' aria-sort="descending"' : ''}><button data-psort="${key}">${label}</button></th>`).join('');
+  const cell = (s, v) => (v === null || v === 0 ? '' : show(v, tenths(s)));
+  const body = rows.map(({ p, proj }) => {
+    const href = `#/team/${t.id}/player/${p.id}`;
+    const pos = p.pos ? `<span class="pos">${esc(p.pos)}</span>` : '';
+    return `<tr data-href="${href}"><td><a class="name" href="${href}"><span>${esc(p.name)}</span>${pos}</a></td><td>${p.gp}</td>
+      ${STATS.map((s) => `<td>${cell(s, proj[s])}</td>`).join('')}</tr>`;
+  }).join('');
+  const table = rows.length
+    ? `<div class="table-wrap sticky"><table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`
+    : '<p class="message">No projections yet.</p>';
+  return `${bar(`${t.name} projections`, `#/team/${t.id}`)}${modeSwitch(mode)}${table}`;
+}
+
 // 5. Player page: share % and projection per stat, two modes
 function playerPage(t, p) {
   const mode = readMode();
@@ -144,15 +190,12 @@ function playerPage(t, p) {
       </div>
       <p class="working">${working(p.totals[s], r)}</p></div>`;
   }).join('');
-  const btn = (m, label) => `<button data-mode="${m}" aria-pressed="${mode === m}">${label}</button>`;
   const pos = p.pos ? ` · ${esc(p.pos)}` : '';
   return `${bar('', `#/team/${t.id}/players`)}
     <section class="panel" style="${colours(t)}">
       <h2>${esc(p.name)}</h2><p>${esc(t.name)}${pos}</p><p>Played ${p.gp} of ${t.gp} team games</p>
     </section>
-    <div class="switch" role="group" aria-label="Share based on">
-      ${btn(MODES.ALL, 'All team games')}${btn(MODES.PLAYED, 'Games he played')}
-    </div>
+    ${modeSwitch(mode)}
     <div class="stats">${cards}</div>`;
 }
 
@@ -167,6 +210,8 @@ function render() {
     html = teamPage(team); title = team.name;
   } else if (team && parts[2] === 'games') {
     html = gamesPage(team); title = `${team.name} games`;
+  } else if (team && parts[2] === 'projections') {
+    html = projectionsPage(team); title = `${team.name} projections`;
   } else if (team && parts[2] === 'players') {
     html = playersPage(team); title = `${team.name} players`;
   } else if (team && parts[2] === 'player' && team.players.some((p) => p.id === parts[3])) {
@@ -182,6 +227,8 @@ function render() {
 app.addEventListener('click', (e) => {
   const sortBtn = e.target.closest('[data-sort]');
   if (sortBtn) { playerSort = sortBtn.dataset.sort; render(); return; }
+  const projSortBtn = e.target.closest('[data-psort]');
+  if (projSortBtn) { projectionSort = projSortBtn.dataset.psort; render(); return; }
   const modeBtn = e.target.closest('[data-mode]');
   if (modeBtn) { saveMode(modeBtn.dataset.mode); render(); return; }
   const row = e.target.closest('tr[data-href]');

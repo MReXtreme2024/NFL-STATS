@@ -174,3 +174,4 @@ td a.name { flex-direction: column; align-items: flex-start; justify-content: ce
 td .pos { font-size: 12px; color: var(--muted); font-weight: 400; }
 td .date { white-space: nowrap; }
 .row, .panel { box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.25); }
+.button.wide { grid-column: 1 / -1; }

@@ -195,6 +195,11 @@ Total touchdowns <total> (average <avg, one decimal> touchdowns)
 - Sorted by R+R YDS, highest first; tapping a column heading re-sorts by it (PASS YDS for quarterbacks).
 - Tapping a player opens the Player page.
 
+**4b. Projections** (added at Nate's request after the plan)
+
+- A third button on the Team page. One row per player with any projection other than 0, columns Player, GP, then the ten stats as projections; zero projections are left blank.
+- Uses the same *All team games* / *Games he played* switch as the Player page (and the remembered choice). Sorted by R+R YDS projection; tapping a heading re-sorts; tapping a player opens the Player page.
+
 **5. Player page**
 
 - Header: the player's name on the team colour, and "Played X of Y team games".
