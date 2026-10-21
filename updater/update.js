@@ -5,14 +5,15 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { getTeams, getCalendar, getWeekEvents, getSummary, isCountedGame, trimGame } from './espn.js';
-import { checkGame, checkSeason } from './checks.js';
+import { getTeams, getRosterPositions, getCalendar, getWeekEvents, getSummary, isCountedGame, trimGame } from './espn.js';
+import { checkGame } from './checks.js';
+import { build } from './build.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const config = JSON.parse(fs.readFileSync(path.join(ROOT, 'config.json'), 'utf8'));
 const DATA_DIR = path.join(ROOT, 'data');
 const GAMES_DIR = path.join(DATA_DIR, 'games', String(config.season));
-const APP_DATA = path.join(ROOT, 'docs', 'data', 'app-data.json');
+const POSITIONS = path.join(DATA_DIR, 'positions.json');
 
 const LOOK_BACK_WEEKS = 2;
 
@@ -36,7 +37,7 @@ function writeJson(file, value) {
   return true;
 }
 
-const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+const readJson = (file, fallback) => (fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : fallback);
 
 function savedGames() {
   return fs
@@ -93,9 +94,20 @@ async function main() {
   }
   console.log(`Done: ${saved} game files saved or updated, ${unchanged} unchanged.`);
 
-  const previous = fs.existsSync(APP_DATA) ? readJson(APP_DATA) : null;
-  const gp = checkSeason(teams, savedGames(), previous);
-  console.log(`Hard checks passed: ${teams.length} teams, games played ${Math.min(...gp.values())}–${Math.max(...gp.values())}.`);
+  // Positions from every team's current roster. Earlier positions are kept, so a player
+  // released or traded mid-season still shows the position he had.
+  console.log('Rosters (positions)');
+  const positions = readJson(POSITIONS, {});
+  for (const t of teams) Object.assign(positions, await getRosterPositions(t.id));
+  writeJson(POSITIONS, Object.fromEntries(Object.entries(positions).sort(([a], [b]) => a.localeCompare(b))));
+
+  const { data, problems } = build();
+  console.log(`Hard checks passed. Built app-data.json: ${data.teams.length} teams, checked ${data.checked}`);
+  if (problems.length) {
+    problems.forEach((p) => console.error(`SOFT CHECK: ${p}`));
+    console.error(`${problems.length} soft check(s) failed: the site data was still rebuilt.`);
+    process.exitCode = 1;
+  }
 }
 
 main().catch((err) => {

@@ -46,6 +46,18 @@ export async function getTeams() {
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
+// One team's current roster as { playerId: position }, e.g. { "3918298": "QB" }.
+export async function getRosterPositions(teamId) {
+  const data = await fetchJson(`${TEAMS_URL}/${teamId}/roster`);
+  const positions = {};
+  for (const group of data.athletes ?? []) {
+    for (const a of group.items ?? []) {
+      if (a.position?.abbreviation) positions[a.id] = a.position.abbreviation;
+    }
+  }
+  return positions;
+}
+
 // The default scoreboard carries the season calendar. Returns the season year and
 // every regular-season and postseason week as { seasonType, week, start }.
 export async function getCalendar() {

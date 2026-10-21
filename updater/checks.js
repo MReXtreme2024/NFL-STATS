@@ -51,3 +51,47 @@ export function checkSeason(teams, games, previous) {
   }
   return gp;
 }
+
+// Every TD a player scores: rushing, receiving, kick return, punt return and defensive.
+// Interception-return TDs are already inside the defensive column, so they aren't added again.
+export function playerTouchdowns(stats) {
+  return (
+    num(stats.rushing?.rushingTouchdowns) +
+    num(stats.receiving?.receivingTouchdowns) +
+    num(stats.kickReturns?.kickReturnTouchdowns) +
+    num(stats.puntReturns?.puntReturnTouchdowns) +
+    num(stats.defensive?.defensiveTouchdowns)
+  );
+}
+
+// Soft checks: problems are reported (the run fails so Nate gets an email) but the site still publishes.
+// Per team per game: player TDs = touchdown scoring plays; player rushing yards = ESPN team rushing
+// yards; player passing yards = ESPN team net passing yards + sack yards.
+export function softChecks(games) {
+  const problems = [];
+  for (const g of games) {
+    for (const t of g.teams) {
+      const where = `Game ${g.id} (week ${g.week}) ${t.code}`;
+      const sum = (fn) => t.players.reduce((total, p) => total + fn(p.stats), 0);
+
+      const tds = sum(playerTouchdowns);
+      const tdPlays = g.scoringPlays.filter((s) => s.teamId === t.id && s.scoringType === 'TD').length;
+      if (tds !== tdPlays) problems.push(`${where}: players have ${tds} TDs but there were ${tdPlays} touchdown plays`);
+
+      const rushYds = sum((s) => num(s.rushing?.rushingYards));
+      if ('rushingYards' in t.teamStats && rushYds !== num(t.teamStats.rushingYards)) {
+        problems.push(`${where}: players have ${rushYds} rushing yards but ESPN's team line says ${t.teamStats.rushingYards}`);
+      }
+
+      const passYds = sum((s) => num(s.passing?.passingYards));
+      if ('netPassingYards' in t.teamStats) {
+        const sackYds = Number(String(t.teamStats.sacksYardsLost ?? '0-0').split('-')[1] ?? 0);
+        const expected = num(t.teamStats.netPassingYards) + sackYds;
+        if (passYds !== expected) {
+          problems.push(`${where}: players have ${passYds} passing yards but ESPN net ${t.teamStats.netPassingYards} + ${sackYds} sack yards = ${expected}`);
+        }
+      }
+    }
+  }
+  return problems;
+}

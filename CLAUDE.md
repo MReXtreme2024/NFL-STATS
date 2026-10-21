@@ -35,6 +35,7 @@ Build one phase at a time and get Nate's OK before starting the next.
   - Calendar / current week / team colours: `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard`
   - One week: `.../scoreboard?dates=2026&seasontype=2&week=6`
   - Box score: `https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=<eventId>`
+  - Positions (box scores have none): `.../teams/<teamId>/roster`, merged into `data/positions.json` each run so released or traded players keep theirs.
 - Season types: keep 2 (regular, weeks 1–18) and 3 (postseason: 1 WC, 2 DIV, 3 CONF, 4 SB). Never 1 (preseason).
 - Keep only finished games (`status.type.completed`) between two of the 32 teams. Neutral-site games count normally.
 - ESPN labels this season 2026. Use ESPN's team abbreviations as given (KC, LAR, JAX…).
