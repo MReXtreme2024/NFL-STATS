@@ -1,0 +1,159 @@
+// ESPN calls, retries and parsing. ESPN is the only data source (see CLAUDE.md).
+
+const USER_AGENT =
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36';
+const PAUSE_MS = 500;
+const RETRIES = 3;
+
+const BASE = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl';
+const TEAMS_URL = `${BASE}/teams`;
+const SCOREBOARD_URL = `${BASE}/scoreboard`;
+const SUMMARY_URL = `${BASE}/summary`;
+
+const REGULAR = 2;
+const POSTSEASON = 3;
+const POSTSEASON_TYPES = { 1: 'WC', 2: 'DIV', 3: 'CONF', 4: 'SB' };
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Fetch JSON politely: pause before every call, retry up to 3 times with growing waits.
+export async function fetchJson(url) {
+  let lastError;
+  for (let attempt = 0; attempt <= RETRIES; attempt++) {
+    await sleep(attempt === 0 ? PAUSE_MS : PAUSE_MS * 4 ** attempt);
+    try {
+      const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT, Accept: 'application/json' } });
+      if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+      return await res.json();
+    } catch (err) {
+      lastError = err;
+      console.warn(`  attempt ${attempt + 1} failed: ${err.message}`);
+    }
+  }
+  throw lastError;
+}
+
+export async function getTeams() {
+  const data = await fetchJson(TEAMS_URL);
+  return data.sports[0].leagues[0].teams
+    .map(({ team: t }) => ({
+      id: t.id,
+      code: t.abbreviation,
+      name: t.displayName,
+      color: t.color,
+      alternateColor: t.alternateColor,
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+// The default scoreboard carries the season calendar. Returns the season year and
+// every regular-season and postseason week as { seasonType, week, start }.
+export async function getCalendar() {
+  const data = await fetchJson(SCOREBOARD_URL);
+  const league = data.leagues[0];
+  const weeks = [];
+  for (const block of league.calendar) {
+    const seasonType = Number(block.value);
+    if (seasonType !== REGULAR && seasonType !== POSTSEASON) continue;
+    for (const e of block.entries ?? []) weeks.push({ seasonType, week: Number(e.value), start: e.startDate });
+  }
+  return { year: league.season.year, weeks };
+}
+
+export async function getWeekEvents(year, seasonType, week) {
+  const data = await fetchJson(`${SCOREBOARD_URL}?dates=${year}&seasontype=${seasonType}&week=${week}`);
+  return data.events ?? [];
+}
+
+export async function getSummary(eventId) {
+  return fetchJson(`${SUMMARY_URL}?event=${eventId}`);
+}
+
+// REG for the regular season; WC, DIV, CONF or SB for the playoffs.
+export function gameType(seasonType, week) {
+  if (seasonType === REGULAR) return 'REG';
+  const type = POSTSEASON_TYPES[week];
+  if (!type) throw new Error(`Unknown postseason week ${week}`);
+  return type;
+}
+
+// Keep finished regular-season and postseason games of this season between two of the 32 teams.
+export function isCountedGame(event, season, teamIds) {
+  const competitors = event.competitions?.[0]?.competitors ?? [];
+  return (
+    event.season?.year === season &&
+    (event.season?.type === REGULAR || event.season?.type === POSTSEASON) &&
+    event.status?.type?.completed === true &&
+    competitors.length === 2 &&
+    competitors.every((c) => teamIds.has(c.team.id))
+  );
+}
+
+// Map one category's stats by ESPN's `keys` (never by position).
+function mapStats(keys, values) {
+  const stats = {};
+  keys.forEach((k, i) => (stats[k] = values[i]));
+  return stats;
+}
+
+// Team-level figures kept only for the soft checks.
+const TEAM_STAT_NAMES = ['netPassingYards', 'sacksYardsLost', 'completionAttempts', 'rushingYards', 'rushingAttempts'];
+
+// Trim an ESPN summary to what we keep: week, season type, date, teams, home/away,
+// final score, scoring plays and every player's full box-score lines.
+export function trimGame(summary) {
+  const header = summary.header;
+  const comp = header.competitions[0];
+  const seasonType = header.season.type;
+  const week = header.week;
+
+  const teams = comp.competitors.map((c) => {
+    const box = summary.boxscore.players.find((p) => p.team.id === c.team.id);
+    if (!box) throw new Error(`Game ${header.id}: no box score for team ${c.team.id}`);
+
+    // One entry per player, with each category he appears in.
+    const players = new Map();
+    for (const cat of box.statistics) {
+      for (const a of cat.athletes) {
+        const id = a.athlete.id;
+        if (!players.has(id)) players.set(id, { id, name: a.athlete.displayName, stats: {} });
+        players.get(id).stats[cat.name] = mapStats(cat.keys, a.stats);
+      }
+    }
+
+    const teamBox = summary.boxscore.teams.find((t) => t.team.id === c.team.id);
+    const teamStats = {};
+    for (const s of teamBox?.statistics ?? []) {
+      if (TEAM_STAT_NAMES.includes(s.name)) teamStats[s.name] = s.displayValue;
+    }
+
+    return {
+      id: c.team.id,
+      code: c.team.abbreviation,
+      name: c.team.displayName,
+      homeAway: c.homeAway,
+      score: Number(c.score),
+      teamStats,
+      players: [...players.values()],
+    };
+  });
+
+  const scoringPlays = (summary.scoringPlays ?? []).map((s) => ({
+    teamId: s.team?.id,
+    type: s.type?.abbreviation,
+    scoringType: s.scoringType?.abbreviation,
+    text: s.text,
+  }));
+
+  return {
+    id: header.id,
+    season: header.season.year,
+    seasonType,
+    week,
+    type: gameType(seasonType, week),
+    start: comp.date,
+    neutralSite: comp.neutralSite === true,
+    teams,
+    scoringPlays,
+  };
+}

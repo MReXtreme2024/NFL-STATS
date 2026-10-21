@@ -1,0 +1,226 @@
+[
+  {
+    "id": "22",
+    "code": "ARI",
+    "name": "Arizona Cardinals",
+    "color": "a40227",
+    "alternateColor": "ffffff"
+  },
+  {
+    "id": "1",
+    "code": "ATL",
+    "name": "Atlanta Falcons",
+    "color": "a71930",
+    "alternateColor": "000000"
+  },
+  {
+    "id": "33",
+    "code": "BAL",
+    "name": "Baltimore Ravens",
+    "color": "29126f",
+    "alternateColor": "000000"
+  },
+  {
+    "id": "2",
+    "code": "BUF",
+    "name": "Buffalo Bills",
+    "color": "00338d",
+    "alternateColor": "d50a0a"
+  },
+  {
+    "id": "29",
+    "code": "CAR",
+    "name": "Carolina Panthers",
+    "color": "0085ca",
+    "alternateColor": "000000"
+  },
+  {
+    "id": "3",
+    "code": "CHI",
+    "name": "Chicago Bears",
+    "color": "0b1c3a",
+    "alternateColor": "e64100"
+  },
+  {
+    "id": "4",
+    "code": "CIN",
+    "name": "Cincinnati Bengals",
+    "color": "fb4f14",
+    "alternateColor": "000000"
+  },
+  {
+    "id": "5",
+    "code": "CLE",
+    "name": "Cleveland Browns",
+    "color": "472a08",
+    "alternateColor": "ff3c00"
+  },
+  {
+    "id": "6",
+    "code": "DAL",
+    "name": "Dallas Cowboys",
+    "color": "002a5c",
+    "alternateColor": "b0b7bc"
+  },
+  {
+    "id": "7",
+    "code": "DEN",
+    "name": "Denver Broncos",
+    "color": "0a2343",
+    "alternateColor": "fc4c02"
+  },
+  {
+    "id": "8",
+    "code": "DET",
+    "name": "Detroit Lions",
+    "color": "0076b6",
+    "alternateColor": "bbbbbb"
+  },
+  {
+    "id": "9",
+    "code": "GB",
+    "name": "Green Bay Packers",
+    "color": "204e32",
+    "alternateColor": "ffb612"
+  },
+  {
+    "id": "34",
+    "code": "HOU",
+    "name": "Houston Texans",
+    "color": "021018",
+    "alternateColor": "eb0028"
+  },
+  {
+    "id": "11",
+    "code": "IND",
+    "name": "Indianapolis Colts",
+    "color": "003b75",
+    "alternateColor": "ffffff"
+  },
+  {
+    "id": "30",
+    "code": "JAX",
+    "name": "Jacksonville Jaguars",
+    "color": "007487",
+    "alternateColor": "d7a22a"
+  },
+  {
+    "id": "12",
+    "code": "KC",
+    "name": "Kansas City Chiefs",
+    "color": "e31837",
+    "alternateColor": "ffb612"
+  },
+  {
+    "id": "13",
+    "code": "LV",
+    "name": "Las Vegas Raiders",
+    "color": "000000",
+    "alternateColor": "a5acaf"
+  },
+  {
+    "id": "24",
+    "code": "LAC",
+    "name": "Los Angeles Chargers",
+    "color": "0080c6",
+    "alternateColor": "ffc20e"
+  },
+  {
+    "id": "14",
+    "code": "LAR",
+    "name": "Los Angeles Rams",
+    "color": "003594",
+    "alternateColor": "ffd100"
+  },
+  {
+    "id": "15",
+    "code": "MIA",
+    "name": "Miami Dolphins",
+    "color": "008e97",
+    "alternateColor": "fc4c02"
+  },
+  {
+    "id": "16",
+    "code": "MIN",
+    "name": "Minnesota Vikings",
+    "color": "4f2683",
+    "alternateColor": "ffc62f"
+  },
+  {
+    "id": "17",
+    "code": "NE",
+    "name": "New England Patriots",
+    "color": "002a5c",
+    "alternateColor": "c60c30"
+  },
+  {
+    "id": "18",
+    "code": "NO",
+    "name": "New Orleans Saints",
+    "color": "d3bc8d",
+    "alternateColor": "000000"
+  },
+  {
+    "id": "19",
+    "code": "NYG",
+    "name": "New York Giants",
+    "color": "003c7f",
+    "alternateColor": "c9243f"
+  },
+  {
+    "id": "20",
+    "code": "NYJ",
+    "name": "New York Jets",
+    "color": "115740",
+    "alternateColor": "ffffff"
+  },
+  {
+    "id": "21",
+    "code": "PHI",
+    "name": "Philadelphia Eagles",
+    "color": "06424d",
+    "alternateColor": "000000"
+  },
+  {
+    "id": "23",
+    "code": "PIT",
+    "name": "Pittsburgh Steelers",
+    "color": "000000",
+    "alternateColor": "ffb612"
+  },
+  {
+    "id": "25",
+    "code": "SF",
+    "name": "San Francisco 49ers",
+    "color": "aa0000",
+    "alternateColor": "b3995d"
+  },
+  {
+    "id": "26",
+    "code": "SEA",
+    "name": "Seattle Seahawks",
+    "color": "002a5c",
+    "alternateColor": "69be28"
+  },
+  {
+    "id": "27",
+    "code": "TB",
+    "name": "Tampa Bay Buccaneers",
+    "color": "bd1c36",
+    "alternateColor": "3e3a35"
+  },
+  {
+    "id": "10",
+    "code": "TEN",
+    "name": "Tennessee Titans",
+    "color": "4495d2",
+    "alternateColor": "001532"
+  },
+  {
+    "id": "28",
+    "code": "WSH",
+    "name": "Washington Commanders",
+    "color": "5a1414",
+    "alternateColor": "ffb612"
+  }
+]

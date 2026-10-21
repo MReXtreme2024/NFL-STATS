@@ -1,0 +1,1183 @@
+{
+  "id": "401872983",
+  "season": 2026,
+  "seasonType": 2,
+  "week": 5,
+  "type": "REG",
+  "start": "2026-10-11T17:00Z",
+  "neutralSite": false,
+  "teams": [
+    {
+      "id": "20",
+      "code": "NYJ",
+      "name": "New York Jets",
+      "homeAway": "home",
+      "score": 17,
+      "teamStats": {
+        "netPassingYards": "142",
+        "completionAttempts": "17/30",
+        "sacksYardsLost": "4-40",
+        "rushingYards": "134",
+        "rushingAttempts": "32"
+      },
+      "players": [
+        {
+          "id": "15864",
+          "name": "Geno Smith",
+          "stats": {
+            "passing": {
+              "completions/passingAttempts": "17/30",
+              "passingYards": "182",
+              "yardsPerPassAttempt": "6.1",
+              "passingTouchdowns": "1",
+              "interceptions": "0",
+              "sacks-sackYardsLost": "4-40",
+              "adjQBR": "25.0",
+              "QBRating": "85.7"
+            },
+            "rushing": {
+              "rushingAttempts": "5",
+              "rushingYards": "7",
+              "yardsPerRushAttempt": "1.4",
+              "rushingTouchdowns": "0",
+              "longRushing": "5"
+            },
+            "fumbles": {
+              "fumbles": "1",
+              "fumblesLost": "1",
+              "fumblesRecovered": "1"
+            }
+          }
+        },
+        {
+          "id": "4685247",
+          "name": "Braelon Allen",
+          "stats": {
+            "rushing": {
+              "rushingAttempts": "24",
+              "rushingYards": "116",
+              "yardsPerRushAttempt": "4.8",
+              "rushingTouchdowns": "1",
+              "longRushing": "22"
+            },
+            "receiving": {
+              "receptions": "1",
+              "receivingYards": "0",
+              "yardsPerReception": "0.0",
+              "receivingTouchdowns": "0",
+              "longReception": "0",
+              "receivingTargets": "4"
+            },
+            "fumbles": {
+              "fumbles": "1",
+              "fumblesLost": "0",
+              "fumblesRecovered": "0"
+            }
+          }
+        },
+        {
+          "id": "4695404",
+          "name": "Isaiah Davis",
+          "stats": {
+            "rushing": {
+              "rushingAttempts": "2",
+              "rushingYards": "8",
+              "yardsPerRushAttempt": "4.0",
+              "rushingTouchdowns": "0",
+              "longRushing": "8"
+            },
+            "receiving": {
+              "receptions": "1",
+              "receivingYards": "9",
+              "yardsPerReception": "9.0",
+              "receivingTouchdowns": "0",
+              "longReception": "9",
+              "receivingTargets": "2"
+            },
+            "fumbles": {
+              "fumbles": "1",
+              "fumblesLost": "0",
+              "fumblesRecovered": "0"
+            },
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "0",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4569371",
+          "name": "Isaiah Williams",
+          "stats": {
+            "rushing": {
+              "rushingAttempts": "1",
+              "rushingYards": "3",
+              "yardsPerRushAttempt": "3.0",
+              "rushingTouchdowns": "0",
+              "longRushing": "3"
+            },
+            "receiving": {
+              "receptions": "1",
+              "receivingYards": "16",
+              "yardsPerReception": "16.0",
+              "receivingTouchdowns": "0",
+              "longReception": "16",
+              "receivingTargets": "2"
+            },
+            "kickReturns": {
+              "kickReturns": "1",
+              "kickReturnYards": "36",
+              "yardsPerKickReturn": "36.0",
+              "longKickReturn": "36",
+              "kickReturnTouchdowns": "0"
+            },
+            "puntReturns": {
+              "puntReturns": "4",
+              "puntReturnYards": "67",
+              "yardsPerPuntReturn": "16.8",
+              "longPuntReturn": "20",
+              "puntReturnTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4569618",
+          "name": "Garrett Wilson",
+          "stats": {
+            "receiving": {
+              "receptions": "7",
+              "receivingYards": "104",
+              "yardsPerReception": "14.9",
+              "receivingTouchdowns": "1",
+              "longReception": "32",
+              "receivingTargets": "11"
+            }
+          }
+        },
+        {
+          "id": "3134353",
+          "name": "Tim Patrick",
+          "stats": {
+            "receiving": {
+              "receptions": "2",
+              "receivingYards": "26",
+              "yardsPerReception": "13.0",
+              "receivingTouchdowns": "0",
+              "longReception": "14",
+              "receivingTargets": "3"
+            },
+            "fumbles": {
+              "fumbles": "0",
+              "fumblesLost": "0",
+              "fumblesRecovered": "1"
+            }
+          }
+        },
+        {
+          "id": "4808766",
+          "name": "Mason Taylor",
+          "stats": {
+            "receiving": {
+              "receptions": "3",
+              "receivingYards": "24",
+              "yardsPerReception": "8.0",
+              "receivingTouchdowns": "0",
+              "longReception": "9",
+              "receivingTargets": "3"
+            }
+          }
+        },
+        {
+          "id": "5083315",
+          "name": "Kenyon Sadiq",
+          "stats": {
+            "receiving": {
+              "receptions": "2",
+              "receivingYards": "3",
+              "yardsPerReception": "1.5",
+              "receivingTouchdowns": "0",
+              "longReception": "4",
+              "receivingTargets": "3"
+            },
+            "fumbles": {
+              "fumbles": "1",
+              "fumblesLost": "1",
+              "fumblesRecovered": "0"
+            }
+          }
+        },
+        {
+          "id": "4241410",
+          "name": "Jelani Woods",
+          "stats": {
+            "receiving": {
+              "receptions": "0",
+              "receivingYards": "0",
+              "yardsPerReception": "0.0",
+              "receivingTouchdowns": "0",
+              "longReception": "0",
+              "receivingTargets": "1"
+            }
+          }
+        },
+        {
+          "id": "4361767",
+          "name": "Will McDonald IV",
+          "stats": {
+            "fumbles": {
+              "fumbles": "0",
+              "fumblesLost": "0",
+              "fumblesRecovered": "1"
+            },
+            "defensive": {
+              "totalTackles": "4",
+              "soloTackles": "1",
+              "sacks": "1",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "2",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4683815",
+          "name": "Trevin Wallace",
+          "stats": {
+            "fumbles": {
+              "fumbles": "0",
+              "fumblesLost": "0",
+              "fumblesRecovered": "1"
+            },
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "0",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4426686",
+          "name": "Dane Belton",
+          "stats": {
+            "defensive": {
+              "totalTackles": "8",
+              "soloTackles": "3",
+              "sacks": "1",
+              "tacklesForLoss": "1",
+              "passesDefended": "0",
+              "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4685248",
+          "name": "David Bailey",
+          "stats": {
+            "defensive": {
+              "totalTackles": "7",
+              "soloTackles": "5",
+              "sacks": "3",
+              "tacklesForLoss": "3",
+              "passesDefended": "0",
+              "QBHits": "4",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4426817",
+          "name": "Jarvis Brownlee Jr.",
+          "stats": {
+            "defensive": {
+              "totalTackles": "6",
+              "soloTackles": "5",
+              "sacks": "1",
+              "tacklesForLoss": "2",
+              "passesDefended": "0",
+              "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "3925345",
+          "name": "Minkah Fitzpatrick",
+          "stats": {
+            "defensive": {
+              "totalTackles": "5",
+              "soloTackles": "4",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "1",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4361331",
+          "name": "Jamien Sherwood",
+          "stats": {
+            "defensive": {
+              "totalTackles": "4",
+              "soloTackles": "3",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "1",
+              "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4612836",
+          "name": "Darrell Jackson Jr.",
+          "stats": {
+            "defensive": {
+              "totalTackles": "4",
+              "soloTackles": "2",
+              "sacks": "1",
+              "tacklesForLoss": "1",
+              "passesDefended": "2",
+              "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "14958",
+          "name": "Demario Davis",
+          "stats": {
+            "defensive": {
+              "totalTackles": "4",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4035824",
+          "name": "Brandon Stephens",
+          "stats": {
+            "defensive": {
+              "totalTackles": "3",
+              "soloTackles": "3",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "1",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4426676",
+          "name": "Jowon Briggs",
+          "stats": {
+            "defensive": {
+              "totalTackles": "3",
+              "soloTackles": "2",
+              "sacks": "1",
+              "tacklesForLoss": "1",
+              "passesDefended": "0",
+              "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4428617",
+          "name": "T'Vondre Sweat",
+          "stats": {
+            "defensive": {
+              "totalTackles": "2",
+              "soloTackles": "2",
+              "sacks": "0",
+              "tacklesForLoss": "1",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4362840",
+          "name": "Kingsley Enagbare",
+          "stats": {
+            "defensive": {
+              "totalTackles": "2",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "1",
+              "passesDefended": "0",
+              "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4685596",
+          "name": "Azareye'h Thomas",
+          "stats": {
+            "defensive": {
+              "totalTackles": "2",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "2",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "3117255",
+          "name": "Harrison Phillips",
+          "stats": {
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4039485",
+          "name": "Jack Heflin",
+          "stats": {
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4692024",
+          "name": "Malachi Moore",
+          "stats": {
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4361939",
+          "name": "Andre Cisco",
+          "stats": {
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "0",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4428681",
+          "name": "Joe Tippmann",
+          "stats": {
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "0",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4789907",
+          "name": "Armand Membou",
+          "stats": {
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "0",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4035537",
+          "name": "Kene Nwangwu",
+          "stats": {
+            "kickReturns": {
+              "kickReturns": "3",
+              "kickReturnYards": "68",
+              "yardsPerKickReturn": "22.7",
+              "longKickReturn": "26",
+              "kickReturnTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "3124679",
+          "name": "Jason Sanders",
+          "stats": {
+            "kicking": {
+              "fieldGoalsMade/fieldGoalAttempts": "1/1",
+              "fieldGoalPct": "100.0",
+              "longFieldGoalMade": "54",
+              "extraPointsMade/extraPointAttempts": "2/2",
+              "totalKickingPoints": "5"
+            }
+          }
+        },
+        {
+          "id": "4427982",
+          "name": "Austin McNamara",
+          "stats": {
+            "punting": {
+              "punts": "7",
+              "puntYards": "298",
+              "grossAvgPuntYards": "42.6",
+              "touchbacks": "0",
+              "puntsInside20": "3",
+              "longPunt": "54"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "code": "CLE",
+      "name": "Cleveland Browns",
+      "homeAway": "away",
+      "score": 12,
+      "teamStats": {
+        "netPassingYards": "102",
+        "completionAttempts": "15/33",
+        "sacksYardsLost": "8-53",
+        "rushingYards": "96",
+        "rushingAttempts": "24"
+      },
+      "players": [
+        {
+          "id": "3122840",
+          "name": "Deshaun Watson",
+          "stats": {
+            "passing": {
+              "completions/passingAttempts": "15/33",
+              "passingYards": "155",
+              "yardsPerPassAttempt": "4.7",
+              "passingTouchdowns": "1",
+              "interceptions": "0",
+              "sacks-sackYardsLost": "8-53",
+              "adjQBR": "20.4",
+              "QBRating": "69.6"
+            },
+            "rushing": {
+              "rushingAttempts": "6",
+              "rushingYards": "40",
+              "yardsPerRushAttempt": "6.7",
+              "rushingTouchdowns": "0",
+              "longRushing": "20"
+            },
+            "fumbles": {
+              "fumbles": "3",
+              "fumblesLost": "1",
+              "fumblesRecovered": "2"
+            }
+          }
+        },
+        {
+          "id": "4685702",
+          "name": "Quinshon Judkins",
+          "stats": {
+            "rushing": {
+              "rushingAttempts": "14",
+              "rushingYards": "44",
+              "yardsPerRushAttempt": "3.1",
+              "rushingTouchdowns": "0",
+              "longRushing": "14"
+            },
+            "receiving": {
+              "receptions": "3",
+              "receivingYards": "6",
+              "yardsPerReception": "2.0",
+              "receivingTouchdowns": "0",
+              "longReception": "3",
+              "receivingTargets": "4"
+            }
+          }
+        },
+        {
+          "id": "4601080",
+          "name": "Raheim Sanders",
+          "stats": {
+            "rushing": {
+              "rushingAttempts": "3",
+              "rushingYards": "12",
+              "yardsPerRushAttempt": "4.0",
+              "rushingTouchdowns": "0",
+              "longRushing": "5"
+            },
+            "receiving": {
+              "receptions": "1",
+              "receivingYards": "1",
+              "yardsPerReception": "1.0",
+              "receivingTouchdowns": "0",
+              "longReception": "1",
+              "receivingTargets": "1"
+            },
+            "fumbles": {
+              "fumbles": "0",
+              "fumblesLost": "0",
+              "fumblesRecovered": "1"
+            }
+          }
+        },
+        {
+          "id": "4039396",
+          "name": "Corey Bojorquez",
+          "stats": {
+            "rushing": {
+              "rushingAttempts": "1",
+              "rushingYards": "0",
+              "yardsPerRushAttempt": "0.0",
+              "rushingTouchdowns": "0",
+              "longRushing": "0"
+            },
+            "fumbles": {
+              "fumbles": "1",
+              "fumblesLost": "1",
+              "fumblesRecovered": "0"
+            },
+            "punting": {
+              "punts": "8",
+              "puntYards": "421",
+              "grossAvgPuntYards": "52.6",
+              "touchbacks": "1",
+              "puntsInside20": "1",
+              "longPunt": "67"
+            }
+          }
+        },
+        {
+          "id": "4808839",
+          "name": "Isaiah Bond",
+          "stats": {
+            "receiving": {
+              "receptions": "3",
+              "receivingYards": "74",
+              "yardsPerReception": "24.7",
+              "receivingTouchdowns": "0",
+              "longReception": "30",
+              "receivingTargets": "7"
+            }
+          }
+        },
+        {
+          "id": "4832800",
+          "name": "Denzel Boston",
+          "stats": {
+            "receiving": {
+              "receptions": "3",
+              "receivingYards": "46",
+              "yardsPerReception": "15.3",
+              "receivingTouchdowns": "1",
+              "longReception": "29",
+              "receivingTargets": "7"
+            },
+            "puntReturns": {
+              "puntReturns": "1",
+              "puntReturnYards": "13",
+              "yardsPerPuntReturn": "13.0",
+              "longPuntReturn": "13",
+              "puntReturnTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4241463",
+          "name": "Jerry Jeudy",
+          "stats": {
+            "receiving": {
+              "receptions": "3",
+              "receivingYards": "19",
+              "yardsPerReception": "6.3",
+              "receivingTouchdowns": "0",
+              "longReception": "12",
+              "receivingTargets": "7"
+            }
+          }
+        },
+        {
+          "id": "4870653",
+          "name": "KC Concepcion",
+          "stats": {
+            "receiving": {
+              "receptions": "1",
+              "receivingYards": "5",
+              "yardsPerReception": "5.0",
+              "receivingTouchdowns": "0",
+              "longReception": "5",
+              "receivingTargets": "1"
+            }
+          }
+        },
+        {
+          "id": "5083076",
+          "name": "Harold Fannin Jr.",
+          "stats": {
+            "receiving": {
+              "receptions": "1",
+              "receivingYards": "4",
+              "yardsPerReception": "4.0",
+              "receivingTouchdowns": "0",
+              "longReception": "4",
+              "receivingTargets": "4"
+            }
+          }
+        },
+        {
+          "id": "4722893",
+          "name": "Jaleel McLaughlin",
+          "stats": {
+            "receiving": {
+              "receptions": "0",
+              "receivingYards": "0",
+              "yardsPerReception": "0.0",
+              "receivingTouchdowns": "0",
+              "longReception": "0",
+              "receivingTargets": "1"
+            }
+          }
+        },
+        {
+          "id": "3115485",
+          "name": "Elgton Jenkins",
+          "stats": {
+            "fumbles": {
+              "fumbles": "1",
+              "fumblesLost": "0",
+              "fumblesRecovered": "0"
+            }
+          }
+        },
+        {
+          "id": "4569620",
+          "name": "Ronnie Hickman",
+          "stats": {
+            "fumbles": {
+              "fumbles": "0",
+              "fumblesLost": "0",
+              "fumblesRecovered": "1"
+            },
+            "defensive": {
+              "totalTackles": "2",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4605792",
+          "name": "Adin Huntington",
+          "stats": {
+            "fumbles": {
+              "fumbles": "0",
+              "fumblesLost": "0",
+              "fumblesRecovered": "1"
+            },
+            "defensive": {
+              "totalTackles": "5",
+              "soloTackles": "1",
+              "sacks": "0.5",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "3110565",
+          "name": "Quincy Williams",
+          "stats": {
+            "defensive": {
+              "totalTackles": "11",
+              "soloTackles": "7",
+              "sacks": "0",
+              "tacklesForLoss": "1",
+              "passesDefended": "1",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4876017",
+          "name": "Carson Schwesinger",
+          "stats": {
+            "defensive": {
+              "totalTackles": "8",
+              "soloTackles": "5",
+              "sacks": "1",
+              "tacklesForLoss": "1",
+              "passesDefended": "1",
+              "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "3915535",
+          "name": "Denzel Ward",
+          "stats": {
+            "defensive": {
+              "totalTackles": "7",
+              "soloTackles": "4",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4242208",
+          "name": "Grant Delpit",
+          "stats": {
+            "defensive": {
+              "totalTackles": "5",
+              "soloTackles": "3",
+              "sacks": "0",
+              "tacklesForLoss": "1",
+              "passesDefended": "1",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4379397",
+          "name": "Tyson Campbell",
+          "stats": {
+            "defensive": {
+              "totalTackles": "5",
+              "soloTackles": "2",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4695783",
+          "name": "Myles Harden",
+          "stats": {
+            "defensive": {
+              "totalTackles": "5",
+              "soloTackles": "2",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4567242",
+          "name": "Sam Williams",
+          "stats": {
+            "defensive": {
+              "totalTackles": "4",
+              "soloTackles": "4",
+              "sacks": "0",
+              "tacklesForLoss": "2",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "3040471",
+          "name": "Maliek Collins",
+          "stats": {
+            "defensive": {
+              "totalTackles": "4",
+              "soloTackles": "2",
+              "sacks": "1.5",
+              "tacklesForLoss": "2",
+              "passesDefended": "0",
+              "QBHits": "3",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4033855",
+          "name": "Sam Kamara",
+          "stats": {
+            "defensive": {
+              "totalTackles": "4",
+              "soloTackles": "1",
+              "sacks": "1",
+              "tacklesForLoss": "1",
+              "passesDefended": "0",
+              "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4837186",
+          "name": "Emmanuel McNeil-Warren",
+          "stats": {
+            "defensive": {
+              "totalTackles": "3",
+              "soloTackles": "2",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4578085",
+          "name": "Jared Verse",
+          "stats": {
+            "defensive": {
+              "totalTackles": "3",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "2",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4427963",
+          "name": "Isaiah McGuire",
+          "stats": {
+            "defensive": {
+              "totalTackles": "2",
+              "soloTackles": "2",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4613104",
+          "name": "Malachi Corley",
+          "stats": {
+            "defensive": {
+              "totalTackles": "2",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            },
+            "kickReturns": {
+              "kickReturns": "3",
+              "kickReturnYards": "74",
+              "yardsPerKickReturn": "24.7",
+              "longKickReturn": "34",
+              "kickReturnTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4251125",
+          "name": "Winston Reid",
+          "stats": {
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "5085888",
+          "name": "Easton Mascarenas-Arnold",
+          "stats": {
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "5150249",
+          "name": "Justin Jefferson",
+          "stats": {
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "2515270",
+          "name": "Michael Burton",
+          "stats": {
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "0",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4035505",
+          "name": "Daniel Thomas",
+          "stats": {
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "0",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4686027",
+          "name": "Donovan McMillon",
+          "stats": {
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "0",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4258620",
+          "name": "Andre Szmyt",
+          "stats": {
+            "kicking": {
+              "fieldGoalsMade/fieldGoalAttempts": "2/2",
+              "fieldGoalPct": "100.0",
+              "longFieldGoalMade": "41",
+              "extraPointsMade/extraPointAttempts": "0/1",
+              "totalKickingPoints": "6"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "scoringPlays": [
+    {
+      "teamId": "20",
+      "type": "TD",
+      "scoringType": "TD",
+      "text": "Garrett Wilson 32 Yd pass from Geno Smith (Jason Sanders Kick)"
+    },
+    {
+      "teamId": "5",
+      "type": "FG",
+      "scoringType": "FG",
+      "text": "Andre Szmyt 25 Yd Field Goal"
+    },
+    {
+      "teamId": "5",
+      "type": "FG",
+      "scoringType": "FG",
+      "text": "Andre Szmyt 41 Yd Field Goal"
+    },
+    {
+      "teamId": "20",
+      "type": "FG",
+      "scoringType": "FG",
+      "text": "Jason Sanders 54 Yd Field Goal"
+    },
+    {
+      "teamId": "5",
+      "type": "TD",
+      "scoringType": "TD",
+      "text": "Denzel Boston 29 Yd pass from Deshaun Watson (Andre Szmyt PAT Failed)"
+    },
+    {
+      "teamId": "20",
+      "type": "TD",
+      "scoringType": "TD",
+      "text": "Braelon Allen 22 Yd Rush (Jason Sanders Kick)"
+    }
+  ]
+}
