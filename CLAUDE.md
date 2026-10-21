@@ -26,7 +26,7 @@ Build one phase at a time and get Nate's OK before starting the next.
   ```
 
 - Zero cases: team GP 0 → "—". Base total 0 or less → share 0%, projection 0. "Games he played" mode with player GP 0 → "—".
-- Negative yards keep their sign in totals; a negative share cuts to 0, never −0 or −1.
+- Negative yards keep their sign in totals; a small negative share (−4 of 600) cuts toward zero to 0%, never −0 or −1.
 - `tests/calc.test.js` (run with `node --test`) must pass before any screen work.
 
 ## Data source rules
