@@ -1,6 +1,7 @@
 // Weekly entry point.
 //   node updater/update.js              latest 2 started weeks (first run backfills from Week 1)
 //   node updater/update.js --weeks 1-6  re-check regular-season weeks 1 to 6
+// Exit code 0: all good. 1: a hard check or ESPN failed, nothing to publish. 2: soft check failed, still publish.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -16,6 +17,7 @@ const GAMES_DIR = path.join(DATA_DIR, 'games', String(config.season));
 const POSITIONS = path.join(DATA_DIR, 'positions.json');
 
 const LOOK_BACK_WEEKS = 2;
+const SOFT_FAIL = 2; // exit code: publish anyway, then fail the run so Nate gets an email (1 = hard failure)
 
 function parseArgs(argv) {
   const i = argv.indexOf('--weeks');
@@ -106,7 +108,7 @@ async function main() {
   if (problems.length) {
     problems.forEach((p) => console.error(`SOFT CHECK: ${p}`));
     console.error(`${problems.length} soft check(s) failed: the site data was still rebuilt.`);
-    process.exitCode = 1;
+    process.exitCode = SOFT_FAIL;
   }
 }
 

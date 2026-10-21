@@ -1,0 +1,78 @@
+# Every Wednesday at 12:00am Melbourne time: fetch the week's games from ESPN,
+# rebuild the site data, run the checks, commit and republish the site.
+name: Weekly update
+
+on:
+  schedule:
+    - cron: '0 0 * * 3'                 # Wednesday 12:00am
+      timezone: 'Australia/Melbourne'   # GitHub adjusts for daylight saving
+  workflow_dispatch:                    # adds a "Run workflow" button for manual updates
+    inputs:
+      weeks:
+        description: 'Optional: regular-season weeks to re-check, e.g. 1-6 (leave empty for the normal update)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: weekly-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Run tests
+        run: node --test
+
+      # Exit code 1 (hard check or ESPN failure) stops here, so the live site keeps the last good data.
+      # Exit code 2 (soft check) carries on and publishes, then fails the run at the end.
+      - name: Fetch games and rebuild data
+        id: update
+        env:
+          WEEKS: ${{ inputs.weeks }}
+        run: |
+          set +e
+          if [ -n "$WEEKS" ]; then node updater/update.js --weeks "$WEEKS"; else node updater/update.js; fi
+          code=$?
+          set -e
+          if [ "$code" -eq 2 ]; then echo "soft_failed=true" >> "$GITHUB_OUTPUT"; elif [ "$code" -ne 0 ]; then exit "$code"; fi
+
+      # The check time changes every run, so there is always a commit; this also stops
+      # GitHub pausing the schedule after 60 days without activity.
+      - name: Commit changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898341+github-actions[bot]@users.noreply.github.com'
+          git add data docs/data
+          git commit -m "Weekly update: $(TZ=Australia/Melbourne date '+%a %d %b %Y %H:%M')" || echo 'Nothing to commit'
+          git push
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Publish site
+        id: deploy
+        uses: actions/deploy-pages@v4
+
+      - name: Report soft-check problems
+        if: steps.update.outputs.soft_failed == 'true'
+        run: |
+          echo "::error::Some soft checks failed (see the 'Fetch games and rebuild data' step). The site was still published."
+          exit 1
