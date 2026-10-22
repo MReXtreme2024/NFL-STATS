@@ -52,3 +52,7 @@ Nate changed these on 22 Oct 2026 (same change as the NBA app); they replace PLA
 
 Node.js (LTS) built-ins only: no frameworks, no npm packages, no build step. Site is plain HTML/CSS/JS in `docs/`.
 The NBA app (`MReXtreme2024/nba-stats`) is the starting point for look, layout and `calc.js`, but the two apps stay separate.
+
+## Schedule
+
+The weekly run is at **12:07am** Wednesday, Australia/Melbourne (`cron: '7 0 * * 3'`), not 12:00am as in PLAN.md. Nate approved the move because GitHub delays or drops jobs scheduled exactly on the hour (the NBA app's first midnight run started about 5 hours late).

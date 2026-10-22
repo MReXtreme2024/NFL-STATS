@@ -1,10 +1,10 @@
-# Every Wednesday at 12:00am Melbourne time: fetch the week's games from ESPN,
+# Every Wednesday at 12:07am Melbourne time: fetch the week's games from ESPN,
 # rebuild the site data, run the checks, commit and republish the site.
 name: Weekly update
 
 on:
   schedule:
-    - cron: '0 0 * * 3'                 # Wednesday 12:00am
+    - cron: '7 0 * * 3'                 # Wednesday 12:07am: GitHub delays or drops jobs set for exactly the hour
       timezone: 'Australia/Melbourne'   # GitHub adjusts for daylight saving
   workflow_dispatch:                    # adds a "Run workflow" button for manual updates
     inputs:
