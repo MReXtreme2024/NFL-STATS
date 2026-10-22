@@ -274,7 +274,7 @@
           "stats": {
             "defensive": {
               "totalTackles": "7",
-              "soloTackles": "4",
+              "soloTackles": "3",
               "sacks": "2",
               "tacklesForLoss": "2",
               "passesDefended": "0",
@@ -314,6 +314,21 @@
           }
         },
         {
+          "id": "4870617",
+          "name": "Rueben Bain Jr.",
+          "stats": {
+            "defensive": {
+              "totalTackles": "4",
+              "soloTackles": "1",
+              "sacks": "1",
+              "tacklesForLoss": "1",
+              "passesDefended": "1",
+              "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
           "id": "3909013",
           "name": "Christian Rozeboom",
           "stats": {
@@ -339,21 +354,6 @@
               "tacklesForLoss": "0",
               "passesDefended": "0",
               "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
-          "id": "4870617",
-          "name": "Rueben Bain Jr.",
-          "stats": {
-            "defensive": {
-              "totalTackles": "3",
-              "soloTackles": "1",
-              "sacks": "1",
-              "tacklesForLoss": "1",
-              "passesDefended": "1",
-              "QBHits": "1",
               "defensiveTouchdowns": "0"
             }
           }

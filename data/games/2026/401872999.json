@@ -311,8 +311,8 @@
           "name": "Avieon Terrell",
           "stats": {
             "defensive": {
-              "totalTackles": "5",
-              "soloTackles": "4",
+              "totalTackles": "6",
+              "soloTackles": "5",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",
@@ -382,21 +382,6 @@
           }
         },
         {
-          "id": "4431005",
-          "name": "Xavier Watts",
-          "stats": {
-            "defensive": {
-              "totalTackles": "4",
-              "soloTackles": "2",
-              "sacks": "0",
-              "tacklesForLoss": "1",
-              "passesDefended": "0",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
           "id": "4605478",
           "name": "Jared Ivey",
           "stats": {
@@ -420,6 +405,21 @@
               "soloTackles": "1",
               "sacks": "0",
               "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4431005",
+          "name": "Xavier Watts",
+          "stats": {
+            "defensive": {
+              "totalTackles": "3",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "1",
               "passesDefended": "0",
               "QBHits": "0",
               "defensiveTouchdowns": "0"

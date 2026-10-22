@@ -240,21 +240,6 @@
           }
         },
         {
-          "id": "4682618",
-          "name": "Cooper DeJean",
-          "stats": {
-            "defensive": {
-              "totalTackles": "6",
-              "soloTackles": "6",
-              "sacks": "0",
-              "tacklesForLoss": "1",
-              "passesDefended": "1",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
           "id": "4432777",
           "name": "Jeremiah Trotter Jr.",
           "stats": {
@@ -280,6 +265,21 @@
               "tacklesForLoss": "0",
               "passesDefended": "1",
               "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4682618",
+          "name": "Cooper DeJean",
+          "stats": {
+            "defensive": {
+              "totalTackles": "5",
+              "soloTackles": "5",
+              "sacks": "0",
+              "tacklesForLoss": "1",
+              "passesDefended": "1",
+              "QBHits": "0",
               "defensiveTouchdowns": "0"
             }
           }

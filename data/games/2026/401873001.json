@@ -854,27 +854,12 @@
           }
         },
         {
-          "id": "4362840",
-          "name": "Kingsley Enagbare",
-          "stats": {
-            "defensive": {
-              "totalTackles": "6",
-              "soloTackles": "4",
-              "sacks": "0",
-              "tacklesForLoss": "1",
-              "passesDefended": "0",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
           "id": "4426676",
           "name": "Jowon Briggs",
           "stats": {
             "defensive": {
               "totalTackles": "6",
-              "soloTackles": "3",
+              "soloTackles": "4",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",
@@ -903,12 +888,27 @@
           "name": "David Bailey",
           "stats": {
             "defensive": {
-              "totalTackles": "5",
+              "totalTackles": "6",
               "soloTackles": "1",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",
               "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4362840",
+          "name": "Kingsley Enagbare",
+          "stats": {
+            "defensive": {
+              "totalTackles": "5",
+              "soloTackles": "4",
+              "sacks": "0",
+              "tacklesForLoss": "1",
+              "passesDefended": "0",
+              "QBHits": "0",
               "defensiveTouchdowns": "0"
             }
           }
@@ -989,6 +989,21 @@
           }
         },
         {
+          "id": "3117255",
+          "name": "Harrison Phillips",
+          "stats": {
+            "defensive": {
+              "totalTackles": "2",
+              "soloTackles": "0",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
           "id": "4361767",
           "name": "Will McDonald IV",
           "stats": {
@@ -1010,21 +1025,6 @@
             "defensive": {
               "totalTackles": "1",
               "soloTackles": "1",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
-          "id": "3117255",
-          "name": "Harrison Phillips",
-          "stats": {
-            "defensive": {
-              "totalTackles": "1",
-              "soloTackles": "0",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",

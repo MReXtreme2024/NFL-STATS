@@ -285,7 +285,7 @@
               "soloTackles": "2",
               "sacks": "0",
               "tacklesForLoss": "0",
-              "passesDefended": "0",
+              "passesDefended": "1",
               "QBHits": "0",
               "defensiveTouchdowns": "0"
             }
@@ -1096,8 +1096,8 @@
               "soloTackles": "0",
               "sacks": "0",
               "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "1",
+              "passesDefended": "1",
+              "QBHits": "0",
               "defensiveTouchdowns": "0"
             }
           }

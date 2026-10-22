@@ -860,7 +860,7 @@
           "stats": {
             "defensive": {
               "totalTackles": "4",
-              "soloTackles": "2",
+              "soloTackles": "1",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",
@@ -894,7 +894,7 @@
               "sacks": "1",
               "tacklesForLoss": "2",
               "passesDefended": "1",
-              "QBHits": "1",
+              "QBHits": "2",
               "defensiveTouchdowns": "0"
             }
           }
@@ -1009,7 +1009,7 @@
           "name": "Rashan Gary",
           "stats": {
             "defensive": {
-              "totalTackles": "0",
+              "totalTackles": "1",
               "soloTackles": "0",
               "sacks": "0",
               "tacklesForLoss": "0",

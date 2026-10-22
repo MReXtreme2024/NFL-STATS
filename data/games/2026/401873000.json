@@ -298,7 +298,7 @@
           "name": "DJ Reader",
           "stats": {
             "defensive": {
-              "totalTackles": "7",
+              "totalTackles": "6",
               "soloTackles": "5",
               "sacks": "0",
               "tacklesForLoss": "1",
@@ -369,6 +369,21 @@
           }
         },
         {
+          "id": "4361266",
+          "name": "Greg Newsome II",
+          "stats": {
+            "defensive": {
+              "totalTackles": "3",
+              "soloTackles": "2",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "1",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
           "id": "16837",
           "name": "Shelby Harris",
           "stats": {
@@ -393,21 +408,6 @@
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
-          "id": "4361266",
-          "name": "Greg Newsome II",
-          "stats": {
-            "defensive": {
-              "totalTackles": "3",
-              "soloTackles": "1",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "1",
               "QBHits": "0",
               "defensiveTouchdowns": "0"
             }
