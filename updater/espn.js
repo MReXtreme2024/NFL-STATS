@@ -46,20 +46,23 @@ export async function getTeams() {
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-// One team's current roster as { playerId: position }, e.g. { "3918298": "QB" }.
-export async function getRosterPositions(teamId) {
+// One team's current roster: { positions: { playerId: position }, ids: [playerId] },
+// e.g. positions { "3918298": "QB" }.
+export async function getRoster(teamId) {
   const data = await fetchJson(`${TEAMS_URL}/${teamId}/roster`);
   const positions = {};
+  const ids = [];
   for (const group of data.athletes ?? []) {
     for (const a of group.items ?? []) {
+      ids.push(a.id);
       if (a.position?.abbreviation) positions[a.id] = a.position.abbreviation;
     }
   }
-  return positions;
+  return { positions, ids };
 }
 
 // The default scoreboard carries the season calendar. Returns the season year and
-// every regular-season and postseason week as { seasonType, week, start }.
+// every regular-season and postseason week as { seasonType, week, start, end }.
 export async function getCalendar() {
   const data = await fetchJson(SCOREBOARD_URL);
   const league = data.leagues[0];
@@ -67,7 +70,7 @@ export async function getCalendar() {
   for (const block of league.calendar) {
     const seasonType = Number(block.value);
     if (seasonType !== REGULAR && seasonType !== POSTSEASON) continue;
-    for (const e of block.entries ?? []) weeks.push({ seasonType, week: Number(e.value), start: e.startDate });
+    for (const e of block.entries ?? []) weeks.push({ seasonType, week: Number(e.value), start: e.startDate, end: e.endDate });
   }
   return { year: league.season.year, weeks };
 }
@@ -99,6 +102,31 @@ export function isCountedGame(event, season, teamIds) {
     competitors.length === 2 &&
     competitors.every((c) => teamIds.has(c.team.id))
   );
+}
+
+// A regular-season or postseason game of this season between two of the 32 teams that hasn't started yet.
+export function isUpcomingGame(event, season, teamIds) {
+  const competitors = event.competitions?.[0]?.competitors ?? [];
+  return (
+    event.season?.year === season &&
+    (event.season?.type === REGULAR || event.season?.type === POSTSEASON) &&
+    event.status?.type?.state === 'pre' &&
+    competitors.length === 2 &&
+    competitors.every((c) => teamIds.has(c.team.id))
+  );
+}
+
+// An upcoming game as we keep it: when, and who is home and away.
+export function trimUpcoming(event) {
+  const comp = event.competitions[0];
+  const side = (homeAway) => comp.competitors.find((c) => c.homeAway === homeAway).team.id;
+  return {
+    id: event.id,
+    start: event.date,
+    homeId: side('home'),
+    awayId: side('away'),
+    neutral: comp.neutralSite === true,
+  };
 }
 
 // Map one category's stats by ESPN's `keys` (never by position).

@@ -203,6 +203,11 @@ Total touchdowns <total> (average <avg, one decimal> touchdowns)
 
 **Decimals change** (Nate, 22 Oct 2026, replaces "cut at every step" in Maths rules): the projection formula keeps every decimal and only the final projection is cut, to a whole number (20.56 → 20) or one decimal for touchdowns. Averages and share % are shown with 2 decimals, cut. Worked examples are now: 1,500 ÷ 6 → 250.00; 1,380 of 1,500 → 92.00%, projection 230; games he played 30 of 140, team average 34 → 21.42%, projection 7; −4 of 600 → −0.66%, projection 0; TDs 4 of 16 over 6 games → average 2.66, 25.00%, projection 0.6. See `CLAUDE.md` and `tests/calc.test.js`.
 
+**4c. Upcoming games** (added at Nate's request, 22 Oct 2026)
+
+- A button at the top of the Teams screen opens the next week's games that haven't started, with Melbourne start times.
+- Tapping a game shows, for each of PASS YDS, RUSH YDS, REC YDS, REC and TD, the two teams' players side by side, sorted by projection, showing only projections of 1 or more (TDs 0.1 or more). Only players on each team's current roster are included. Uses the same mode switch.
+
 **5. Player page**
 
 - Header: the player's name on the team colour, and "Played X of Y team games".

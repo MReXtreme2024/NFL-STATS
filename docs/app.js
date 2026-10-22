@@ -45,6 +45,16 @@ function dateText(ymd) {
 // "Wk 6" for the regular season; WC, DIV, CONF or SB for the playoffs.
 const weekText = (g) => (g.type === 'REG' ? `Wk ${g.week}` : g.type);
 
+// "2026-10-25T17:00Z" -> "Mon 26 Oct · 4:00am" in Melbourne time.
+function startText(iso) {
+  const p = Object.fromEntries(
+    new Intl.DateTimeFormat('en-AU', {
+      timeZone: TZ, hour: 'numeric', minute: '2-digit', hour12: true, weekday: 'short', day: 'numeric', month: 'short',
+    }).formatToParts(new Date(iso)).map((x) => [x.type, x.value]),
+  );
+  return `${p.weekday} ${p.day} ${p.month} · ${p.hour}:${p.minute}${p.dayPeriod.toLowerCase()}`;
+}
+
 function bar(title, backHref, sub = '') {
   const back = backHref ? `<a class="back" href="${backHref}" aria-label="Back">‹</a>` : '';
   return `<header class="bar">${back}<h1>${esc(title)}${sub ? `<div class="sub">${esc(sub)}</div>` : ''}</h1></header>`;
@@ -63,7 +73,10 @@ function teamsPage() {
     <li><a class="row" href="#/team/${t.id}" style="${colours(t)}">
       <span>${esc(t.name)}</span><span class="gp">${t.gp} played</span>
     </a></li>`).join('');
-  return `${bar(`NFL ${data.season}`, null, checkedText(data.checked))}<ul class="teams">${rows}</ul>`;
+  const count = data.upcoming?.games.length ?? 0;
+  const when = data.upcoming?.label ? `${data.upcoming.label} · ` : '';
+  const upcoming = `<a class="upcoming-link" href="#/upcoming"><span>Upcoming games</span><span class="gp">${when}${count} ${count === 1 ? 'game' : 'games'} ›</span></a>`;
+  return `${bar(`NFL ${data.season}`, null, checkedText(data.checked))}${upcoming}<ul class="teams">${rows}</ul>`;
 }
 
 // 2. Team page, in Nate's wording
@@ -181,6 +194,56 @@ function projectionsPage(t) {
   return `${bar(`${t.name} projections`, `#/team/${t.id}`)}${modeSwitch(mode)}${table}`;
 }
 
+const teamById = (id) => data.teams.find((t) => t.id === id);
+const pill = (t) => `<span class="pill" style="${colours(t)}">${esc(t.code)}</span>`;
+
+// 6. Upcoming games: the next week's games not yet started, from the weekly update.
+function upcomingPage() {
+  const games = data.upcoming?.games ?? [];
+  const rows = games.map((g) => `<li><a class="game-row" href="#/game/${g.id}">
+      <span class="teams-line">${pill(teamById(g.awayId))}<span class="at">${g.neutral ? 'vs' : '@'}</span>${pill(teamById(g.homeId))}</span>
+      <span class="when">${startText(g.start)}</span></a></li>`).join('');
+  const body = games.length
+    ? `<ul class="games-list">${rows}</ul>`
+    : '<p class="message">No upcoming games right now. The list refreshes with each weekly update.</p>';
+  const label = data.upcoming?.label ? `${data.upcoming.label} · ` : '';
+  return `${bar('Upcoming games', '#/', `${label}Melbourne times · tap a game for projections`)}${body}`;
+}
+
+// Players to project for an upcoming game: those on the current roster (when known) who have played for this team.
+const projectable = (t) => t.players.filter((p) => (t.roster?.length ? t.roster.includes(p.id) : p.gp > 0));
+
+// 7. Matchup: for each projection stat, the two teams' players side by side, highest first,
+// only projections worth showing (1 or more; TDs 0.1 or more).
+function matchupPage(g) {
+  const mode = readMode();
+  const away = teamById(g.awayId);
+  const home = teamById(g.homeId);
+  const column = (t, s) => {
+    const items = projectable(t)
+      .map((p) => ({ p, v: projections(t, p, mode)[s] }))
+      .filter(({ v }) => worthShowing(v))
+      .sort((a, b) => b.v - a.v || a.p.name.localeCompare(b.p.name))
+      .map(({ p, v }) => {
+        const pos = p.pos ? ` <span class="pos">${esc(p.pos)}</span>` : '';
+        return `<li><a href="#/team/${t.id}/player/${p.id}"><span class="name">${esc(p.name)}${pos}</span><b>${show(v, tenths(s))}</b></a></li>`;
+      })
+      .join('');
+    return `<div class="side"><div class="side-head" style="${colours(t)}">${esc(t.code)}</div>
+      ${items ? `<ul>${items}</ul>` : '<p class="none">No projections</p>'}</div>`;
+  };
+  const sections = PROJ_STATS.map((s) => `<section class="stat"><h3>${LONG[s]}</h3>
+      <div class="sides">${column(away, s)}${column(home, s)}</div></section>`).join('');
+  const sideLabel = (homeAway) => (g.neutral ? 'Neutral site' : homeAway);
+  return `${bar(`${away.code} ${g.neutral ? 'vs' : '@'} ${home.code}`, '#/upcoming', startText(g.start))}
+    <section class="matchup">
+      <div class="panel" style="${colours(away)}"><h2>${esc(away.name)}</h2><p>${sideLabel('Away')} · ${away.gp} played</p></div>
+      <div class="panel" style="${colours(home)}"><h2>${esc(home.name)}</h2><p>${sideLabel('Home')} · ${home.gp} played</p></div>
+    </section>
+    ${modeSwitch(mode)}
+    <div class="stats">${sections}</div>`;
+}
+
 // 5. Player page: share % and projection per stat, two modes
 function playerPage(t, p) {
   const mode = readMode();
@@ -211,8 +274,13 @@ function render() {
   let html;
   let title = 'NFL Team Stats';
   const team = parts[0] === 'team' ? data.teams.find((t) => t.id === parts[1]) : null;
+  const game = parts[0] === 'game' ? data.upcoming?.games.find((g) => g.id === parts[1]) : null;
   if (parts.length === 0) {
     html = teamsPage();
+  } else if (parts[0] === 'upcoming') {
+    html = upcomingPage(); title = 'Upcoming games';
+  } else if (game) {
+    html = matchupPage(game); title = `${teamById(game.awayId).code} ${game.neutral ? 'vs' : '@'} ${teamById(game.homeId).code}`;
   } else if (team && parts.length === 2) {
     html = teamPage(team); title = team.name;
   } else if (team && parts[2] === 'games') {

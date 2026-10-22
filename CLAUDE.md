@@ -56,3 +56,7 @@ The NBA app (`MReXtreme2024/nba-stats`) is the starting point for look, layout a
 ## Schedule
 
 The weekly run is at **12:07am** Wednesday, Australia/Melbourne (`cron: '7 0 * * 3'`), not 12:00am as in PLAN.md. Nate approved the move because GitHub delays or drops jobs scheduled exactly on the hour (the NBA app's first midnight run started about 5 hours late).
+
+## Upcoming games
+
+Added at Nate's request (22 Oct 2026). Each run saves the next calendar week with games that haven't started (`status.type.state === 'pre'`, regular season or playoffs, two of the 32 teams) to `data/upcoming.json`, and every team's current roster ids to `data/rosters.json`. The home screen's **Upcoming games** button lists them ("vs" for neutral sites); tapping one shows a matchup page with, for each of PASS YDS, RUSH YDS, REC YDS, REC and TD, both teams' players side by side, sorted by projection, showing only projections of 1 or more (TDs 0.1 or more). Players are those on the current roster who have played for the team (all players if the roster is unknown). Same maths and remembered mode switch as everywhere else.

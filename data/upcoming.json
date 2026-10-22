@@ -1,0 +1,103 @@
+{
+  "label": "Week 7",
+  "games": [
+    {
+      "id": "401873010",
+      "start": "2026-10-23T00:15Z",
+      "homeId": "3",
+      "awayId": "17",
+      "neutral": false
+    },
+    {
+      "id": "401873011",
+      "start": "2026-10-25T13:30Z",
+      "homeId": "18",
+      "awayId": "23",
+      "neutral": true
+    },
+    {
+      "id": "401873017",
+      "start": "2026-10-25T17:00Z",
+      "homeId": "1",
+      "awayId": "25",
+      "neutral": false
+    },
+    {
+      "id": "401873013",
+      "start": "2026-10-25T17:00Z",
+      "homeId": "10",
+      "awayId": "5",
+      "neutral": false
+    },
+    {
+      "id": "401873014",
+      "start": "2026-10-25T17:00Z",
+      "homeId": "16",
+      "awayId": "11",
+      "neutral": false
+    },
+    {
+      "id": "401873015",
+      "start": "2026-10-25T17:00Z",
+      "homeId": "20",
+      "awayId": "15",
+      "neutral": false
+    },
+    {
+      "id": "401873018",
+      "start": "2026-10-25T17:00Z",
+      "homeId": "29",
+      "awayId": "27",
+      "neutral": false
+    },
+    {
+      "id": "401873012",
+      "start": "2026-10-25T17:00Z",
+      "homeId": "33",
+      "awayId": "4",
+      "neutral": false
+    },
+    {
+      "id": "401873016",
+      "start": "2026-10-25T17:00Z",
+      "homeId": "34",
+      "awayId": "19",
+      "neutral": false
+    },
+    {
+      "id": "401873019",
+      "start": "2026-10-25T20:05Z",
+      "homeId": "22",
+      "awayId": "7",
+      "neutral": false
+    },
+    {
+      "id": "401873020",
+      "start": "2026-10-25T20:25Z",
+      "homeId": "8",
+      "awayId": "9",
+      "neutral": false
+    },
+    {
+      "id": "401873021",
+      "start": "2026-10-25T20:25Z",
+      "homeId": "13",
+      "awayId": "14",
+      "neutral": false
+    },
+    {
+      "id": "401873022",
+      "start": "2026-10-26T00:20Z",
+      "homeId": "26",
+      "awayId": "12",
+      "neutral": false
+    },
+    {
+      "id": "401873009",
+      "start": "2026-10-27T00:15Z",
+      "homeId": "21",
+      "awayId": "6",
+      "neutral": false
+    }
+  ]
+}

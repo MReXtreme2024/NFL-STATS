@@ -6,7 +6,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { getTeams, getRosterPositions, getCalendar, getWeekEvents, getSummary, isCountedGame, trimGame } from './espn.js';
+import {
+  getTeams, getRoster, getCalendar, getWeekEvents, getSummary, isCountedGame, isUpcomingGame, trimGame, trimUpcoming,
+} from './espn.js';
 import { checkGame } from './checks.js';
 import { build } from './build.js';
 
@@ -62,11 +64,12 @@ async function main() {
 
   // Which weeks to fetch. Every game in them is (re-)fetched, so stat corrections are picked up.
   let weeks;
+  let calendar = null;
   if (weeksArg.from) {
     weeks = [];
     for (let w = weeksArg.from; w <= weeksArg.to; w++) weeks.push({ seasonType: 2, week: w });
   } else {
-    const calendar = await getCalendar();
+    calendar = await getCalendar();
     if (calendar.year !== config.season) {
       console.log(`ESPN's calendar is for ${calendar.year}, not ${config.season}: no weeks to fetch.`);
       weeks = [];
@@ -96,12 +99,36 @@ async function main() {
   }
   console.log(`Done: ${saved} game files saved or updated, ${unchanged} unchanged.`);
 
+  // The next week with games that haven't started, for the Upcoming games screen.
+  calendar ??= await getCalendar();
+  let upcoming = { label: '', games: [] };
+  if (calendar.year === config.season) {
+    for (const w of calendar.weeks.filter((x) => new Date(x.end) > new Date()).slice(0, 2)) {
+      const games = (await getWeekEvents(config.season, w.seasonType, w.week))
+        .filter((e) => isUpcomingGame(e, config.season, teamIds))
+        .map(trimUpcoming);
+      if (games.length) {
+        upcoming = { label: weekLabel(w), games };
+        break;
+      }
+    }
+  }
+  writeJson(path.join(DATA_DIR, 'upcoming.json'), upcoming);
+  console.log(`Upcoming: ${upcoming.games.length} games${upcoming.label ? ` in ${upcoming.label}` : ''}`);
+
   // Positions from every team's current roster. Earlier positions are kept, so a player
-  // released or traded mid-season still shows the position he had.
+  // released or traded mid-season still shows the position he had. The current rosters are
+  // also saved, so upcoming-game projections leave out players who have moved on.
   console.log('Rosters (positions)');
   const positions = readJson(POSITIONS, {});
-  for (const t of teams) Object.assign(positions, await getRosterPositions(t.id));
+  const rosters = {};
+  for (const t of teams) {
+    const roster = await getRoster(t.id);
+    Object.assign(positions, roster.positions);
+    rosters[t.id] = roster.ids;
+  }
   writeJson(POSITIONS, Object.fromEntries(Object.entries(positions).sort(([a], [b]) => a.localeCompare(b))));
+  writeJson(path.join(DATA_DIR, 'rosters.json'), rosters);
 
   const { data, problems } = build();
   console.log(`Hard checks passed. Built app-data.json: ${data.teams.length} teams, checked ${data.checked}`);

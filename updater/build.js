@@ -74,14 +74,14 @@ export function isoIn(date, timeZone) {
 }
 
 // games: trimmed game objects; teams: ESPN's 32-team list; positions: { playerId: "QB" };
-// now: the check time.
-export function buildAppData(games, teams, positions, config, now) {
+// now: the check time; upcoming: { label, games } not yet played; rosters: { teamId: [playerId] }.
+export function buildAppData(games, teams, positions, config, now, { upcoming = null, rosters = {} } = {}) {
   const byId = new Map(
     teams.map((t) => {
       const colour = normaliseHex(config.colourOverrides?.[t.code] ?? t.color);
       return [t.id, {
         id: t.id, code: t.code, name: t.name, colour, textColour: textColourFor(colour),
-        gp: 0, totals: zeroTotals(), games: [], playersById: new Map(),
+        gp: 0, totals: zeroTotals(), games: [], playersById: new Map(), roster: rosters[t.id] ?? null,
       }];
     }),
   );
@@ -136,7 +136,16 @@ export function buildAppData(games, teams, positions, config, now) {
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
 
-  return { season: config.season, checked: isoIn(now, config.timeZone), teams: out };
+  const upcomingGames = (upcoming?.games ?? [])
+    .filter((g) => byId.has(g.homeId) && byId.has(g.awayId))
+    .sort((a, b) => a.start.localeCompare(b.start) || a.id.localeCompare(b.id));
+
+  return {
+    season: config.season,
+    checked: isoIn(now, config.timeZone),
+    upcoming: { label: upcoming?.label ?? '', games: upcomingGames },
+    teams: out,
+  };
 }
 
 export function loadGames(gamesDir) {
@@ -159,7 +168,10 @@ export function build(now = new Date()) {
 
   games.forEach(checkGame);
   checkSeason(teams, games, readJson(file, null));
-  const data = buildAppData(games, teams, positions, config, now);
+  const data = buildAppData(games, teams, positions, config, now, {
+    upcoming: readJson(path.join(ROOT, 'data', 'upcoming.json'), null),
+    rosters: readJson(path.join(ROOT, 'data', 'rosters.json'), {}),
+  });
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, JSON.stringify(data) + '\n');
   return { data, problems: softChecks(games) };
