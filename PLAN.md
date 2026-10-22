@@ -197,8 +197,11 @@ Total touchdowns <total> (average <avg, one decimal> touchdowns)
 
 **4b. Projections** (added at Nate's request after the plan)
 
-- A third button on the Team page. One row per player with any projection other than 0, columns Player, GP, then the ten stats as projections; zero projections are left blank.
-- Uses the same *All team games* / *Games he played* switch as the Player page (and the remembered choice). Sorted by R+R YDS projection; tapping a heading re-sorts; tapping a player opens the Player page.
+- A third button on the Team page. Columns Player, GP, then projections for PASS YDS, RUSH YDS, REC YDS, REC and TD only (changed 22 Oct 2026).
+- A projection shows if it is 1 or more (TDs: 0.1 or more), otherwise it is blank; players with nothing to show are left off.
+- Uses the same *All team games* / *Games he played* switch as the Player page (and the remembered choice). Sorted by PASS YDS projection (ties by rushing + receiving yards); tapping a heading re-sorts; tapping a player opens the Player page.
+
+**Decimals change** (Nate, 22 Oct 2026, replaces "cut at every step" in Maths rules): the projection formula keeps every decimal and only the final projection is cut, to a whole number (20.56 → 20) or one decimal for touchdowns. Averages and share % are shown with 2 decimals, cut. Worked examples are now: 1,500 ÷ 6 → 250.00; 1,380 of 1,500 → 92.00%, projection 230; games he played 30 of 140, team average 34 → 21.42%, projection 7; −4 of 600 → −0.66%, projection 0; TDs 4 of 16 over 6 games → average 2.66, 25.00%, projection 0.6. See `CLAUDE.md` and `tests/calc.test.js`.
 
 **5. Player page**
 

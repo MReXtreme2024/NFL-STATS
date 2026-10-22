@@ -6,27 +6,29 @@ Build one phase at a time and get Nate's OK before starting the next.
 
 ## Maths rules
 
-- Whole numbers only. **Cut** = drop decimals toward zero (`Math.trunc`): 17.9 → 17, −0.7 → 0. Never round, never multiply decimals.
-- Touchdowns are the one exception: their averages and projections keep one decimal, worked in **tenths** (whole numbers × 10).
+Nate changed these on 22 Oct 2026 (same change as the NBA app); they replace PLAN.md's "cut at every step" rule.
+
+- All maths is done in **whole numbers** (no floating-point), so results are exact. Never multiply decimals.
+- **Cut** = drop decimals toward zero: 17.9 → 17, −0.7 → 0. Never round, and never show −0.
 - Team GP = the team's finished games, regular season plus playoffs. Byes don't count.
 - Team total = one stat summed over the team's games, **built from player lines** (never ESPN's team net passing yards).
-- Team average = cut(team total ÷ team GP).
 - Player GP = games where ESPN's box score lists him with any of the ten stats (attempt, carry, target or TD). Player totals count only games for that team.
-- Share % and projection, in this exact order (logic lives in `docs/calc.js`):
+- **The projection formula keeps every decimal; only the final projection is cut**: to a whole number (20.56 → 20), or to **one decimal for touchdowns** (1.86 → 1.8).
+- **Shown** averages (TDs included) and share % have **2 decimals, cut**: 16.83, 21.42%.
+- Logic lives in `docs/calc.js`; shown figures are held as whole hundredths (2142 = 21.42), TD projections as tenths (18 = 1.8):
 
   ```js
-  const cut = (a, b) => Math.trunc(a / b) + 0;       // "+ 0" turns -0 into 0
-  const teamAvg    = cut(teamTotal, teamGP);
-  const sharePct   = cut(100 * playerTotal, base);   // base = teamTotal (All team games) or teamTotalInHisGames (Games he played)
-  const projection = cut(teamAvg * sharePct, 100);   // both modes use the full-season team average
-
-  // touchdowns in tenths
-  const tdAvg10  = cut(10 * teamTDs, teamGP);        // 26 → shown 2.6
-  const tdProj10 = cut(tdAvg10 * sharePct, 100);     // 6  → shown 0.6
+  const cut = (a, b) => (a - (a % b)) / b + 0;                 // whole-number division toward zero; "+ 0" turns -0 into 0
+  const teamAvg100 = cut(100 * teamTotal, teamGP);             // 101 over 6 → 1683, shown 16.83
+  const share100   = cut(10000 * playerTotal, base);           // base = teamTotal (All team games) or teamTotalInHisGames (Games he played)
+  const projection = cut(teamTotal * playerTotal, teamGP * base);       // = team average × share with every decimal kept
+  const tdProj10   = cut(10 * teamTDs * playerTDs, teamGP * base);      // touchdowns: tenths, 18 → shown 1.8
   ```
 
-- Zero cases: team GP 0 → "—". Base total 0 or less → share 0%, projection 0. "Games he played" mode with player GP 0 → "—".
-- Negative yards keep their sign in totals; a small negative share (−4 of 600) cuts toward zero to 0%, never −0 or −1.
+- Both modes use the full-season team average.
+- Zero cases: team GP 0 → "—". Base total 0 or less → share 0.00%, projection 0. "Games he played" mode with player GP 0 → "—".
+- Negative yards keep their sign: −4 of 600 is −0.66%, projection 0; −40 of 600 projects −6.
+- **Projections page** (Team page's third button): only Passing yards, Rushing yards, Receiving yards, Receptions and Touchdowns. A projection shows if it is 1 or more (TDs: 0.1 or more), otherwise it is blank; players with nothing to show are left off. Uses the remembered mode switch; sorted by PASS YDS (ties by rushing + receiving yards); headings re-sort; rows open the Player page. The Player page keeps all ten stats.
 - `tests/calc.test.js` (run with `node --test`) must pass before any screen work.
 
 ## Data source rules

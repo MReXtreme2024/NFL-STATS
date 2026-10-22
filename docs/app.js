@@ -12,11 +12,13 @@ const LONG = {
   rushAtt: 'Rushing attempts', rushYds: 'Rushing yards', rushRecYds: 'Rushing + receiving yards',
   targets: 'Targets', rec: 'Receptions', recYds: 'Receiving yards', td: 'Touchdowns',
 };
+const PROJ_STATS = ['passYds', 'rushYds', 'recYds', 'rec', 'td']; // the Projections page shows only these
 const MODE_KEY = 'playerMode';
+const D = { decimals: true };
 
 let data;
 let playerSort = 'rushRecYds';
-let projectionSort = 'rushRecYds';
+let projectionSort = 'passYds';
 
 const esc = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -66,7 +68,7 @@ function teamsPage() {
 
 // 2. Team page, in Nate's wording
 function teamPage(t) {
-  const avg = (s) => show(teamAverage(t.totals[s], t.gp, TENTHS_STATS.has(s)), tenths(s));
+  const avg = (s) => show(teamAverage(t.totals[s], t.gp), D);
   const line = (s, total, avgLabel) => `Total ${total} ${t.totals[s]} (average ${avg(s)} ${avgLabel})`;
   const lines = [
     line('passAtt', 'passing attempts', 'passing attempts'),
@@ -138,35 +140,40 @@ function modeSwitch(mode) {
     </div>`;
 }
 
-// One player's projection for every stat in the given mode.
+// One player's projection for each Projections-page stat in the given mode.
 function projections(t, p, mode) {
-  return Object.fromEntries(STATS.map((s) => [s, playerStat({
+  return Object.fromEntries(PROJ_STATS.map((s) => [s, playerStat({
     teamTotal: t.totals[s], teamGP: t.gp, playerTotal: p.totals[s],
     teamTotalInHisGames: p.teamTotalsInHisGames[s], playerGP: p.gp,
   }, mode, TENTHS_STATS.has(s)).projection]));
 }
 
-// 4b. Projections: players with any projection other than 0; zero projections are left blank.
+// A projection worth showing: 1 or more, or 0.1 or more for touchdowns (held as tenths, so also >= 1).
+const worthShowing = (v) => v !== null && v >= 1;
+
+// 4b. Projections: Passing, Rushing and Receiving yards, Receptions and Touchdowns.
+// Lists players with at least one projection worth showing; the rest are left blank.
 function projectionsPage(t) {
   const mode = readMode();
+  const yards = (proj) => (proj.rushYds ?? 0) + (proj.recYds ?? 0);
   const rows = t.players
     .map((p) => ({ p, proj: projections(t, p, mode) }))
-    .filter(({ proj }) => STATS.some((s) => proj[s] !== null && proj[s] !== 0))
+    .filter(({ proj }) => PROJ_STATS.some((s) => worthShowing(proj[s])))
     .sort((a, b) => {
       if (projectionSort === 'name') return a.p.name.localeCompare(b.p.name);
       if (projectionSort === 'gp') return b.p.gp - a.p.gp || a.p.name.localeCompare(b.p.name);
       return (b.proj[projectionSort] ?? 0) - (a.proj[projectionSort] ?? 0)
-        || (b.proj.rushRecYds ?? 0) - (a.proj.rushRecYds ?? 0) || a.p.name.localeCompare(b.p.name);
+        || yards(b.proj) - yards(a.proj) || a.p.name.localeCompare(b.p.name);
     });
-  const cols = [['name', 'Player'], ['gp', 'GP'], ...STATS.map((s) => [s, SHORT[s]])];
+  const cols = [['name', 'Player'], ['gp', 'GP'], ...PROJ_STATS.map((s) => [s, SHORT[s]])];
   const head = cols.map(([key, label]) =>
     `<th scope="col"${key === projectionSort ? ' aria-sort="descending"' : ''}><button data-psort="${key}">${label}</button></th>`).join('');
-  const cell = (s, v) => (v === null || v === 0 ? '' : show(v, tenths(s)));
+  const cell = (s, v) => (worthShowing(v) ? show(v, tenths(s)) : '');
   const body = rows.map(({ p, proj }) => {
     const href = `#/team/${t.id}/player/${p.id}`;
     const pos = p.pos ? `<span class="pos">${esc(p.pos)}</span>` : '';
     return `<tr data-href="${href}"><td><a class="name" href="${href}"><span>${esc(p.name)}</span>${pos}</a></td><td>${p.gp}</td>
-      ${STATS.map((s) => `<td>${cell(s, proj[s])}</td>`).join('')}</tr>`;
+      ${PROJ_STATS.map((s) => `<td>${cell(s, proj[s])}</td>`).join('')}</tr>`;
   }).join('');
   const table = rows.length
     ? `<div class="table-wrap sticky"><table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`
@@ -185,7 +192,7 @@ function playerPage(t, p) {
     return `<div class="stat"><h3>${LONG[s]}</h3>
       <div class="figures">
         <div><b>${p.totals[s]}</b><span>Total</span></div>
-        <div><b>${show(r.share, { suffix: '%' })}</b><span>Share</span></div>
+        <div><b>${show(r.share, { ...D, suffix: '%' })}</b><span>Share</span></div>
         <div><b>${show(r.projection, tenths(s))}</b><span>Projection</span></div>
       </div>
       <p class="working">${working(p.totals[s], r)}</p></div>`;
