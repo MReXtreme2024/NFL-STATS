@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-28",
-              "adjQBR": "34.4",
+              "adjQBR": "35.4",
               "QBRating": "77.5"
             },
             "rushing": {
@@ -576,7 +576,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-8",
-              "adjQBR": "44.2",
+              "adjQBR": "45.0",
               "QBRating": "91.9"
             },
             "rushing": {
@@ -1135,5 +1135,11 @@
       "scoringType": "TD",
       "text": "Tommy Tremble 19 Yd pass from Bryce Young (Ryan Fitzgerald PAT failed)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "21",
+    "spread": 3,
+    "overUnder": 39.5
+  }
 }

@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "2",
               "sacks-sackYardsLost": "3-9",
-              "adjQBR": "11.2",
+              "adjQBR": "11.0",
               "QBRating": "59.5"
             },
             "rushing": {
@@ -662,7 +662,7 @@
               "passingTouchdowns": "3",
               "interceptions": "1",
               "sacks-sackYardsLost": "2-5",
-              "adjQBR": "73.2",
+              "adjQBR": "73.8",
               "QBRating": "113.1"
             },
             "rushing": {
@@ -1242,5 +1242,11 @@
       "scoringType": "SF",
       "text": "Team Safety"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "24",
+    "spread": -6.5,
+    "overUnder": 43.5
+  }
 }

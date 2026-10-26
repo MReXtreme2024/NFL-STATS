@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "89.2",
+              "adjQBR": "85.2",
               "QBRating": "110.8"
             },
             "rushing": {
@@ -632,7 +632,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "3-25",
-              "adjQBR": "54.1",
+              "adjQBR": "50.5",
               "QBRating": "89.9"
             },
             "rushing": {
@@ -1152,5 +1152,11 @@
       "scoringType": "FG",
       "text": "Jason Sanders 36 Yd Field Goal"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "17",
+    "spread": -7.5,
+    "overUnder": 42.5
+  }
 }

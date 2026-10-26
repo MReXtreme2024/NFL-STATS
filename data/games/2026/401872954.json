@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-19",
-              "adjQBR": "74.6",
+              "adjQBR": "67.2",
               "QBRating": "122.5"
             },
             "rushing": {
@@ -517,7 +517,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "5-44",
-              "adjQBR": "77.2",
+              "adjQBR": "77.9",
               "QBRating": "129.8"
             },
             "rushing": {
@@ -1074,5 +1074,11 @@
       "scoringType": "TD",
       "text": "Jahmyr Gibbs 11 Yd pass from Jared Goff (Jake Bates Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "8",
+    "spread": -7,
+    "overUnder": 49.5
+  }
 }

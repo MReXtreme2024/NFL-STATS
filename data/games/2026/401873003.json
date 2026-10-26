@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "2",
               "sacks-sackYardsLost": "6-35",
-              "adjQBR": "24.5",
+              "adjQBR": "25.1",
               "QBRating": "60.5"
             },
             "rushing": {
@@ -1188,5 +1188,11 @@
       "scoringType": "FG",
       "text": "Joey Slye 44 Yd Field Goal"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "11",
+    "spread": -6.5,
+    "overUnder": 43.5
+  }
 }

@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "2-14",
-              "adjQBR": "46.9",
+              "adjQBR": "47.2",
               "QBRating": "63.8"
             },
             "rushing": {
@@ -564,7 +564,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "1-16",
-              "adjQBR": "87.5",
+              "adjQBR": "86.3",
               "QBRating": "139.1"
             }
           }
@@ -1116,5 +1116,11 @@
       "scoringType": "TD",
       "text": "AJ Barner 1 Yd Rush (Jason Myers Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "22",
+    "spread": 3.5,
+    "overUnder": 40.5
+  }
 }

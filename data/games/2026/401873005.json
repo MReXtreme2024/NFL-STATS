@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "1",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "58.5",
+              "adjQBR": "59.0",
               "QBRating": "86.7"
             }
           }
@@ -571,7 +571,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-13",
-              "adjQBR": "69.4",
+              "adjQBR": "68.9",
               "QBRating": "112.6"
             },
             "rushing": {
@@ -1231,5 +1231,11 @@
       "scoringType": "TD",
       "text": "Tre Tucker 44 Yd pass from Kirk Cousins (Matt Gay Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "13",
+    "spread": 5.5,
+    "overUnder": 54.5
+  }
 }

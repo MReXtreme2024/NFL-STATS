@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-1",
-              "adjQBR": "70.7",
+              "adjQBR": "71.0",
               "QBRating": "134.2"
             },
             "rushing": {
@@ -560,7 +560,7 @@
               "passingTouchdowns": "2",
               "interceptions": "1",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "81.9",
+              "adjQBR": "81.6",
               "QBRating": "84.8"
             },
             "rushing": {
@@ -1147,5 +1147,11 @@
       "scoringType": "TD",
       "text": "Javonte Williams 17 Yd pass from Dak Prescott (Brandon Aubrey PAT Failed)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "19",
+    "spread": 3,
+    "overUnder": 47.5
+  }
 }

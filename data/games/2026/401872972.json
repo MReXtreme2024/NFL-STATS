@@ -32,7 +32,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "1-8",
-              "adjQBR": "75.4",
+              "adjQBR": "68.2",
               "QBRating": "83.9"
             },
             "rushing": {
@@ -551,7 +551,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-21",
-              "adjQBR": "29.3",
+              "adjQBR": "27.5",
               "QBRating": "101.8"
             }
           }
@@ -1071,5 +1071,11 @@
       "scoringType": "TD",
       "text": "Isaiah Williams 58 Yd pass from Geno Smith (Jason Sanders PAT Failed)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "3",
+    "spread": -3.5,
+    "overUnder": 43.5
+  }
 }

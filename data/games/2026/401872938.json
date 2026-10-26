@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "3-31",
-              "adjQBR": "69.9",
+              "adjQBR": "69.7",
               "QBRating": "87.4"
             },
             "rushing": {
@@ -549,7 +549,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-19",
-              "adjQBR": "81.4",
+              "adjQBR": "79.0",
               "QBRating": "107.4"
             },
             "rushing": {
@@ -1106,5 +1106,11 @@
       "scoringType": "TD",
       "text": "Tyler Shough 1 Yd Rush (Daniel Carlson Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "33",
+    "spread": -8.5,
+    "overUnder": 45.5
+  }
 }

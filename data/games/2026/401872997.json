@@ -32,7 +32,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "5-20",
-              "adjQBR": "25.4",
+              "adjQBR": "22.7",
               "QBRating": "79.6"
             },
             "rushing": {
@@ -563,7 +563,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-17",
-              "adjQBR": "75.6",
+              "adjQBR": "75.4",
               "QBRating": "86.1"
             },
             "rushing": {
@@ -1083,5 +1083,11 @@
       "scoringType": "FG",
       "text": "Andre Szmyt 37 Yd Field Goal "
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "5",
+    "spread": 3,
+    "overUnder": 40.5
+  }
 }

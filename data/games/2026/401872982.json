@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "2",
               "sacks-sackYardsLost": "3-23",
-              "adjQBR": "67.8",
+              "adjQBR": "71.1",
               "QBRating": "51.0"
             },
             "rushing": {
@@ -604,7 +604,7 @@
               "passingTouchdowns": "4",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "90.2",
+              "adjQBR": "89.6",
               "QBRating": "126.3"
             },
             "rushing": {
@@ -1211,5 +1211,11 @@
       "scoringType": "TD",
       "text": "Malik Willis 1 Yd Run (Riley Patterson PAT failed)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "15",
+    "spread": 7.5,
+    "overUnder": 45.5
+  }
 }

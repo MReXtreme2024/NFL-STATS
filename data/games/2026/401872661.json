@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "1",
               "sacks-sackYardsLost": "2-8",
-              "adjQBR": "71.8",
+              "adjQBR": "70.1",
               "QBRating": "110.3"
             },
             "rushing": {
@@ -640,7 +640,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-8",
-              "adjQBR": "93.1",
+              "adjQBR": "93.4",
               "QBRating": "124.1"
             },
             "rushing": {
@@ -1270,5 +1270,11 @@
       "scoringType": "TD",
       "text": "D'Andre Swift 28 Yd Rush (Cairo Santos Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "29",
+    "spread": 3,
+    "overUnder": 47.5
+  }
 }

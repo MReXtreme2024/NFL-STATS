@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "2",
               "sacks-sackYardsLost": "5-33",
-              "adjQBR": "33.8",
+              "adjQBR": "32.4",
               "QBRating": "64.6"
             },
             "rushing": {
@@ -604,7 +604,7 @@
               "passingTouchdowns": "2",
               "interceptions": "1",
               "sacks-sackYardsLost": "3-14",
-              "adjQBR": "65.1",
+              "adjQBR": "65.4",
               "QBRating": "92.5"
             },
             "rushing": {
@@ -1206,5 +1206,11 @@
       "scoringType": "FG",
       "text": "Eddy Pineiro 44 Yd Field Goal"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "26",
+    "spread": -3,
+    "overUnder": 46.5
+  }
 }

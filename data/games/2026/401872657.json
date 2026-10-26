@@ -32,7 +32,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "47.5",
+              "adjQBR": "45.9",
               "QBRating": "61.2"
             },
             "rushing": {
@@ -55,7 +55,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "84.5",
+              "adjQBR": "83.7",
               "QBRating": "75.7"
             },
             "rushing": {
@@ -579,7 +579,7 @@
               "passingTouchdowns": "3",
               "interceptions": "1",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "86.7",
+              "adjQBR": "88.8",
               "QBRating": "105.6"
             },
             "rushing": {
@@ -1136,5 +1136,11 @@
       "scoringType": "FG",
       "text": "Eddy Pineiro 56 Yd Field Goal"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "14",
+    "spread": -3.5,
+    "overUnder": 47.5
+  }
 }

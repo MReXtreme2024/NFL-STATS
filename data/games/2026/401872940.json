@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "77.7",
+              "adjQBR": "78.4",
               "QBRating": "97.2"
             },
             "rushing": {
@@ -612,7 +612,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "2-16",
-              "adjQBR": "52.7",
+              "adjQBR": "55.3",
               "QBRating": "63.7"
             },
             "rushing": {
@@ -1167,5 +1167,11 @@
       "scoringType": "TD",
       "text": "Jonah Coleman 3 Yd Rush (Wil Lutz Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "7",
+    "spread": -2.5,
+    "overUnder": 45.5
+  }
 }

@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-13",
-              "adjQBR": "38.7",
+              "adjQBR": "30.5",
               "QBRating": "80.2"
             },
             "rushing": {
@@ -528,7 +528,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "82.2",
+              "adjQBR": "82.6",
               "QBRating": "104.0"
             },
             "rushing": {
@@ -1076,5 +1076,11 @@
       "scoringType": "TD",
       "text": "Elic Ayomanor 11 Yd pass from Cam Ward (Joey Slye Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "10",
+    "spread": -1.5,
+    "overUnder": 39.5
+  }
 }

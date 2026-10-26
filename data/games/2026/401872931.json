@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "1",
               "sacks-sackYardsLost": "2-12",
-              "adjQBR": "52.8",
+              "adjQBR": "55.4",
               "QBRating": "86.0"
             },
             "rushing": {
@@ -647,7 +647,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "4-16",
-              "adjQBR": "11.9",
+              "adjQBR": "10.3",
               "QBRating": "69.2"
             },
             "rushing": {
@@ -1254,5 +1254,11 @@
       "scoringType": "TD",
       "text": "Kenneth Walker III 2 Yd pass from Patrick Mahomes (Harrison Butker Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "12",
+    "spread": -2.5,
+    "overUnder": 42.5
+  }
 }

@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "1-4",
-              "adjQBR": "51.8",
+              "adjQBR": "48.2",
               "QBRating": "89.6"
             },
             "rushing": {
@@ -637,7 +637,7 @@
               "passingTouchdowns": "3",
               "interceptions": "1",
               "sacks-sackYardsLost": "1-7",
-              "adjQBR": "89.1",
+              "adjQBR": "89.3",
               "QBRating": "97.7"
             },
             "rushing": {
@@ -1216,5 +1216,11 @@
       "scoringType": "TD",
       "text": "Efton Chism III 23 Yd pass from Drake Maye (Drake Maye Pass to Rhamondre Stevenson for Two-Point Conversion)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "2",
+    "spread": -7,
+    "overUnder": 49.5
+  }
 }

@@ -9,6 +9,7 @@ const BASE = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl';
 const TEAMS_URL = `${BASE}/teams`;
 const SCOREBOARD_URL = `${BASE}/scoreboard`;
 const SUMMARY_URL = `${BASE}/summary`;
+const INJURIES_URL = `${BASE}/injuries`;
 
 const REGULAR = 2;
 const POSTSEASON = 3;
@@ -195,5 +196,41 @@ export function trimGame(summary) {
     neutralSite: comp.neutralSite === true,
     teams,
     scoringPlays,
+    odds: trimOdds(summary, comp),
   };
+}
+
+// The betting line ESPN shows for the game (kept for the weekly formula check, not shown on the site).
+// spread is the home team's line (-3.5 = home favoured by 3.5); null when ESPN has none.
+export function trimOdds(summary, comp = summary.header.competitions[0]) {
+  const line = (summary.pickcenter ?? []).find((p) => p.spread != null && p.overUnder != null);
+  if (!line) return null;
+  const home = comp.competitors.find((c) => c.homeAway === 'home');
+  return { provider: line.provider?.name ?? '', homeId: home.team.id, spread: line.spread, overUnder: line.overUnder };
+}
+
+// ESPN's league injury report: every listed player who isn't Active, as
+// { teamId, playerId, name, pos, status, date }.
+export async function getInjuries() {
+  return trimInjuries(await fetchJson(INJURIES_URL));
+}
+
+// ESPN gives the player id only inside his player link (".../player/_/id/4698113/max-melton").
+export function trimInjuries(data) {
+  const out = [];
+  for (const team of data.injuries ?? []) {
+    for (const i of team.injuries ?? []) {
+      if (i.status === 'Active') continue;
+      const link = (i.athlete?.links ?? []).map((l) => l.href).find((h) => /\/id\/\d+/.test(h ?? ''));
+      out.push({
+        teamId: i.athlete?.team?.id ?? team.id,
+        playerId: link ? link.match(/\/id\/(\d+)/)[1] : '',
+        name: i.athlete?.displayName ?? '',
+        pos: i.athlete?.position?.abbreviation ?? '',
+        status: i.status,
+        date: i.date,
+      });
+    }
+  }
+  return out;
 }

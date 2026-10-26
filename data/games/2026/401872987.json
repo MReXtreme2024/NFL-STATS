@@ -608,7 +608,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-18",
-              "adjQBR": "82.3",
+              "adjQBR": "82.1",
               "QBRating": "109.6"
             },
             "rushing": {
@@ -1193,5 +1193,11 @@
       "scoringType": "FG",
       "text": "Will Reichard 55 Yd Field Goal"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "18",
+    "spread": 2.5,
+    "overUnder": 41.5
+  }
 }

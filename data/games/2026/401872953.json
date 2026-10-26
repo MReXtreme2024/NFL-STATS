@@ -32,7 +32,7 @@
               "passingTouchdowns": "0",
               "interceptions": "2",
               "sacks-sackYardsLost": "4-30",
-              "adjQBR": "57.4",
+              "adjQBR": "58.2",
               "QBRating": "54.0"
             },
             "rushing": {
@@ -590,7 +590,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "2-9",
-              "adjQBR": "19.3",
+              "adjQBR": "19.7",
               "QBRating": "76.3"
             },
             "rushing": {
@@ -1162,5 +1162,11 @@
       "scoringType": "FG",
       "text": "Cameron Dicker 33 Yd Field Goal"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "2",
+    "spread": -7,
+    "overUnder": 50.5
+  }
 }

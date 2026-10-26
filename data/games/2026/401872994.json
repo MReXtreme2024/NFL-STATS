@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "1-6",
-              "adjQBR": "75.8",
+              "adjQBR": "76.2",
               "QBRating": "111.9"
             }
           }
@@ -587,7 +587,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "1-8",
-              "adjQBR": "93.3",
+              "adjQBR": "94.5",
               "QBRating": "96.4"
             },
             "rushing": {
@@ -1210,5 +1210,11 @@
       "scoringType": "FG",
       "text": "Tyler Bass 45 Yd Field Goal "
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "14",
+    "spread": -3.5,
+    "overUnder": 55.5
+  }
 }

@@ -32,7 +32,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "4-40",
-              "adjQBR": "14.3",
+              "adjQBR": "14.5",
               "QBRating": "63.4"
             },
             "rushing": {
@@ -589,7 +589,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-11",
-              "adjQBR": "67.9",
+              "adjQBR": "68.7",
               "QBRating": "107.6"
             },
             "rushing": {
@@ -1165,5 +1165,11 @@
       "scoringType": "TD",
       "text": "Jaylin Noel 9 Yd pass from C.J. Stroud (Ka'imi Fairbairn Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "10",
+    "spread": 6.5,
+    "overUnder": 37.5
+  }
 }

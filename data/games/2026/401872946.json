@@ -32,7 +32,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "3-17",
-              "adjQBR": "60.0",
+              "adjQBR": "59.7",
               "QBRating": "75.6"
             },
             "rushing": {
@@ -648,7 +648,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "4-43",
-              "adjQBR": "25.6",
+              "adjQBR": "22.9",
               "QBRating": "60.5"
             },
             "rushing": {
@@ -1198,5 +1198,11 @@
       "scoringType": "TD",
       "text": "Elijah Ponder 19 Yd Fumble Return (Andy Borregales Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "17",
+    "spread": -4.5,
+    "overUnder": 41.5
+  }
 }

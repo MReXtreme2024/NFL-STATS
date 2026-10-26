@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "1",
               "sacks-sackYardsLost": "1-4",
-              "adjQBR": "80.8",
+              "adjQBR": "78.5",
               "QBRating": "102.9"
             },
             "rushing": {
@@ -621,7 +621,7 @@
               "passingTouchdowns": "0",
               "interceptions": "2",
               "sacks-sackYardsLost": "3-11",
-              "adjQBR": "17.0",
+              "adjQBR": "17.6",
               "QBRating": "48.6"
             },
             "rushing": {
@@ -658,7 +658,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "8.0",
+              "adjQBR": "8.2",
               "QBRating": "77.1"
             },
             "rushing": {
@@ -681,7 +681,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "99.1",
+              "adjQBR": "99.2",
               "QBRating": "118.8"
             },
             "receiving": {
@@ -1218,5 +1218,11 @@
       "scoringType": "TD",
       "text": "Bhayshul Tuten 1 Yd Rush (Cam Little Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "30",
+    "spread": -3,
+    "overUnder": 46.5
+  }
 }

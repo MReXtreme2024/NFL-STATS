@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "1",
               "sacks-sackYardsLost": "1-7",
-              "adjQBR": "42.7",
+              "adjQBR": "47.6",
               "QBRating": "73.9"
             },
             "rushing": {
@@ -602,7 +602,7 @@
               "passingTouchdowns": "2",
               "interceptions": "2",
               "sacks-sackYardsLost": "4-24",
-              "adjQBR": "61.7",
+              "adjQBR": "64.1",
               "QBRating": "74.1"
             },
             "rushing": {
@@ -1223,5 +1223,11 @@
       "scoringType": "TD",
       "text": "Bo Nix 1 Yd Rush (Wil Lutz Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "7",
+    "spread": -1.5,
+    "overUnder": 44.5
+  }
 }

@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "1-2",
-              "adjQBR": "49.0",
+              "adjQBR": "48.8",
               "QBRating": "96.7"
             },
             "rushing": {
@@ -597,7 +597,7 @@
               "passingTouchdowns": "3",
               "interceptions": "2",
               "sacks-sackYardsLost": "5-32",
-              "adjQBR": "38.7",
+              "adjQBR": "39.7",
               "QBRating": "87.6"
             },
             "rushing": {
@@ -1213,5 +1213,11 @@
       "scoringType": "TD",
       "text": "Noah Fant 8 Yd pass from Tyler Shough (Two-Point Pass Conversion Failed)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "8",
+    "spread": -7,
+    "overUnder": 49.5
+  }
 }

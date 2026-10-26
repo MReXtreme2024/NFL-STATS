@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "2",
               "sacks-sackYardsLost": "4-18",
-              "adjQBR": "53.1",
+              "adjQBR": "50.5",
               "QBRating": "95.5"
             },
             "defensive": {
@@ -611,7 +611,7 @@
               "passingTouchdowns": "2",
               "interceptions": "3",
               "sacks-sackYardsLost": "2-19",
-              "adjQBR": "26.0",
+              "adjQBR": "25.5",
               "QBRating": "55.2"
             },
             "rushing": {
@@ -1276,5 +1276,11 @@
       "scoringType": "TD",
       "text": "Deonte Banks 98 Yd Interception Return "
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "19",
+    "spread": 2.5,
+    "overUnder": 43.5
+  }
 }

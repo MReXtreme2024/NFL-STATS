@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "1",
               "sacks-sackYardsLost": "5-28",
-              "adjQBR": "31.8",
+              "adjQBR": "32.7",
               "QBRating": "91.8"
             },
             "rushing": {
@@ -668,7 +668,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-22",
-              "adjQBR": "63.1",
+              "adjQBR": "60.7",
               "QBRating": "125.8"
             },
             "rushing": {
@@ -1289,5 +1289,11 @@
       "scoringType": "TD",
       "text": "Trey McBride 9 Yd pass from Jacoby Brissett (Chad Ryland Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "22",
+    "spread": 4.5,
+    "overUnder": 55.5
+  }
 }

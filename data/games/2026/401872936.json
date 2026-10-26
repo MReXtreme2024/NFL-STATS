@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "4-29",
-              "adjQBR": "46.7",
+              "adjQBR": "47.6",
               "QBRating": "90.2"
             },
             "rushing": {
@@ -557,7 +557,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-9",
-              "adjQBR": "35.4",
+              "adjQBR": "27.7",
               "QBRating": "91.9"
             },
             "fumbles": {
@@ -1109,5 +1109,11 @@
       "scoringType": "FG",
       "text": "Trey Smack 26 Yd Field Goal "
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "20",
+    "spread": 3.5,
+    "overUnder": 44.5
+  }
 }

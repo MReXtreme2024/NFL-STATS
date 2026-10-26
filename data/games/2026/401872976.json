@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "1",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "73.6",
+              "adjQBR": "70.4",
               "QBRating": "85.8"
             }
           }
@@ -549,7 +549,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-15",
-              "adjQBR": "56.5",
+              "adjQBR": "55.9",
               "QBRating": "97.2"
             },
             "rushing": {
@@ -1165,5 +1165,11 @@
       "scoringType": "TD",
       "text": "Brock Bowers 20 Yd pass from Kirk Cousins (Kirk Cousins Pass to Cody White for Two-Point Conversion)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "13",
+    "spread": 3.5,
+    "overUnder": 47.5
+  }
 }

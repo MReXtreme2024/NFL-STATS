@@ -32,7 +32,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-13",
-              "adjQBR": "28.8",
+              "adjQBR": "29.1",
               "QBRating": "71.1"
             },
             "rushing": {
@@ -590,7 +590,7 @@
               "passingTouchdowns": "0",
               "interceptions": "2",
               "sacks-sackYardsLost": "5-38",
-              "adjQBR": "57.9",
+              "adjQBR": "60.4",
               "QBRating": "52.6"
             },
             "rushing": {
@@ -1144,5 +1144,11 @@
       "scoringType": "FG",
       "text": "Wil Lutz 53 Yd Field Goal "
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "7",
+    "spread": 3,
+    "overUnder": 40.5
+  }
 }

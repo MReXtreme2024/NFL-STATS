@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "70.0",
+              "adjQBR": "72.2",
               "QBRating": "107.4"
             },
             "rushing": {
@@ -595,7 +595,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "47.0",
+              "adjQBR": "45.5",
               "QBRating": "80.9"
             },
             "rushing": {
@@ -1194,5 +1194,11 @@
       "scoringType": "TD",
       "text": "George Kittle 56 Yd pass from Brock Purdy (Eddy Pineiro Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "25",
+    "spread": -3,
+    "overUnder": 48.5
+  }
 }

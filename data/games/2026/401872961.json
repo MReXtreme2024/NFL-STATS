@@ -32,7 +32,7 @@
               "passingTouchdowns": "4",
               "interceptions": "1",
               "sacks-sackYardsLost": "2-22",
-              "adjQBR": "62.3",
+              "adjQBR": "61.7",
               "QBRating": "106.7"
             },
             "rushing": {
@@ -598,7 +598,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-21",
-              "adjQBR": "71.5",
+              "adjQBR": "71.3",
               "QBRating": "119.3"
             },
             "rushing": {
@@ -1206,5 +1206,11 @@
       "scoringType": "TD",
       "text": "Brock Bowers 4 Yd pass from Kirk Cousins (Matt Gay Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "18",
+    "spread": -3.5,
+    "overUnder": 44.5
+  }
 }

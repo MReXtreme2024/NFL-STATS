@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "4-40",
-              "adjQBR": "25.0",
+              "adjQBR": "24.9",
               "QBRating": "85.7"
             },
             "rushing": {
@@ -602,7 +602,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "8-53",
-              "adjQBR": "20.4",
+              "adjQBR": "15.1",
               "QBRating": "69.6"
             },
             "rushing": {
@@ -1179,5 +1179,11 @@
       "scoringType": "TD",
       "text": "Braelon Allen 22 Yd Rush (Jason Sanders Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "20",
+    "spread": -2.5,
+    "overUnder": 38.5
+  }
 }

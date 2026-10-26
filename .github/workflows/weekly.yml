@@ -53,6 +53,11 @@ jobs:
 
       # The check time changes every run, so there is always a commit; this also stops
       # GitHub pausing the schedule after 60 days without activity.
+      # Injury report snapshot for the playing-time formula test; a failure here doesn't stop the update.
+      - name: Injury report snapshot
+        continue-on-error: true
+        run: node updater/injuries.js
+
       # How each projection option would have done on the weeks just played (report for Nate).
       - name: Formula check
         run: node updater/backtest.js --out data/formula-check.md

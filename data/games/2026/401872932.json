@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-5",
-              "adjQBR": "88.8",
+              "adjQBR": "89.2",
               "QBRating": "121.4"
             },
             "rushing": {
@@ -603,7 +603,7 @@
               "passingTouchdowns": "4",
               "interceptions": "0",
               "sacks-sackYardsLost": "4-38",
-              "adjQBR": "65.5",
+              "adjQBR": "66.0",
               "QBRating": "130.0"
             },
             "rushing": {
@@ -1161,5 +1161,11 @@
       "scoringType": "TD",
       "text": "Amon-Ra St. Brown 27 Yd pass from Jared Goff (Jake Bates Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "2",
+    "spread": -5.5,
+    "overUnder": 54.5
+  }
 }

@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "76.3",
+              "adjQBR": "76.9",
               "QBRating": "110.8"
             },
             "rushing": {
@@ -505,7 +505,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "2-12",
-              "adjQBR": "42.3",
+              "adjQBR": "40.2",
               "QBRating": "64.2"
             },
             "rushing": {
@@ -1084,5 +1084,11 @@
       "scoringType": "TD",
       "text": "Case Keenum 1 Yd Rush (Cairo Santos Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "3",
+    "spread": 3,
+    "overUnder": 42.5
+  }
 }

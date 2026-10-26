@@ -32,7 +32,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-18",
-              "adjQBR": "29.6",
+              "adjQBR": "30.3",
               "QBRating": "77.5"
             },
             "rushing": {
@@ -542,7 +542,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "43.7",
+              "adjQBR": "43.1",
               "QBRating": "74.0"
             },
             "rushing": {
@@ -1021,5 +1021,11 @@
       "scoringType": "TD",
       "text": "Wan'Dale Robinson 4 Yd pass from Cam Ward (Joey Slye Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "19",
+    "spread": -2.5,
+    "overUnder": 37.5
+  }
 }

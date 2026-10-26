@@ -32,7 +32,7 @@
               "passingTouchdowns": "4",
               "interceptions": "0",
               "sacks-sackYardsLost": "1-3",
-              "adjQBR": "94.6",
+              "adjQBR": "94.5",
               "QBRating": "150.9"
             },
             "rushing": {
@@ -615,7 +615,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-23",
-              "adjQBR": "68.5",
+              "adjQBR": "65.3",
               "QBRating": "106.7"
             },
             "fumbles": {
@@ -636,7 +636,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "21.7",
+              "adjQBR": "19.3",
               "QBRating": "89.6"
             },
             "rushing": {
@@ -1273,5 +1273,11 @@
       "scoringType": "TD",
       "text": "DeMario Douglas 8 Yd pass from Drake Maye (Andy Borregales Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "17",
+    "spread": -3.5,
+    "overUnder": 45.5
+  }
 }

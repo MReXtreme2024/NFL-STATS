@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-15",
-              "adjQBR": "65.6",
+              "adjQBR": "66.1",
               "QBRating": "111.9"
             },
             "rushing": {
@@ -523,7 +523,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "4-39",
-              "adjQBR": "44.6",
+              "adjQBR": "43.0",
               "QBRating": "110.4"
             },
             "rushing": {
@@ -1081,5 +1081,11 @@
       "scoringType": "TD",
       "text": "Rachaad White 9 Yd pass from Jayden Daniels (Drew Stevens Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "25",
+    "spread": -7.5,
+    "overUnder": 51.5
+  }
 }

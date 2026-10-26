@@ -32,7 +32,7 @@
               "passingTouchdowns": "4",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-13",
-              "adjQBR": "89.3",
+              "adjQBR": "89.5",
               "QBRating": "143.8"
             },
             "rushing": {
@@ -572,7 +572,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "78.1",
+              "adjQBR": "78.3",
               "QBRating": "109.1"
             },
             "rushing": {
@@ -595,7 +595,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "62.1",
+              "adjQBR": "62.4",
               "QBRating": "99.1"
             },
             "rushing": {
@@ -1196,5 +1196,11 @@
       "scoringType": "TD",
       "text": "CeeDee Lamb 24 Yd pass from Dak Prescott (Brandon Aubrey Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "6",
+    "spread": -4.5,
+    "overUnder": 51.5
+  }
 }

@@ -32,7 +32,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "37.6",
+              "adjQBR": "33.9",
               "QBRating": "61.1"
             },
             "rushing": {
@@ -506,7 +506,7 @@
               "passingTouchdowns": "2",
               "interceptions": "1",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "61.1",
+              "adjQBR": "59.4",
               "QBRating": "119.8"
             },
             "rushing": {
@@ -1079,5 +1079,11 @@
       "scoringType": "TD",
       "text": "Travis Kelce 11 Yd pass from Patrick Mahomes (Harrison Butker Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "15",
+    "spread": 10,
+    "overUnder": 45.5
+  }
 }

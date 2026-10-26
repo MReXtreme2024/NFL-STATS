@@ -32,7 +32,7 @@
               "passingTouchdowns": "0",
               "interceptions": "2",
               "sacks-sackYardsLost": "1-3",
-              "adjQBR": "6.1",
+              "adjQBR": "6.4",
               "QBRating": "32.6"
             },
             "rushing": {
@@ -60,7 +60,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "2-13",
-              "adjQBR": "12.5",
+              "adjQBR": "12.9",
               "QBRating": "35.1"
             },
             "rushing": {
@@ -657,7 +657,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-15",
-              "adjQBR": "91.8",
+              "adjQBR": "92.0",
               "QBRating": "116.3"
             },
             "rushing": {
@@ -1263,5 +1263,11 @@
       "scoringType": "TD",
       "text": "Devin Lloyd 16 Yd Interception Return (Ryan Fitzgerald Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "1",
+    "spread": 2.5,
+    "overUnder": 43.5
+  }
 }

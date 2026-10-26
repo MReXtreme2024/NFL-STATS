@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-16",
-              "adjQBR": "67.3",
+              "adjQBR": "68.0",
               "QBRating": "85.9"
             },
             "rushing": {
@@ -579,7 +579,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "1-8",
-              "adjQBR": "80.6",
+              "adjQBR": "80.4",
               "QBRating": "127.7"
             },
             "rushing": {
@@ -1186,5 +1186,11 @@
       "scoringType": "TD",
       "text": "Devaughn Vele 3 Yd pass from Tyler Shough (Daniel Carlson Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "18",
+    "spread": -1.5,
+    "overUnder": 48.5
+  }
 }

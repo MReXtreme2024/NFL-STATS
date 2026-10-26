@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "1-8",
-              "adjQBR": "77.6",
+              "adjQBR": "77.5",
               "QBRating": "90.0"
             },
             "rushing": {
@@ -617,7 +617,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "77.9",
+              "adjQBR": "77.5",
               "QBRating": "99.9"
             },
             "rushing": {
@@ -1246,5 +1246,11 @@
       "scoringType": "FG",
       "text": "Dominic Zvada 41 Yd Field Goal"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "19",
+    "spread": 1.5,
+    "overUnder": 46.5
+  }
 }

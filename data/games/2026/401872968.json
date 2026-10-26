@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "2",
               "sacks-sackYardsLost": "3-14",
-              "adjQBR": "53.3",
+              "adjQBR": "54.2",
               "QBRating": "65.0"
             },
             "rushing": {
@@ -572,7 +572,7 @@
               "passingTouchdowns": "2",
               "interceptions": "1",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "63.3",
+              "adjQBR": "65.6",
               "QBRating": "98.9"
             },
             "rushing": {
@@ -1139,5 +1139,11 @@
       "scoringType": "TD",
       "text": "Kenny Gainwell 10 Yd pass from Jalon Daniels (Chase McLaughlin Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "27",
+    "spread": 2.5,
+    "overUnder": 38.5
+  }
 }

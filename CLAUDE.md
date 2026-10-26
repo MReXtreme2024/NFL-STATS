@@ -48,6 +48,19 @@ Nate changed these on 22 Oct 2026 (same change as the NBA app); they replace PLA
   and report to Nate in plain English: how All team games, Games he played and Smart did last week and season to date,
   and whether new Smart settings or a new formula idea did better. Try new ideas in a scratch folder first.
 - Suggest only. Change `config.json` or any formula only after Nate says yes.
+- The report also has two **tracking** rows (in `updater/backtest.js` only, not on the site), added 26 Oct 2026 at Nate's request:
+  **Smart+** (recent share of team opportunities × team opportunities a game × steadied opponent allowance) and
+  **Smart + market** (TDs scaled by the betting line's expected team points; passing/rushing nudged by expected lead).
+  Watch them against Smart for a few weeks; suggest a new site option only if one keeps winning on both the latest week and the season.
+- Each saved game keeps ESPN's betting line (`odds`: home spread and over/under, from the summary's `pickcenter`) for this check.
+
+## Injury reports (for a future playing-time formula)
+
+- `node updater/injuries.js` saves ESPN's league injury report (`.../football/nfl/injuries`, everyone not Active) to
+  `data/injuries/<season>/<Melbourne date>-<time>.json`. It runs in the Wednesday update (can't stop it) and in
+  `.github/workflows/injuries.yml`, Saturdays 9:07am Melbourne (after the NFL's Friday final reports).
+- Not used on the site yet. After a few weeks, test a playing-time formula with them (players listed Out removed, their
+  usual opportunities shared among teammates at the same position) and report to Nate.
 
 ## Data source rules
 

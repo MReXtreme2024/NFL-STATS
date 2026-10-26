@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-11",
-              "adjQBR": "86.9",
+              "adjQBR": "87.3",
               "QBRating": "110.7"
             },
             "rushing": {
@@ -602,7 +602,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "1-6",
-              "adjQBR": "74.3",
+              "adjQBR": "75.1",
               "QBRating": "92.8"
             }
           }
@@ -1180,5 +1180,11 @@
       "scoringType": "TD",
       "text": "Sam LaPorta 8 Yd pass from Jared Goff (Jake Bates Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "29",
+    "spread": 3.5,
+    "overUnder": 52.5
+  }
 }

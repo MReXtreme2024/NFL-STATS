@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-28",
-              "adjQBR": "52.8",
+              "adjQBR": "50.2",
               "QBRating": "113.4"
             },
             "fumbles": {
@@ -567,7 +567,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "39.4",
+              "adjQBR": "44.2",
               "QBRating": "73.3"
             },
             "rushing": {
@@ -1137,5 +1137,11 @@
       "scoringType": "FG",
       "text": "Chad Ryland 43 Yd Field Goal"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "14",
+    "spread": -13.5,
+    "overUnder": 51.5
+  }
 }

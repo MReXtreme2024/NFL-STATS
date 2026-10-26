@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "2",
               "sacks-sackYardsLost": "5-42",
-              "adjQBR": "30.2",
+              "adjQBR": "30.0",
               "QBRating": "49.0"
             },
             "rushing": {
@@ -589,7 +589,7 @@
               "passingTouchdowns": "2",
               "interceptions": "1",
               "sacks-sackYardsLost": "5-42",
-              "adjQBR": "59.3",
+              "adjQBR": "61.7",
               "QBRating": "84.8"
             },
             "rushing": {
@@ -1202,5 +1202,11 @@
       "scoringType": "TD",
       "text": "Germie Bernard 6 Yd pass from Aaron Rodgers (Chris Boswell Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "27",
+    "spread": 2.5,
+    "overUnder": 37.5
+  }
 }

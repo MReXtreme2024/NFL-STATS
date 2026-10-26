@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "4-25",
-              "adjQBR": "32.0",
+              "adjQBR": "36.4",
               "QBRating": "78.2"
             },
             "rushing": {
@@ -562,7 +562,7 @@
               "passingTouchdowns": "0",
               "interceptions": "2",
               "sacks-sackYardsLost": "1-8",
-              "adjQBR": "59.1",
+              "adjQBR": "59.9",
               "QBRating": "63.9"
             },
             "rushing": {
@@ -1144,5 +1144,11 @@
       "scoringType": "TD",
       "text": "Kyren Williams 7 Yd Rush (Harrison Mevis Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "21",
+    "spread": 4.5,
+    "overUnder": 42.5
+  }
 }

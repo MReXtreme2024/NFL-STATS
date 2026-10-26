@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-17",
-              "adjQBR": "60.4",
+              "adjQBR": "61.3",
               "QBRating": "88.8"
             },
             "rushing": {
@@ -55,7 +55,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "5.1",
+              "adjQBR": "5.3",
               "QBRating": "79.2"
             }
           }
@@ -543,7 +543,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "3-29",
-              "adjQBR": "40.5",
+              "adjQBR": "40.4",
               "QBRating": "70.7"
             }
           }
@@ -1188,5 +1188,11 @@
       "scoringType": "TD",
       "text": "Harold Fannin Jr. 14 Yd pass from Deshaun Watson (Deshaun Watson Pass to Denzel Boston for Two-Point Conversion)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "5",
+    "spread": 2.5,
+    "overUnder": 41.5
+  }
 }

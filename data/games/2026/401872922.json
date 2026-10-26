@@ -645,7 +645,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "5-20",
-              "adjQBR": "36.6",
+              "adjQBR": "37.4",
               "QBRating": "97.7"
             },
             "rushing": {
@@ -1199,5 +1199,11 @@
       "scoringType": "TD",
       "text": "Denzel Boston 46 Yd pass from Deshaun Watson (Andre Szmyt Kick)."
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "30",
+    "spread": -8.5,
+    "overUnder": 40.5
+  }
 }

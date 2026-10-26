@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "5-31",
-              "adjQBR": "33.0",
+              "adjQBR": "31.1",
               "QBRating": "108.8"
             },
             "rushing": {
@@ -660,7 +660,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "4-35",
-              "adjQBR": "52.2",
+              "adjQBR": "53.0",
               "QBRating": "111.2"
             },
             "rushing": {
@@ -1207,5 +1207,11 @@
       "scoringType": "TD",
       "text": "Kyle Pitts Sr. 5 Yd pass from Michael Penix Jr. (Michael Penix Jr. Pass to Drake London for Two-Point Conversion)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "1",
+    "spread": 1.5,
+    "overUnder": 50.5
+  }
 }

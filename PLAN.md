@@ -216,6 +216,11 @@ Total touchdowns <total> (average <avg, one decimal> touchdowns)
 - Each Wednesday after the update, `node updater/backtest.js` re-tests all three options on the latest week and the season so far,
   and Claude reports the result to Nate; settings change only with his OK.
 
+**4e. Formula research tracking** (added at Nate's request, 26 Oct 2026)
+
+- The Wednesday formula check also tracks two ideas not on the site, *Smart+* and *Smart + market* (betting lines from ESPN's game data).
+- ESPN's injury report is saved every Wednesday and Saturday, to test a playing-time formula once a few weeks are collected.
+
 **5. Player page**
 
 - Header: the player's name on the team colour, and "Played X of Y team games".

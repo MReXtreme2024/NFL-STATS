@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "2",
               "sacks-sackYardsLost": "2-14",
-              "adjQBR": "41.0",
+              "adjQBR": "41.9",
               "QBRating": "86.0"
             },
             "rushing": {
@@ -564,7 +564,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "4-15",
-              "adjQBR": "59.7",
+              "adjQBR": "63.5",
               "QBRating": "122.3"
             },
             "rushing": {
@@ -1107,5 +1107,11 @@
       "scoringType": "TD",
       "text": "Joe Burrow 1 Yd Rush (Evan McPherson Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "4",
+    "spread": -2.5,
+    "overUnder": 51.5
+  }
 }

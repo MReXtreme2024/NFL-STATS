@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "2-17",
-              "adjQBR": "34.7",
+              "adjQBR": "31.5",
               "QBRating": "72.8"
             },
             "rushing": {
@@ -1184,5 +1184,11 @@
       "scoringType": "FG",
       "text": "Tyler Loop 45 Yd Field Goal"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "11",
+    "spread": 3,
+    "overUnder": 48.5
+  }
 }

@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-7",
-              "adjQBR": "66.6",
+              "adjQBR": "66.9",
               "QBRating": "110.0"
             },
             "rushing": {
@@ -610,7 +610,7 @@
               "passingTouchdowns": "4",
               "interceptions": "2",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "48.5",
+              "adjQBR": "49.1",
               "QBRating": "105.7"
             },
             "rushing": {
@@ -633,7 +633,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "59.8",
+              "adjQBR": "60.3",
               "QBRating": "118.8"
             },
             "receiving": {
@@ -1155,5 +1155,11 @@
       "scoringType": "TD",
       "text": "Cooper Kupp 7 Yd pass from Sam Darnold (Jason Myers Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "28",
+    "spread": 8.5,
+    "overUnder": 40.5
+  }
 }

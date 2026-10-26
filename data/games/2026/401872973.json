@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-13",
-              "adjQBR": "75.7",
+              "adjQBR": "76.3",
               "QBRating": "144.2"
             },
             "rushing": {
@@ -55,7 +55,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "76.1",
+              "adjQBR": "76.7",
               "QBRating": "95.8"
             },
             "rushing": {
@@ -567,7 +567,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "1-10",
-              "adjQBR": "53.2",
+              "adjQBR": "49.5",
               "QBRating": "83.0"
             },
             "rushing": {
@@ -1186,5 +1186,11 @@
       "scoringType": "TD",
       "text": "Wan'Dale Robinson 3 Yd pass from Cam Ward (Cam Ward Pass to Gunnar Helm for Two-Point Conversion)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "33",
+    "spread": -11.5,
+    "overUnder": 41.5
+  }
 }

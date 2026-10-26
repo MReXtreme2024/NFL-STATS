@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "99.6",
+              "adjQBR": "99.5",
               "QBRating": "149.1"
             },
             "rushing": {
@@ -630,7 +630,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "4-15",
-              "adjQBR": "54.9",
+              "adjQBR": "53.4",
               "QBRating": "103.0"
             },
             "rushing": {
@@ -1214,5 +1214,11 @@
       "scoringType": "TD",
       "text": "Ryan Miller 77 Yd pass from Malik Willis (Riley Patterson Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "25",
+    "spread": -12.5,
+    "overUnder": 44.5
+  }
 }

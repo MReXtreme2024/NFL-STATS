@@ -9,6 +9,8 @@ Smart steadying settings in config.json: pass 100, rush 25, rec 40, td 400.
 | All team games | 55.87 | 12.73 | 18.77 | 1.63 | 0.47 | 0.0% |
 | Games he played | 43.57 | 12.62 | 18.71 | 1.54 | 0.51 | -4.0% |
 | Smart | 46.23 | 11.98 | 17.88 | 1.50 | 0.37 | -11.2% |
+| Smart+ (tracking) | 43.17 | 12.10 | 17.71 | 1.49 | 0.37 | -12.5% |
+| Smart + market (tracking) | 45.73 | 11.88 | 17.88 | 1.50 | 0.37 | -11.6% |
 
 Average miss per player per game (lower is better). Players scored: Pass yds 30, Rush yds 128, Rec yds 216, Rec 216, TD 146.
 
@@ -19,6 +21,8 @@ Average miss per player per game (lower is better). Players scored: Pass yds 30,
 | All team games | 71.68 | 14.64 | 20.79 | 1.66 | 0.53 | 0.0% |
 | Games he played | 64.82 | 14.76 | 20.80 | 1.58 | 0.56 | -1.7% |
 | Smart | 61.76 | 14.35 | 19.89 | 1.56 | 0.42 | -9.3% |
+| Smart+ (tracking) | 60.58 | 14.37 | 19.83 | 1.55 | 0.42 | -9.8% |
+| Smart + market (tracking) | 60.63 | 14.34 | 19.89 | 1.56 | 0.42 | -9.8% |
 
 Average miss per player per game (lower is better). Players scored: Pass yds 126, Rush yds 521, Rec yds 903, Rec 906, TD 496.
 

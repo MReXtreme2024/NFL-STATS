@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "1",
               "sacks-sackYardsLost": "3-20",
-              "adjQBR": "21.6",
+              "adjQBR": "22.2",
               "QBRating": "94.5"
             },
             "rushing": {
@@ -570,7 +570,7 @@
               "passingTouchdowns": "1",
               "interceptions": "2",
               "sacks-sackYardsLost": "4-35",
-              "adjQBR": "38.9",
+              "adjQBR": "39.2",
               "QBRating": "62.4"
             },
             "rushing": {
@@ -615,7 +615,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "25.0",
+              "adjQBR": "25.3",
               "QBRating": "39.6"
             },
             "receiving": {
@@ -1237,5 +1237,11 @@
       "scoringType": "FG",
       "text": "Cameron Dicker 36 Yd Field Goal"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "26",
+    "spread": -7,
+    "overUnder": 43.5
+  }
 }

@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "2-8",
-              "adjQBR": "58.2",
+              "adjQBR": "58.0",
               "QBRating": "94.0"
             },
             "rushing": {
@@ -583,7 +583,7 @@
               "passingTouchdowns": "3",
               "interceptions": "2",
               "sacks-sackYardsLost": "5-30",
-              "adjQBR": "50.8",
+              "adjQBR": "50.6",
               "QBRating": "83.2"
             }
           }
@@ -1123,5 +1123,11 @@
       "scoringType": "FG",
       "text": "Andre Szmyt 56 Yd Field Goal"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "5",
+    "spread": 2.5,
+    "overUnder": 38.5
+  }
 }

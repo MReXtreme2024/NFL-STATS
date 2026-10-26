@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "1-7",
-              "adjQBR": "81.5",
+              "adjQBR": "79.2",
               "QBRating": "113.3"
             },
             "rushing": {
@@ -55,7 +55,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "1-5",
-              "adjQBR": "3.0",
+              "adjQBR": "2.6",
               "QBRating": "70.8"
             }
           }
@@ -547,7 +547,7 @@
               "passingTouchdowns": "1",
               "interceptions": "3",
               "sacks-sackYardsLost": "3-10",
-              "adjQBR": "66.6",
+              "adjQBR": "66.9",
               "QBRating": "54.9"
             },
             "rushing": {
@@ -1036,5 +1036,11 @@
       "scoringType": "FG",
       "text": "Jason Myers 26 Yd Field Goal"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "26",
+    "spread": -3,
+    "overUnder": 44.5
+  }
 }

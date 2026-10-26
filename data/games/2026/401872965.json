@@ -603,7 +603,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "2-14",
-              "adjQBR": "15.6",
+              "adjQBR": "15.9",
               "QBRating": "53.9"
             },
             "rushing": {
@@ -1153,5 +1153,11 @@
       "scoringType": "FG",
       "text": "Spencer Shrader 44 Yd Field Goal "
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "28",
+    "spread": 4.5,
+    "overUnder": 46.5
+  }
 }

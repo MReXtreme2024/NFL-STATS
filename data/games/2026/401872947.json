@@ -32,7 +32,7 @@
               "passingTouchdowns": "4",
               "interceptions": "1",
               "sacks-sackYardsLost": "1-9",
-              "adjQBR": "76.0",
+              "adjQBR": "75.6",
               "QBRating": "131.3"
             },
             "rushing": {
@@ -540,7 +540,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "2-1",
-              "adjQBR": "16.8",
+              "adjQBR": "19.8",
               "QBRating": "37.7"
             },
             "rushing": {
@@ -563,7 +563,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "60.7",
+              "adjQBR": "65.3",
               "QBRating": "68.8"
             }
           }
@@ -1083,5 +1083,11 @@
       "scoringType": "TD",
       "text": "Terrance Ferguson 5 Yd pass from Matthew Stafford (Harrison Mevis Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "14",
+    "spread": -7,
+    "overUnder": 47.5
+  }
 }

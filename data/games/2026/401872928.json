@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "2",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "31.5",
+              "adjQBR": "30.0",
               "QBRating": "88.2"
             },
             "rushing": {
@@ -593,7 +593,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "5-35",
-              "adjQBR": "27.0",
+              "adjQBR": "26.5",
               "QBRating": "66.9"
             },
             "rushing": {
@@ -1131,5 +1131,11 @@
       "scoringType": "FG",
       "text": "Matt Gay 30 Yd Field Goal"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "13",
+    "spread": -3,
+    "overUnder": 40.5
+  }
 }

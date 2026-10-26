@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-17",
-              "adjQBR": "57.9",
+              "adjQBR": "58.4",
               "QBRating": "106.7"
             },
             "rushing": {
@@ -617,7 +617,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "2-11",
-              "adjQBR": "76.7",
+              "adjQBR": "76.9",
               "QBRating": "130.5"
             },
             "rushing": {
@@ -1251,5 +1251,11 @@
       "scoringType": "TD",
       "text": "Joshua Palmer 34 Yd pass from Josh Allen (Two-Point Pass Conversion Failed)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "34",
+    "spread": 1.5,
+    "overUnder": 44.5
+  }
 }

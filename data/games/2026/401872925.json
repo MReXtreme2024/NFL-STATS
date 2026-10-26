@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "1-9",
-              "adjQBR": "75.2",
+              "adjQBR": "77.0",
               "QBRating": "89.5"
             },
             "rushing": {
@@ -573,7 +573,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "4-23",
-              "adjQBR": "35.7",
+              "adjQBR": "39.4",
               "QBRating": "98.8"
             },
             "rushing": {
@@ -1170,5 +1170,11 @@
       "scoringType": "TD",
       "text": "Baker Mayfield 9 Yd Rush (Chase McLaughlin Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "4",
+    "spread": -3.5,
+    "overUnder": 50.5
+  }
 }

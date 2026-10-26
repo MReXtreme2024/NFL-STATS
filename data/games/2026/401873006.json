@@ -32,7 +32,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "69.4",
+              "adjQBR": "70.2",
               "QBRating": "89.9"
             },
             "rushing": {
@@ -600,7 +600,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "4-18",
-              "adjQBR": "48.5",
+              "adjQBR": "44.4",
               "QBRating": "63.3"
             },
             "rushing": {
@@ -1211,5 +1211,11 @@
       "scoringType": "FG",
       "text": "Harrison Butker 30 Yd Field Goal"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "12",
+    "spread": -7.5,
+    "overUnder": 41.5
+  }
 }

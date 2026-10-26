@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-17",
-              "adjQBR": "62.3",
+              "adjQBR": "58.8",
               "QBRating": "93.2"
             },
             "rushing": {
@@ -671,7 +671,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-16",
-              "adjQBR": "79.1",
+              "adjQBR": "79.6",
               "QBRating": "111.6"
             },
             "rushing": {
@@ -1246,5 +1246,11 @@
       "scoringType": "TD",
       "text": "Tyler Huntley 1 Yd Rush (Tyler Loop Kick)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "1",
+    "spread": -3,
+    "overUnder": 44.5
+  }
 }

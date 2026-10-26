@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-21",
-              "adjQBR": "74.6",
+              "adjQBR": "75.0",
               "QBRating": "122.2"
             },
             "rushing": {
@@ -530,7 +530,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "1-1",
-              "adjQBR": "73.3",
+              "adjQBR": "74.0",
               "QBRating": "85.9"
             },
             "rushing": {
@@ -1126,5 +1126,11 @@
       "scoringType": "TD",
       "text": "Antonio Williams 1 Yd pass from Jayden Daniels (Two-Point Pass Conversion Failed)"
     }
-  ]
+  ],
+  "odds": {
+    "provider": "DraftKings",
+    "homeId": "21",
+    "spread": -6,
+    "overUnder": 43.5
+  }
 }
