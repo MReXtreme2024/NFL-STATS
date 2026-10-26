@@ -87,7 +87,13 @@ async function main() {
     console.log(`${weekLabel(w)}: ${events.length} games listed, ${kept.length} finished`);
     for (const event of kept) {
       const game = trimGame(await getSummary(event.id));
-      checkGame(game);
+      try {
+        checkGame(game);
+      } catch (err) {
+        if (!err.incomplete) throw err;
+        console.warn(`  skipped ${event.id}: ${err.message}; kept the saved copy (if any), will try again next run`);
+        continue;
+      }
       const [a, b] = game.teams;
       if (writeJson(path.join(GAMES_DIR, `${event.id}.json`), game)) {
         saved++;

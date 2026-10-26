@@ -10,8 +10,15 @@ const num = (v) => Number(v ?? 0);
 export const splitPair = (text) => String(text ?? '0/0').split('/').map(Number);
 
 // Per team per game, player receptions must equal player completions.
+// Every team must have player lines: ESPN once briefly sent a finished game's box score with none.
+// Such an error is marked `incomplete`, so the updater can keep the saved copy and try again next run.
 export function checkGame(game) {
   if (game.teams.length !== 2) throw new Error(`Game ${game.id}: expected 2 teams, got ${game.teams.length}`);
+  for (const team of game.teams) {
+    if (!team.players.some((p) => Object.keys(p.stats).length)) {
+      throw Object.assign(new Error(`Game ${game.id}: ESPN sent no player lines for ${team.code}`), { incomplete: true });
+    }
+  }
   for (const team of game.teams) {
     let rec = 0;
     let cmp = 0;

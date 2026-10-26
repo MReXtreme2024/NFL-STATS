@@ -100,3 +100,10 @@ test('check time is Melbourne time with daylight saving offset', () => {
   assert.equal(data.checked, '2026-10-28T00:03:00+11:00');
   assert.equal(isoIn(new Date('2027-06-01T14:00:00Z'), 'Australia/Melbourne'), '2027-06-02T00:00:00+10:00');
 });
+
+test('a game whose box score came back with no player lines is caught', () => {
+  const empty = structuredClone(game);
+  empty.teams[1].players = [];
+  const code = empty.teams[1].code;
+  assert.throws(() => checkGame(empty), (err) => err.incomplete === true && err.message.endsWith(`no player lines for ${code}`));
+});
