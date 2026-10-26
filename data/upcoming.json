@@ -6,7 +6,13 @@
       "start": "2026-10-27T00:15Z",
       "homeId": "21",
       "awayId": "6",
-      "neutral": false
+      "neutral": false,
+      "odds": {
+        "provider": "DraftKings",
+        "homeId": "21",
+        "spread": 4.5,
+        "overUnder": 44.5
+      }
     }
   ]
 }

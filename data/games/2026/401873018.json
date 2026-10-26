@@ -1198,7 +1198,8 @@
     },
     {
       "teamId": "27",
-      "scoringType": "SF",
+      "type": "D2P",
+      "scoringType": "D2P",
       "text": "Zyon McCollum Defensive PAT Conversion"
     },
     {
