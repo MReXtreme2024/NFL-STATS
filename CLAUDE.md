@@ -57,10 +57,25 @@ Nate changed these on 22 Oct 2026 (same change as the NBA app); they replace PLA
 ## Injury reports (for a future playing-time formula)
 
 - `node updater/injuries.js` saves ESPN's league injury report (`.../football/nfl/injuries`, everyone not Active) to
-  `data/injuries/<season>/<Melbourne date>-<time>.json`. It runs in the Wednesday update (can't stop it) and in
-  `.github/workflows/injuries.yml`, Saturdays 9:07am Melbourne (after the NFL's Friday final reports).
-- Not used on the site yet. After a few weeks, test a playing-time formula with them (players listed Out removed, their
-  usual opportunities shared among teammates at the same position) and report to Nate.
+  `data/injuries/<season>/<Melbourne date>-<time>.json`. It runs in every weekly-job run (a failure doesn't stop the update).
+- Claude's formula uses the latest saved report (see below).
+
+## Claude's formula (upcoming games, added 26 Oct 2026 at Nate's request, like the NBA app's)
+
+- Upcoming games and matchup pages have **Your formula / Claude's formula** tabs (remembered). Your formula = Nate's
+  matchup page exactly as before (with his mode switch). Logic in `updater/model.js`, built into `app-data.json` →
+  `upcoming.games[].claude` by `build.js`; tests in `tests/model.test.js`. Ordinary decimals, shown cut (yards whole, the rest one decimal).
+- Team score: 90% betting market's expected points (from the game's line on the scoreboard), 10% points model
+  (scored and allowed, pulled toward league average with 4 games, ±0.75 home edge). Also shows team passing, rushing and TDs.
+- Players: expected passes, carries and targets (this season + last season counted as 1, ½ and 1 extra games) ×
+  efficiency pulled toward his own last season (`data/prior/<last season>.json`, from `node updater/priors.js`) and the league.
+  Only the expected starting QB (most passes in the team's last two games, not ruled out) throws. Out, Doubtful, IR,
+  suspended and PUP players are removed, their carries and targets shared at the same position, then carries and targets
+  scaled to the team's usual totals (±20%). TDs = (carries + targets) × steadied scoring rate × (expected points ÷ usual)^0.5.
+  Questionable players stay, tagged Q.
+- Weekly formula check scores it as "Claude's formula (upcoming games)", using the game's betting line and treating a QB who
+  played in the team's last two games but not that week as Out (stand-in for the injury report).
+- Each new season: run `node updater/priors.js <last season>` (from ESPN, or `--dir` saved games) before Week 1.
 
 ## Data source rules
 
@@ -86,7 +101,8 @@ The NBA app (`MReXtreme2024/nba-stats`) is the starting point for look, layout a
 
 ## Schedule
 
-The weekly run is at **12:07am** Wednesday, Australia/Melbourne (`cron: '7 0 * * 3'`), not 12:00am as in PLAN.md. Nate approved the move because GitHub delays or drops jobs scheduled exactly on the hour (the NBA app's first midnight run started about 5 hours late).
+The weekly run is at **12:07am** Wednesday, Australia/Melbourne (`cron: '7 0 * * 3'`), not 12:00am as in PLAN.md,
+plus **9:07am Saturday** (`cron: '7 9 * * 6'`, added 26 Oct 2026) so injury reports and betting lines are fresh before Sunday's games. Nate approved the move because GitHub delays or drops jobs scheduled exactly on the hour (the NBA app's first midnight run started about 5 hours late).
 
 ## Upcoming games
 

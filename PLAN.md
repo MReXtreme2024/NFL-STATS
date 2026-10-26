@@ -221,6 +221,13 @@ Total touchdowns <total> (average <avg, one decimal> touchdowns)
 - The Wednesday formula check also tracks two ideas not on the site, *Smart+* and *Smart + market* (betting lines from ESPN's game data).
 - ESPN's injury report is saved every Wednesday and Saturday, to test a playing-time formula once a few weeks are collected.
 
+**4f. Claude's formula** (added at Nate's request, 26 Oct 2026; same layout as the NBA app)
+
+- Upcoming games and matchup pages: *Your formula* / *Claude's formula* tabs. Claude's formula shows each team's projected score
+  (betting market blended with a stats model), then passing yards, rushing yards, receiving yards and touchdowns side by side,
+  with each player's expected passes, carries or targets, injured players removed and Q for questionable. Rules in `CLAUDE.md`.
+- The weekly job also runs Saturdays 9:07am Melbourne, so injuries and betting lines are fresh before Sunday.
+
 **5. Player page**
 
 - Header: the player's name on the team colour, and "Played X of Y team games".

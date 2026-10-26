@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { checkGame, checkSeason, playerTouchdowns, softChecks, splitPair } from './checks.js';
+import { claudeSide, impliedPoints, seasonState } from './model.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -78,7 +79,9 @@ export function isoIn(date, timeZone) {
 
 // games: trimmed game objects; teams: ESPN's 32-team list; positions: { playerId: "QB" };
 // now: the check time; upcoming: { label, games } not yet played; rosters: { teamId: [playerId] }.
-export function buildAppData(games, teams, positions, config, now, { upcoming = null, rosters = {} } = {}) {
+// prior: last season's player totals (Claude's formula); injuries: Map(playerId -> status) from the latest report.
+export function buildAppData(games, teams, positions, config, now,
+  { upcoming = null, rosters = {}, prior = null, injuries = new Map() } = {}) {
   const byId = new Map(
     teams.map((t) => {
       const colour = normaliseHex(config.colourOverrides?.[t.code] ?? t.color);
@@ -89,6 +92,7 @@ export function buildAppData(games, teams, positions, config, now, { upcoming = 
     }),
   );
 
+  const modelGames = new Map(); // teamId -> game lines for Claude's formula
   const sorted = [...games].sort((a, b) => a.start.localeCompare(b.start) || a.id.localeCompare(b.id));
   for (const game of sorted) {
     for (const side of game.teams) {
@@ -115,6 +119,12 @@ export function buildAppData(games, teams, positions, config, now, { upcoming = 
         stats: gameTotals,
       });
 
+      if (!modelGames.has(side.id)) modelGames.set(side.id, []);
+      modelGames.get(side.id).push({
+        start: game.start, points: side.score, pointsAgainst: opp.score, implied: impliedPoints(game.odds, side.id),
+        totals: gameTotals, players: new Map(lines.map(({ p, stats }) => [p.id, { name: p.name, stats }])),
+      });
+
       for (const { p, stats } of lines) {
         let player = team.playersById.get(p.id);
         if (!player) {
@@ -139,9 +149,19 @@ export function buildAppData(games, teams, positions, config, now, { upcoming = 
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
 
+  // Claude's formula for each upcoming game (decimals kept to 3 places, cut; shown cut further on the site).
+  const state = seasonState(modelGames);
+  const keep3 = (v) => (typeof v === 'number' ? Math.trunc(v * 1000) / 1000 + 0 : v);
+  const side = (g, teamId, oppId, home) => JSON.parse(JSON.stringify(claudeSide(state, teamId, {
+    home, neutral: g.neutral, implied: impliedPoints(g.odds, teamId), oppId,
+    roster: rosters[teamId] ?? null, positions, prior, injuries,
+  }), (k, v) => keep3(v)));
   const upcomingGames = (upcoming?.games ?? [])
     .filter((g) => byId.has(g.homeId) && byId.has(g.awayId))
-    .sort((a, b) => a.start.localeCompare(b.start) || a.id.localeCompare(b.id));
+    .sort((a, b) => a.start.localeCompare(b.start) || a.id.localeCompare(b.id))
+    .map((g) => (modelGames.has(g.homeId) && modelGames.has(g.awayId)
+      ? { ...g, claude: { home: side(g, g.homeId, g.awayId, true), away: side(g, g.awayId, g.homeId, false) } }
+      : g));
 
   // Smart formula inputs: league-wide totals so far and the steadying strengths from config.json.
   const league = zeroTotals();
@@ -165,6 +185,15 @@ export function loadGames(gamesDir) {
 
 const readJson = (file, fallback) => (fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : fallback);
 
+// The latest saved injury report as Map(playerId -> status); empty if none saved yet.
+function latestInjuries(season) {
+  const dir = path.join(ROOT, 'data', 'injuries', String(season));
+  const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith('.json')).sort() : [];
+  if (!files.length) return new Map();
+  const { injuries } = readJson(path.join(dir, files.at(-1)));
+  return new Map(injuries.filter((i) => i.playerId).map((i) => [i.playerId, i.status]));
+}
+
 // Rebuild app-data.json from everything saved. Hard checks throw before anything is written;
 // soft-check problems are returned so the caller can report them after publishing.
 export function build(now = new Date()) {
@@ -179,6 +208,8 @@ export function build(now = new Date()) {
   const data = buildAppData(games, teams, positions, config, now, {
     upcoming: readJson(path.join(ROOT, 'data', 'upcoming.json'), null),
     rosters: readJson(path.join(ROOT, 'data', 'rosters.json'), {}),
+    prior: readJson(path.join(ROOT, 'data', 'prior', `${config.season - 1}.json`), null),
+    injuries: latestInjuries(config.season),
   });
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, JSON.stringify(data) + '\n');

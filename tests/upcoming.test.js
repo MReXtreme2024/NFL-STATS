@@ -22,9 +22,15 @@ test('a game that has not started is upcoming; live, preseason and non-NFL games
 });
 
 test('upcoming game keeps start time, home/away teams and neutral site', () => {
-  assert.deepEqual(trimUpcoming(event()), { id: '401872900', start: '2026-10-23T00:15Z', homeId: '3', awayId: '17', neutral: false });
+  assert.deepEqual(trimUpcoming(event()), { id: '401872900', start: '2026-10-23T00:15Z', homeId: '3', awayId: '17', neutral: false, odds: null });
   const london = event({ competitions: [{ ...event().competitions[0], neutralSite: true }] });
   assert.equal(trimUpcoming(london).neutral, true);
+});
+
+test('upcoming game keeps the betting line for Claude\'s formula', () => {
+  const withLine = event({ competitions: [{ ...event().competitions[0],
+    odds: [{ provider: { name: 'DraftKings' }, details: 'CHI -3.5', spread: -3.5, overUnder: 44.5 }] }] });
+  assert.deepEqual(trimUpcoming(withLine).odds, { provider: 'DraftKings', homeId: '3', spread: -3.5, overUnder: 44.5 });
 });
 
 test('upcoming games are kept in start order with their week; unknown teams are dropped; rosters attach', () => {

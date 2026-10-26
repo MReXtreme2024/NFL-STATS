@@ -18,18 +18,22 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { MODES, playerStat, smartStat } from '../docs/calc.js';
 import { STATS, lineToStats, loadGames, recordedAny } from './build.js';
+import { claudeSide, seasonState } from './model.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const config = JSON.parse(fs.readFileSync(path.join(ROOT, 'config.json'), 'utf8'));
 const strength = config.smartFormula;
+const readJson = (file, fallback) => (fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : fallback);
+const POSITIONS = readJson(path.join(ROOT, 'data', 'positions.json'), {});
+const PRIOR = readJson(path.join(ROOT, 'data', 'prior', `${config.season - 1}.json`), null);
 
 const PROJ_STATS = ['passYds', 'rushYds', 'recYds', 'rec', 'td'];
 const LABEL = { passYds: 'Pass yds', rushYds: 'Rush yds', recYds: 'Rec yds', rec: 'Rec', td: 'TD' };
 const OPTIONS = {
   [MODES.ALL]: 'All team games', [MODES.PLAYED]: 'Games he played', [MODES.SMART]: 'Smart',
-  plus: 'Smart+ (tracking)', market: 'Smart + market (tracking)',
+  plus: 'Smart+ (tracking)', market: 'Smart + market (tracking)', claude: "Claude's formula (upcoming games)",
 };
-const TRACKING = { plus: { track: 'plus' }, market: { track: 'market' } };
+const TRACKING = { plus: { track: 'plus' }, market: { track: 'market' }, claude: { track: 'claude' } };
 const OPPS = { passYds: ['passAtt'], rushYds: ['rushAtt'], recYds: ['targets'], rec: ['targets'], td: ['rushAtt', 'targets'] };
 const RECENT_WEIGHT = 0.85;
 const OPPONENT_GAMES = 12;
@@ -66,7 +70,8 @@ function loadWeeks() {
         add(totals, st);
       }
       if (!teamGames.has(side.id)) teamGames.set(side.id, []);
-      teamGames.get(side.id).push({ key, oppId, implied, margin, totals, players });
+      teamGames.get(side.id).push({ key, oppId, implied, margin, totals, players, points: side.score,
+        pointsAgainst: g.teams.find((t) => t !== side).score, home: side.homeAway === 'home', neutral: g.neutralSite });
     }
   }
   return { order, teamGames };
@@ -79,6 +84,10 @@ function score(weekKeys, { order, teamGames }, strengths) {
     const before = new Set(order.slice(0, order.indexOf(key)));
     const league = zero();
     for (const list of teamGames.values()) for (const tg of list) if (before.has(tg.key)) add(league, tg.totals);
+    // Claude's formula as it would have stood before this week (betting line from the game; no injury reports kept then).
+    const claudeState = Object.values(strengths).some((x) => x?.track === 'claude') ? seasonState(new Map([...teamGames]
+      .map(([id, list]) => [id, list.filter((tg) => before.has(tg.key)).map((tg) => ({ ...tg,
+        players: new Map([...tg.players].map(([pid, st]) => [pid, { name: pid, stats: st }])) }))]))) : null;
 
     for (const list of teamGames.values()) {
       const now = list.find((tg) => tg.key === key);
@@ -87,6 +96,10 @@ function score(weekKeys, { order, teamGames }, strengths) {
       const teamTotals = zero();
       hist.forEach((tg) => add(teamTotals, tg.totals));
       const ctx = { teamGames, before, league, hist, now };
+      const claude = claudeState ? new Map(claudeSide(claudeState, [...teamGames].find(([, l]) => l === list)[0], {
+        home: now.home, neutral: now.neutral, implied: now.implied, oppId: now.oppId, roster: null,
+        positions: POSITIONS, prior: PRIOR, injuries: qbsOut(hist, now),
+      }).players.map((p) => [p.id, p])) : null;
 
       for (const [pid, actual] of now.players) {
         const his = hist.filter((tg) => tg.players.has(pid));
@@ -100,7 +113,10 @@ function score(weekKeys, { order, teamGames }, strengths) {
           const tenths = s === 'td';
           for (const [option, strengthSet] of Object.entries(strengths)) {
             let shown;
-            if (strengthSet?.track) {
+            if (strengthSet?.track === 'claude') {
+              const v = claude.get(pid)?.[s] ?? 0;
+              shown = tenths ? Math.trunc(v * 10) / 10 : Math.trunc(v);
+            } else if (strengthSet?.track) {
               const smart = smartStat(s, { playerTotals, playerGP: his.length, league, strength }).exact / 100;
               const v = smart * trackingFactor(strengthSet.track, s, { ...ctx, pid, his, playerTotals });
               shown = tenths ? Math.trunc(v * 10) / 10 : Math.trunc(v);
@@ -122,6 +138,16 @@ function score(weekKeys, { order, teamGames }, strengths) {
     }
   }
   return res;
+}
+
+// Stand-in for the injury report when testing past weeks: a quarterback who played in either of the team's
+// last two games but not this week counts as Out (a missing starting QB is nearly always on the report).
+function qbsOut(hist, now) {
+  const out = new Map();
+  for (const tg of hist.slice(-2)) {
+    for (const [pid, st] of tg.players) if (st.passAtt > 0 && !now.players.has(pid)) out.set(pid, 'Out');
+  }
+  return out;
 }
 
 // How much a tracked idea scales Smart's projection for stat s (1 = no change).

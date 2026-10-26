@@ -236,3 +236,12 @@ td .date { white-space: nowrap; }
 /* Three-way formula switch: labels may wrap to two lines at phone width */
 .switch.three { grid-template-columns: 1fr 1fr 1fr; }
 .switch.three button { line-height: 1.15; padding: 4px 6px; }
+
+/* Claude's formula (same look as the NBA app) */
+.tabs { margin-bottom: 12px; }
+.proj-score { font-weight: 700; color: var(--text); font-size: 15px; font-variant-numeric: tabular-nums; }
+.panel h2.big { font-size: 30px; font-variant-numeric: tabular-nums; margin: 2px 0; }
+.panel .small { font-size: 12px; opacity: 0.85; }
+.out-line { margin: 0 0 8px; font-size: 13px; color: var(--muted); }
+.side .mins { display: block; font-size: 11px; color: var(--muted); }
+.side .tag { font-size: 10px; font-weight: 700; padding: 1px 4px; border-radius: 4px; background: var(--accent); color: var(--bg); vertical-align: 1px; }

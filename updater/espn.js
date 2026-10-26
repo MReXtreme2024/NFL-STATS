@@ -127,7 +127,14 @@ export function trimUpcoming(event) {
     homeId: side('home'),
     awayId: side('away'),
     neutral: comp.neutralSite === true,
+    odds: upcomingOdds(comp, side('home')),
   };
+}
+
+// The betting line on the scoreboard for a game not yet played (Claude's formula); null when there's none.
+function upcomingOdds(comp, homeId) {
+  const line = (comp.odds ?? []).find((o) => o.spread != null && o.overUnder != null);
+  return line ? { provider: line.provider?.name ?? '', homeId, spread: line.spread, overUnder: line.overUnder } : null;
 }
 
 // Map one category's stats by ESPN's `keys` (never by position).

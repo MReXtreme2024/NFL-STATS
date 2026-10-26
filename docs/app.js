@@ -14,6 +14,7 @@ const LONG = {
 };
 const PROJ_STATS = ['passYds', 'rushYds', 'recYds', 'rec', 'td']; // the Projections page shows only these
 const MODE_KEY = 'playerMode';
+const FORMULA_KEY = 'matchupFormula';
 const D = { decimals: true };
 
 let data;
@@ -67,6 +68,23 @@ function readMode() {
     return Object.values(MODES).includes(saved) ? saved : MODES.ALL;
   } catch { return MODES.ALL; }
 }
+function readFormula() {
+  try { return localStorage.getItem(FORMULA_KEY) === 'claude' ? 'claude' : 'nate'; } catch { return 'nate'; }
+}
+function saveFormula(f) {
+  try { localStorage.setItem(FORMULA_KEY, f); } catch { /* private mode: just don't remember */ }
+}
+
+// The Your formula / Claude's formula tabs on the Upcoming games and matchup pages.
+function formulaTabs(formula) {
+  const btn = (f, label) => `<button data-formula="${f}" aria-pressed="${formula === f}">${label}</button>`;
+  return `<div class="switch tabs" role="group" aria-label="Formula">${btn('nate', 'Your formula')}${btn('claude', "Claude's formula")}</div>`;
+}
+
+// Claude's formula figures are decimals, shown cut: yards to whole numbers, the rest to one decimal.
+const whole = (x) => String(Math.trunc(x + 1e-9) + 0);
+const one = (x) => (Math.trunc(x * 10 + 1e-9) / 10 + 0).toFixed(1);
+
 function saveMode(mode) {
   try { localStorage.setItem(MODE_KEY, mode); } catch { /* private mode: just don't remember */ }
 }
@@ -213,15 +231,20 @@ const pill = (t) => `<span class="pill" style="${colours(t)}">${esc(t.code)}</sp
 
 // 6. Upcoming games: the next week's games not yet started, from the weekly update.
 function upcomingPage() {
+  const formula = readFormula();
   const games = data.upcoming?.games ?? [];
-  const rows = games.map((g) => `<li><a class="game-row" href="#/game/${g.id}">
+  const rows = games.map((g) => {
+    const score = formula === 'claude' && g.claude
+      ? `<span class="proj-score">${one(g.claude.away.score)} – ${one(g.claude.home.score)}</span>` : '';
+    return `<li><a class="game-row" href="#/game/${g.id}">
       <span class="teams-line">${pill(teamById(g.awayId))}<span class="at">${g.neutral ? 'vs' : '@'}</span>${pill(teamById(g.homeId))}</span>
-      <span class="when">${startText(g.start)}</span></a></li>`).join('');
+      <span class="when">${score}${startText(g.start)}</span></a></li>`;
+  }).join('');
   const body = games.length
     ? `<ul class="games-list">${rows}</ul>`
     : '<p class="message">No upcoming games right now. The list refreshes with each weekly update.</p>';
   const label = data.upcoming?.label ? `${data.upcoming.label} · ` : '';
-  return `${bar('Upcoming games', '#/', `${label}Melbourne times · tap a game for projections`)}${body}`;
+  return `${bar('Upcoming games', '#/', `${label}Melbourne times · tap a game for projections`)}${formulaTabs(formula)}${body}`;
 }
 
 // Players to project for an upcoming game: those on the current roster (when known) who have played for this team.
@@ -229,10 +252,56 @@ const projectable = (t) => t.players.filter((p) => (t.roster?.length ? t.roster.
 
 // 7. Matchup: for each projection stat, the two teams' players side by side, highest first,
 // only projections worth showing (1 or more; TDs 0.1 or more).
+// Claude's formula for one game: projected team scores, then each stat side by side.
+const CLAUDE_STATS = [
+  ['Passing yards', 'passYds', (p) => `${one(p.passAtt)} passes`],
+  ['Rushing yards', 'rushYds', (p) => `${one(p.rushAtt)} carries`],
+  ['Receiving yards', 'recYds', (p) => `${one(p.targets)} targets`],
+  ['Touchdowns', 'td', (p) => `${one(p.rushAtt + p.targets)} carries + targets`],
+];
+const STATUS_TAG = { Questionable: 'Q' };
+
+function claudeMatchup(g, away, home) {
+  const c = g.claude;
+  if (!c) return '<p class="message">Claude\'s formula isn\'t ready for this game yet. It appears after the next weekly update.</p>';
+  const scoreBox = (t, side) => {
+    const parts = [`Stats model ${one(side.model)}`];
+    if (side.market !== null) parts.push(`Betting market ${one(side.market)}`);
+    return `<div class="panel" style="${colours(t)}"><p>${esc(t.code)} projected</p><h2 class="big">${one(side.score)}</h2>
+      <p class="small">${parts.join(' · ')}</p>
+      <p class="small">Passing ${whole(side.passYds)} · Rushing ${whole(side.rushYds)} · TDs ${one(side.td)}</p></div>`;
+  };
+  const outLine = (t, side) => (side.out.length
+    ? `<p class="out-line"><b>${esc(t.code)} out:</b> ${side.out.map((o) => `${esc(o.name)}${o.pos ? ` (${esc(o.pos)})` : ''}`).join(', ')}</p>` : '');
+  const show1 = (key, v) => (key === 'td' ? one(v) : whole(v));
+  const worth = (key, v) => (key === 'td' ? Math.trunc(v * 10 + 1e-9) >= 1 : Math.trunc(v + 1e-9) >= 1);
+  const column = (t, side, key, sub) => {
+    const items = side.players
+      .filter((p) => worth(key, p[key]))
+      .sort((a, b) => b[key] - a[key] || a.name.localeCompare(b.name))
+      .map((p) => {
+        const tag = p.status ? ` <span class="tag">${esc(STATUS_TAG[p.status] ?? p.status)}</span>` : '';
+        const pos = p.pos ? ` <span class="pos">${esc(p.pos)}</span>` : '';
+        return `<li><a href="#/team/${t.id}/player/${p.id}"><span class="name">${esc(p.name)}${pos}${tag}<span class="mins">${sub(p)}</span></span><b>${show1(key, p[key])}</b></a></li>`;
+      }).join('');
+    return `<div class="side"><div class="side-head" style="${colours(t)}">${esc(t.code)}</div>
+      ${items ? `<ul>${items}</ul>` : '<p class="none">No projections</p>'}</div>`;
+  };
+  const sections = CLAUDE_STATS.map(([label, key, sub]) => `<section class="stat"><h3>${label}</h3>
+      <div class="sides">${column(away, c.away, key, sub)}${column(home, c.home, key, sub)}</div></section>`).join('');
+  return `<section class="matchup">${scoreBox(away, c.away)}${scoreBox(home, c.home)}</section>
+    ${outLine(away, c.away)}${outLine(home, c.home)}
+    <div class="stats">${sections}</div>
+    <p class="working">How Claude's formula works: team scores blend a points model (10%) with the betting market's expected score (90%). Player figures are expected opportunities (passes, carries, targets: this season blended with last season) × efficiency pulled toward his own last season and the league average. The expected starting quarterback gets the team's passes; players ruled out (Out, Doubtful, Injured Reserve, suspended) are removed and their carries and targets shared among teammates at the same position; Q = questionable. Touchdowns follow carries + targets and the betting market's expected points. Yards are cut to whole numbers, the rest to one decimal.</p>`;
+}
+
 function matchupPage(g) {
+  const formula = readFormula();
   const mode = readMode();
   const away = teamById(g.awayId);
   const home = teamById(g.homeId);
+  const head = (sub) => `${bar(`${away.code} ${g.neutral ? 'vs' : '@'} ${home.code}`, '#/upcoming', sub)}${formulaTabs(formula)}`;
+  if (formula === 'claude') return `${head(startText(g.start))}${claudeMatchup(g, away, home)}`;
   const column = (t, s) => {
     const items = projectable(t)
       .map((p) => ({ p, v: projections(t, p, mode)[s] }))
@@ -249,7 +318,7 @@ function matchupPage(g) {
   const sections = PROJ_STATS.map((s) => `<section class="stat"><h3>${LONG[s]}</h3>
       <div class="sides">${column(away, s)}${column(home, s)}</div></section>`).join('');
   const sideLabel = (homeAway) => (g.neutral ? 'Neutral site' : homeAway);
-  return `${bar(`${away.code} ${g.neutral ? 'vs' : '@'} ${home.code}`, '#/upcoming', startText(g.start))}
+  return `${head(startText(g.start))}
     <section class="matchup">
       <div class="panel" style="${colours(away)}"><h2>${esc(away.name)}</h2><p>${sideLabel('Away')} · ${away.gp} played</p></div>
       <div class="panel" style="${colours(home)}"><h2>${esc(home.name)}</h2><p>${sideLabel('Home')} · ${home.gp} played</p></div>
@@ -330,6 +399,8 @@ app.addEventListener('click', (e) => {
   if (sortBtn) { playerSort = sortBtn.dataset.sort; render(); return; }
   const projSortBtn = e.target.closest('[data-psort]');
   if (projSortBtn) { projectionSort = projSortBtn.dataset.psort; render(); return; }
+  const formulaBtn = e.target.closest('[data-formula]');
+  if (formulaBtn) { saveFormula(formulaBtn.dataset.formula); render(); return; }
   const modeBtn = e.target.closest('[data-mode]');
   if (modeBtn) { saveMode(modeBtn.dataset.mode); render(); return; }
   const row = e.target.closest('tr[data-href]');

@@ -6,6 +6,8 @@ on:
   schedule:
     - cron: '7 0 * * 3'                 # Wednesday 12:07am: GitHub delays or drops jobs set for exactly the hour
       timezone: 'Australia/Melbourne'   # GitHub adjusts for daylight saving
+    - cron: '7 9 * * 6'                 # Saturday 9:07am: fresh injury reports and betting lines before Sunday's games
+      timezone: 'Australia/Melbourne'
   workflow_dispatch:                    # adds a "Run workflow" button for manual updates
     inputs:
       weeks:
