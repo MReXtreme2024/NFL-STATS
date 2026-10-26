@@ -34,7 +34,7 @@ export function projection(teamTotal, teamGP, playerTotal, base, tenths = false)
   return { exact: cut(100 * top, bottom), value: cut((tenths ? 10 : 1) * top, bottom) };
 }
 
-export const MODES = { ALL: 'all', PLAYED: 'played' };
+export const MODES = { ALL: 'all', PLAYED: 'played', SMART: 'smart' };
 
 // One stat on the Player page.
 //   mode ALL:    base = team total over all team games (Nate's formula, the default)
@@ -76,4 +76,88 @@ export const show = (value, { decimals = false, tenths = false, suffix = '' } = 
 export function working(playerTotal, { base, avg, share, exact, projection: proj, tenths }) {
   if (share === null) return DASH;
   return `100 ÷ ${base} × ${playerTotal} = ${hundredths(share)}% · ${hundredths(avg)} × ${hundredths(share)}% = ${hundredths(exact)} → ${show(proj, { tenths })}`;
+}
+
+// ---- Smart: opportunities × steadied efficiency (added 26 Oct 2026, tested against weeks 3-7) ----
+// projection = his opportunities a game × his rate, where his rate is pulled toward the league rate
+// as if he'd had K extra league-average opportunities:
+//   steadied rate = (made + K × leagueMade ÷ leagueOpps) ÷ (opps + K)
+//   projection    = opps ÷ GP × steadied rate = opps × (made × leagueOpps + K × leagueMade) ÷ (GP × (opps + K) × leagueOpps)
+// Worked in BigInt, so the products never lose precision; BigInt division already cuts toward zero.
+// Stats with no rate (attempts, carries, targets) are simply his average in the games he played.
+// Rush + rec yards = rushing yards + receiving yards, added before the cut.
+export const SMART_STATS = {
+  passAtt: { opps: 'passAtt' },
+  passCmp: { opps: 'passAtt', k: 'pass', rate: '% completed', pct: true },
+  passYds: { opps: 'passAtt', k: 'pass', rate: 'yds a pass' },
+  rushAtt: { opps: 'rushAtt' },
+  rushYds: { opps: 'rushAtt', k: 'rush', rate: 'yds a carry' },
+  targets: { opps: 'targets' },
+  rec: { opps: 'targets', k: 'rec', rate: '% caught', pct: true },
+  recYds: { opps: 'targets', k: 'rec', rate: 'yds a target' },
+  td: { opps: 'touches', k: 'td', rate: '% score', pct: true },
+};
+const OPPS_LABEL = { passAtt: 'passes', rushAtt: 'carries', targets: 'targets', touches: 'carries + targets' };
+
+const big = BigInt;
+const cutBig = (a, b) => Number(a / b); // BigInt division truncates toward zero; never -0
+const oppsOf = (totals, key) => (key === 'touches' ? totals.rushAtt + totals.targets : totals[key]);
+
+// One rate-based stat as an exact fraction top ÷ bottom (projection a game), plus the shown pieces.
+function smartFraction(stat, { playerTotals, playerGP, league, strength }) {
+  const def = SMART_STATS[stat];
+  const opps = big(oppsOf(playerTotals, def.opps));
+  const gp = big(playerGP);
+  if (!def.k) return { top: opps, bottom: gp, opps, gp };
+  const k = big(strength[def.k]);
+  const made = big(playerTotals[stat]);
+  const lOpps = big(oppsOf(league, def.opps));
+  const lMade = big(league[stat]);
+  if (lOpps <= 0n || opps + k <= 0n) return { top: 0n, bottom: 1n, opps, gp, rateTop: 0n, rateBottom: 1n };
+  const rateTop = made * lOpps + k * lMade;
+  const rateBottom = (opps + k) * lOpps;
+  return { top: opps * rateTop, bottom: gp * rateBottom, opps, gp, rateTop, rateBottom };
+}
+
+// Smart projection for one stat. input: { playerTotals, playerGP, league, strength }.
+// Returns { exact (hundredths), projection (whole, or tenths for TDs), perGame (hundredths), rate (hundredths) }.
+export function smartStat(stat, input, tenths = false) {
+  if (input.playerGP <= 0) return { exact: null, projection: null, perGame: null, rate: null, tenths };
+  let top;
+  let bottom;
+  let first;
+  let parts = null;
+  if (stat === 'rushRecYds') {
+    const a = smartFraction('rushYds', input);
+    const b = smartFraction('recYds', input);
+    top = a.top * b.bottom + b.top * a.bottom;
+    bottom = a.bottom * b.bottom;
+    parts = { rush: cutBig(100n * a.top, a.bottom), rec: cutBig(100n * b.top, b.bottom) };
+  } else {
+    first = smartFraction(stat, input);
+    ({ top, bottom } = first);
+  }
+  const def = SMART_STATS[stat];
+  return {
+    exact: cutBig(100n * top, bottom),
+    projection: cutBig((tenths ? 10n : 1n) * top, bottom),
+    perGame: first ? cutBig(100n * first.opps, first.gp) : null,
+    rate: first?.rateTop !== undefined ? cutBig((def.pct ? 10000n : 100n) * first.rateTop, first.rateBottom) : null,
+    parts,
+    tenths,
+  };
+}
+
+// The working shown beneath each stat in Smart mode, e.g.
+// "10.40 targets a game × 7.56 yds a target (steadied) = 78.67 → 78".
+export function smartWorking(stat, r, playerTotals, playerGP) {
+  if (r.exact === null) return DASH;
+  const proj = show(r.projection, { tenths: r.tenths });
+  // The sum is worked from the full decimals, so it can be 0.01 above the two shown parts added.
+  if (stat === 'rushRecYds') return `${hundredths(r.parts.rush)} rushing + ${hundredths(r.parts.rec)} receiving = ${hundredths(r.exact)} → ${proj}`;
+  const def = SMART_STATS[stat];
+  const label = OPPS_LABEL[def.opps];
+  if (!def.k) return `${oppsOf(playerTotals, def.opps)} ${label} ÷ ${playerGP} games = ${hundredths(r.exact)} → ${proj}`;
+  const rate = def.pct ? `${hundredths(r.rate)}${def.rate}` : `${hundredths(r.rate)} ${def.rate}`;
+  return `${hundredths(r.perGame)} ${label} a game × ${rate} (steadied) = ${hundredths(r.exact)} → ${proj}`;
 }

@@ -1,5 +1,11 @@
 {
   "season": 2026,
   "timeZone": "Australia/Melbourne",
-  "colourOverrides": {}
+  "colourOverrides": {},
+  "smartFormula": {
+    "pass": 100,
+    "rush": 25,
+    "rec": 40,
+    "td": 400
+  }
 }

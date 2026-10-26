@@ -1,4 +1,4 @@
-import { MODES, TENTHS_STATS, playerStat, show, teamAverage, working } from './calc.js';
+import { MODES, SMART_STATS, TENTHS_STATS, playerStat, show, smartStat, smartWorking, teamAverage, working } from './calc.js';
 
 const app = document.getElementById('app');
 const TZ = 'Australia/Melbourne';
@@ -61,7 +61,11 @@ function bar(title, backHref, sub = '') {
 }
 
 function readMode() {
-  try { return localStorage.getItem(MODE_KEY) === MODES.PLAYED ? MODES.PLAYED : MODES.ALL; } catch { return MODES.ALL; }
+  try {
+    const saved = localStorage.getItem(MODE_KEY);
+    if (saved === MODES.SMART && !data.smart) return MODES.ALL; // data built before Smart existed
+    return Object.values(MODES).includes(saved) ? saved : MODES.ALL;
+  } catch { return MODES.ALL; }
 }
 function saveMode(mode) {
   try { localStorage.setItem(MODE_KEY, mode); } catch { /* private mode: just don't remember */ }
@@ -145,20 +149,30 @@ function playersPage(t) {
   return `${bar(`${t.name} players`, `#/team/${t.id}`)}${body}`;
 }
 
-// The All team games / Games he played switch, shared by the Projections and Player pages.
+// The All team games / Games he played / Smart switch, shared by the Projections, Matchup and Player pages.
 function modeSwitch(mode) {
   const btn = (m, label) => `<button data-mode="${m}" aria-pressed="${mode === m}">${label}</button>`;
-  return `<div class="switch" role="group" aria-label="Share based on">
-      ${btn(MODES.ALL, 'All team games')}${btn(MODES.PLAYED, 'Games he played')}
+  const smart = data.smart ? btn(MODES.SMART, 'Smart') : '';
+  return `<div class="switch${smart ? ' three' : ''}" role="group" aria-label="Projection formula">
+      ${btn(MODES.ALL, 'All team games')}${btn(MODES.PLAYED, 'Games he played')}${smart}
     </div>`;
+}
+
+// One stat for one player in the given mode: Nate's share formula, or Smart.
+function statFor(t, p, s, mode) {
+  if (mode === MODES.SMART) {
+    return smartStat(s, { playerTotals: p.totals, playerGP: p.gp, league: data.smart.league, strength: data.smart.strength },
+      TENTHS_STATS.has(s));
+  }
+  return playerStat({
+    teamTotal: t.totals[s], teamGP: t.gp, playerTotal: p.totals[s],
+    teamTotalInHisGames: p.teamTotalsInHisGames[s], playerGP: p.gp,
+  }, mode, TENTHS_STATS.has(s));
 }
 
 // One player's projection for each Projections-page stat in the given mode.
 function projections(t, p, mode) {
-  return Object.fromEntries(PROJ_STATS.map((s) => [s, playerStat({
-    teamTotal: t.totals[s], teamGP: t.gp, playerTotal: p.totals[s],
-    teamTotalInHisGames: p.teamTotalsInHisGames[s], playerGP: p.gp,
-  }, mode, TENTHS_STATS.has(s)).projection]));
+  return Object.fromEntries(PROJ_STATS.map((s) => [s, statFor(t, p, s, mode).projection]));
 }
 
 // A projection worth showing: 1 or more, or 0.1 or more for touchdowns (held as tenths, so also >= 1).
@@ -244,21 +258,33 @@ function matchupPage(g) {
     <div class="stats">${sections}</div>`;
 }
 
-// 5. Player page: share % and projection per stat, two modes
+// The middle figure on a Player page card: share % for Nate's formula; for Smart, the steadied rate,
+// or his average a game for stats with no rate.
+function middleFigure(s, r, mode) {
+  if (mode !== MODES.SMART) return [show(r.share, { ...D, suffix: '%' }), 'Share'];
+  const def = SMART_STATS[s];
+  if (s === 'rushRecYds' || !def?.k) return [show(r.exact, D), 'A game'];
+  return [show(r.rate, { ...D, suffix: def.pct ? '%' : '' }), RATE_LABEL[s]];
+}
+const RATE_LABEL = {
+  passCmp: 'Completed (steadied)', passYds: 'Yds a pass (steadied)', rushYds: 'Yds a carry (steadied)',
+  rec: 'Caught (steadied)', recYds: 'Yds a target (steadied)', td: 'Scoring rate (steadied)',
+};
+
+// 5. Player page: total, share % (or Smart rate) and projection per stat, three modes
 function playerPage(t, p) {
   const mode = readMode();
   const cards = STATS.map((s) => {
-    const r = playerStat({
-      teamTotal: t.totals[s], teamGP: t.gp, playerTotal: p.totals[s],
-      teamTotalInHisGames: p.teamTotalsInHisGames[s], playerGP: p.gp,
-    }, mode, TENTHS_STATS.has(s));
+    const r = statFor(t, p, s, mode);
+    const [mid, midLabel] = middleFigure(s, r, mode);
+    const work = mode === MODES.SMART ? smartWorking(s, r, p.totals, p.gp) : working(p.totals[s], r);
     return `<div class="stat"><h3>${LONG[s]}</h3>
       <div class="figures">
         <div><b>${p.totals[s]}</b><span>Total</span></div>
-        <div><b>${show(r.share, { ...D, suffix: '%' })}</b><span>Share</span></div>
+        <div><b>${mid}</b><span>${midLabel}</span></div>
         <div><b>${show(r.projection, tenths(s))}</b><span>Projection</span></div>
       </div>
-      <p class="working">${working(p.totals[s], r)}</p></div>`;
+      <p class="working">${work}</p></div>`;
   }).join('');
   const pos = p.pos ? ` · ${esc(p.pos)}` : '';
   return `${bar('', `#/team/${t.id}/players`)}

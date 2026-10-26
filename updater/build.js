@@ -9,6 +9,9 @@ import { checkGame, checkSeason, playerTouchdowns, softChecks, splitPair } from 
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
+// Smart formula steadying strengths (extra league-average opportunities), used if config.json has none.
+const SMART_DEFAULT = { pass: 100, rush: 25, rec: 40, td: 400 };
+
 export const STATS = ['passAtt', 'passCmp', 'passYds', 'rushAtt', 'rushYds', 'rushRecYds', 'targets', 'rec', 'recYds', 'td'];
 
 const zeroTotals = () => Object.fromEntries(STATS.map((s) => [s, 0]));
@@ -140,9 +143,14 @@ export function buildAppData(games, teams, positions, config, now, { upcoming = 
     .filter((g) => byId.has(g.homeId) && byId.has(g.awayId))
     .sort((a, b) => a.start.localeCompare(b.start) || a.id.localeCompare(b.id));
 
+  // Smart formula inputs: league-wide totals so far and the steadying strengths from config.json.
+  const league = zeroTotals();
+  out.forEach((t) => addInto(league, t.totals));
+
   return {
     season: config.season,
     checked: isoIn(now, config.timeZone),
+    smart: { strength: config.smartFormula ?? SMART_DEFAULT, league },
     upcoming: { label: upcoming?.label ?? '', games: upcomingGames },
     teams: out,
   };

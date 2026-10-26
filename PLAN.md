@@ -208,6 +208,14 @@ Total touchdowns <total> (average <avg, one decimal> touchdowns)
 - A button at the top of the Teams screen opens the next week's games that haven't started, with Melbourne start times.
 - Tapping a game shows, for each of PASS YDS, RUSH YDS, REC YDS, REC and TD, the two teams' players side by side, sorted by projection, showing only projections of 1 or more (TDs 0.1 or more). Only players on each team's current roster are included. Uses the same mode switch.
 
+**4d. Smart projections** (added at Nate's request, 26 Oct 2026)
+
+- A third option on the switch, **Smart**, next to *All team games* and *Games he played*, on the Player, Projections and Matchup pages.
+- Projection = opportunities a game × steadied efficiency (rules in `CLAUDE.md`). Chosen by testing on Weeks 3–6 and checked on Week 7:
+  about 8% smaller misses than *All team games*, mostly from touchdowns and passing yards.
+- Each Wednesday after the update, `node updater/backtest.js` re-tests all three options on the latest week and the season so far,
+  and Claude reports the result to Nate; settings change only with his OK.
+
 **5. Player page**
 
 - Header: the player's name on the team colour, and "Played X of Y team games".

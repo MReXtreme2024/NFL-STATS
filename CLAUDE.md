@@ -31,6 +31,24 @@ Nate changed these on 22 Oct 2026 (same change as the NBA app); they replace PLA
 - **Projections page** (Team page's third button): only Passing yards, Rushing yards, Receiving yards, Receptions and Touchdowns. A projection shows if it is 1 or more (TDs: 0.1 or more), otherwise it is blank; players with nothing to show are left off. Uses the remembered mode switch; sorted by PASS YDS (ties by rushing + receiving yards); headings re-sort; rows open the Player page. The Player page keeps all ten stats.
 - `tests/calc.test.js` (run with `node --test`) must pass before any screen work.
 
+## Smart formula (third option on the switch, added 26 Oct 2026 at Nate's request)
+
+- Projection = his opportunities a game (in games he played) × his **steadied** rate, where the rate is pulled
+  toward the league rate as if he'd had K extra league-average opportunities:
+  `opps × (made × leagueOpps + K × leagueMade) ÷ (GP × (opps + K) × leagueOpps)`, worked in BigInt, cut like every projection.
+- Opportunities and K (K values live in `config.json` → `smartFormula`): pass yds and completions per pass attempt (pass 100);
+  rush yds per carry (rush 25); rec yds and receptions per target (rec 40); TDs per carry + target (td 400).
+  Attempts, carries and targets: his average in his games. Rush + rec yds = rushing + receiving, added before the cut.
+- League totals = all saved games, built into `app-data.json` → `smart.league`. Logic in `docs/calc.js` (`smartStat`); tests in `tests/smart.test.js`.
+- Nate's own two modes are unchanged; never change his formula or the Smart settings without his OK.
+
+## Weekly formula check (Nate asked for this every Wednesday)
+
+- After each Wednesday update, pull `main`, run `node updater/backtest.js --out data/formula-check.md`, commit that file,
+  and report to Nate in plain English: how All team games, Games he played and Smart did last week and season to date,
+  and whether new Smart settings or a new formula idea did better. Try new ideas in a scratch folder first.
+- Suggest only. Change `config.json` or any formula only after Nate says yes.
+
 ## Data source rules
 
 - ESPN's free public JSON API is the **only** source. No key.

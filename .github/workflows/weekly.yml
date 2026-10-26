@@ -53,6 +53,10 @@ jobs:
 
       # The check time changes every run, so there is always a commit; this also stops
       # GitHub pausing the schedule after 60 days without activity.
+      # How each projection option would have done on the weeks just played (report for Nate).
+      - name: Formula check
+        run: node updater/backtest.js --out data/formula-check.md
+
       - name: Commit changes
         run: |
           git config user.name 'github-actions[bot]'

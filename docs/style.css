@@ -232,3 +232,7 @@ td .date { white-space: nowrap; }
 .side b { font-size: 18px; font-variant-numeric: tabular-nums; }
 .side .none { margin: 8px 0; font-size: 13px; color: var(--muted); }
 .side .pos { font-size: 11px; color: var(--muted); }
+
+/* Three-way formula switch: labels may wrap to two lines at phone width */
+.switch.three { grid-template-columns: 1fr 1fr 1fr; }
+.switch.three button { line-height: 1.15; padding: 4px 6px; }
