@@ -1,17 +1,186 @@
 {
-  "label": "Week 7",
+  "label": "Week 8",
   "games": [
     {
-      "id": "401873009",
-      "start": "2026-10-27T00:15Z",
-      "homeId": "21",
-      "awayId": "6",
+      "id": "401873023",
+      "start": "2026-10-30T00:15Z",
+      "homeId": "9",
+      "awayId": "29",
       "neutral": false,
       "odds": {
-        "provider": "DraftKings",
-        "homeId": "21",
-        "spread": 4.5,
+        "provider": "Draft Kings",
+        "homeId": "9",
+        "spread": -3.5,
+        "overUnder": 48.5
+      }
+    },
+    {
+      "id": "401873026",
+      "start": "2026-11-01T18:00Z",
+      "homeId": "2",
+      "awayId": "33",
+      "neutral": false,
+      "odds": {
+        "provider": "Draft Kings",
+        "homeId": "2",
+        "spread": -3.5,
+        "overUnder": 53.5
+      }
+    },
+    {
+      "id": "401873031",
+      "start": "2026-11-01T18:00Z",
+      "homeId": "4",
+      "awayId": "10",
+      "neutral": false,
+      "odds": {
+        "provider": "Draft Kings",
+        "homeId": "4",
+        "spread": -10,
+        "overUnder": 46.5
+      }
+    },
+    {
+      "id": "401873024",
+      "start": "2026-11-01T18:00Z",
+      "homeId": "6",
+      "awayId": "22",
+      "neutral": false,
+      "odds": {
+        "provider": "Draft Kings",
+        "homeId": "6",
+        "spread": -6.5,
+        "overUnder": 54.5
+      }
+    },
+    {
+      "id": "401873030",
+      "start": "2026-11-01T18:00Z",
+      "homeId": "8",
+      "awayId": "16",
+      "neutral": false,
+      "odds": {
+        "provider": "Draft Kings",
+        "homeId": "8",
+        "spread": -3,
+        "overUnder": 46.5
+      }
+    },
+    {
+      "id": "401873029",
+      "start": "2026-11-01T18:00Z",
+      "homeId": "20",
+      "awayId": "13",
+      "neutral": false,
+      "odds": {
+        "provider": "Draft Kings",
+        "homeId": "20",
+        "spread": -1.5,
+        "overUnder": 45.5
+      }
+    },
+    {
+      "id": "401873027",
+      "start": "2026-11-01T18:00Z",
+      "homeId": "23",
+      "awayId": "5",
+      "neutral": false,
+      "odds": {
+        "provider": "Draft Kings",
+        "homeId": "23",
+        "spread": -3.5,
+        "overUnder": 39.5
+      }
+    },
+    {
+      "id": "401873025",
+      "start": "2026-11-01T18:00Z",
+      "homeId": "27",
+      "awayId": "1",
+      "neutral": false,
+      "odds": {
+        "provider": "Draft Kings",
+        "homeId": "27",
+        "spread": -2.5,
+        "overUnder": 46.5
+      }
+    },
+    {
+      "id": "401873028",
+      "start": "2026-11-01T18:00Z",
+      "homeId": "30",
+      "awayId": "11",
+      "neutral": false,
+      "odds": {
+        "provider": "Draft Kings",
+        "homeId": "30",
+        "spread": -8.5,
+        "overUnder": 46.5
+      }
+    },
+    {
+      "id": "401873032",
+      "start": "2026-11-01T21:05Z",
+      "homeId": "14",
+      "awayId": "24",
+      "neutral": false,
+      "odds": {
+        "provider": "Draft Kings",
+        "homeId": "14",
+        "spread": -6.5,
         "overUnder": 44.5
+      }
+    },
+    {
+      "id": "401873033",
+      "start": "2026-11-01T21:25Z",
+      "homeId": "7",
+      "awayId": "12",
+      "neutral": false,
+      "odds": {
+        "provider": "Draft Kings",
+        "homeId": "7",
+        "spread": 1.5,
+        "overUnder": 41.5
+      }
+    },
+    {
+      "id": "401873034",
+      "start": "2026-11-01T21:25Z",
+      "homeId": "15",
+      "awayId": "17",
+      "neutral": false,
+      "odds": {
+        "provider": "Draft Kings",
+        "homeId": "15",
+        "spread": 7.5,
+        "overUnder": 44.5
+      }
+    },
+    {
+      "id": "401873035",
+      "start": "2026-11-02T01:20Z",
+      "homeId": "28",
+      "awayId": "21",
+      "neutral": false,
+      "odds": {
+        "provider": "Draft Kings",
+        "homeId": "28",
+        "spread": -5.5,
+        "overUnder": 40.5
+      }
+    },
+    {
+      "id": "401873036",
+      "start": "2026-11-03T01:15Z",
+      "homeId": "26",
+      "awayId": "3",
+      "neutral": false,
+      "odds": {
+        "provider": "Draft Kings",
+        "homeId": "26",
+        "spread": -3,
+        "overUnder": 46.5
       }
     }
   ]
