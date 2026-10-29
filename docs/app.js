@@ -295,12 +295,30 @@ function claudeMatchup(g, away, home) {
     <p class="working">How Claude's formula works: team scores blend a points model (10%) with the betting market's expected score (90%). Player figures are expected opportunities (passes, carries, targets: this season blended with last season) × efficiency pulled toward his own last season and the league average. The expected starting quarterback gets the team's passes; players ruled out (Out, Doubtful, Injured Reserve, suspended) are removed and their carries and targets shared among teammates at the same position; Q = questionable. Touchdowns follow carries + targets and the betting market's expected points. Yards are cut to whole numbers, the rest to one decimal.</p>`;
 }
 
+// The upcoming game before or after this one (wrapping round), for swiping and the ‹ › arrows.
+function neighbourGame(id, step) {
+  const games = data.upcoming?.games ?? [];
+  const i = games.findIndex((g) => g.id === id);
+  return i === -1 || games.length < 2 ? null : games[(i + step + games.length) % games.length];
+}
+
+// "‹  3 of 14  ›" under the title of a matchup page.
+function gameNav(g) {
+  const games = data.upcoming?.games ?? [];
+  if (games.length < 2) return '';
+  const i = games.findIndex((x) => x.id === g.id);
+  return `<nav class="game-nav" aria-label="Other upcoming games">
+    <a href="#/game/${neighbourGame(g.id, -1).id}" data-replace aria-label="Previous game">‹</a>
+    <span>Game ${i + 1} of ${games.length} · swipe for more</span>
+    <a href="#/game/${neighbourGame(g.id, 1).id}" data-replace aria-label="Next game">›</a></nav>`;
+}
+
 function matchupPage(g) {
   const formula = readFormula();
   const mode = readMode();
   const away = teamById(g.awayId);
   const home = teamById(g.homeId);
-  const head = (sub) => `${bar(`${away.code} ${g.neutral ? 'vs' : '@'} ${home.code}`, '#/upcoming', sub)}${formulaTabs(formula)}`;
+  const head = (sub) => `${bar(`${away.code} ${g.neutral ? 'vs' : '@'} ${home.code}`, '#/upcoming', sub)}${gameNav(g)}${formulaTabs(formula)}`;
   if (formula === 'claude') return `${head(startText(g.start))}${claudeMatchup(g, away, home)}`;
   const column = (t, s) => {
     const items = projectable(t)
@@ -403,11 +421,34 @@ app.addEventListener('click', (e) => {
   if (formulaBtn) { saveFormula(formulaBtn.dataset.formula); render(); return; }
   const modeBtn = e.target.closest('[data-mode]');
   if (modeBtn) { saveMode(modeBtn.dataset.mode); render(); return; }
+  const replaceLink = e.target.closest('a[data-replace]');
+  if (replaceLink) { e.preventDefault(); location.replace(replaceLink.getAttribute('href')); return; }
   const row = e.target.closest('tr[data-href]');
   if (row && !e.target.closest('a')) location.hash = row.dataset.href;
 });
 
 window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
+
+// Matchup pages: swipe left for the next upcoming game, right for the previous one.
+// Moving between games replaces the page in history, so Back still returns to the games list.
+let touch = null;
+app.addEventListener('touchstart', (e) => {
+  const t = e.touches[0];
+  // ignore two-finger gestures, tables that scroll sideways, and the screen edge (the phone's own back swipe)
+  touch = e.touches.length === 1 && !e.target.closest('.table-wrap') && t.clientX > 24 && t.clientX < innerWidth - 24
+    ? { x: t.clientX, y: t.clientY } : null;
+}, { passive: true });
+app.addEventListener('touchend', (e) => {
+  const m = /^#\/game\/([^/]+)$/.exec(location.hash);
+  if (!touch || !m) return;
+  const t = e.changedTouches[0];
+  const dx = t.clientX - touch.x;
+  const dy = t.clientY - touch.y;
+  touch = null;
+  if (Math.abs(dx) < 60 || Math.abs(dx) < 2 * Math.abs(dy)) return; // not a clear sideways swipe
+  const next = neighbourGame(m[1], dx < 0 ? 1 : -1);
+  if (next) location.replace(`#/game/${next.id}`);
+}, { passive: true });
 
 try {
   const res = await fetch('data/app-data.json', { cache: 'no-cache' });

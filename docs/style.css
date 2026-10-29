@@ -245,3 +245,14 @@ td .date { white-space: nowrap; }
 .out-line { margin: 0 0 8px; font-size: 13px; color: var(--muted); }
 .side .mins { display: block; font-size: 11px; color: var(--muted); }
 .side .tag { font-size: 10px; font-weight: 700; padding: 1px 4px; border-radius: 4px; background: var(--accent); color: var(--bg); vertical-align: 1px; }
+
+/* Previous / next upcoming game */
+.game-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 0 0 10px; }
+.game-nav span { font-size: 13px; color: var(--muted); text-align: center; }
+.game-nav a {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 44px; min-height: 44px; border-radius: 10px;
+  background: var(--surface); border: 1px solid var(--line);
+  text-decoration: none; font-size: 26px; line-height: 1;
+}
+.game-nav a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
