@@ -252,6 +252,17 @@
           }
         },
         {
+          "id": "4241474",
+          "name": "Brian Robinson Jr.",
+          "stats": {
+            "fumbles": {
+              "fumbles": "1",
+              "fumblesLost": "0",
+              "fumblesRecovered": "0"
+            }
+          }
+        },
+        {
           "id": "4429014",
           "name": "Gervon Dexter Sr.",
           "stats": {

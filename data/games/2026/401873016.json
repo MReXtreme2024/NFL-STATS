@@ -321,12 +321,12 @@
           }
         },
         {
-          "id": "4431517",
-          "name": "Calen Bullock",
+          "id": "4685724",
+          "name": "Will Anderson Jr.",
           "stats": {
             "defensive": {
-              "totalTackles": "4",
-              "soloTackles": "3",
+              "totalTackles": "5",
+              "soloTackles": "1",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",
@@ -336,12 +336,12 @@
           }
         },
         {
-          "id": "4685724",
-          "name": "Will Anderson Jr.",
+          "id": "4431517",
+          "name": "Calen Bullock",
           "stats": {
             "defensive": {
               "totalTackles": "4",
-              "soloTackles": "1",
+              "soloTackles": "3",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",
@@ -537,21 +537,6 @@
             "defensive": {
               "totalTackles": "1",
               "soloTackles": "1",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
-          "id": "4360189",
-          "name": "Logan Hall",
-          "stats": {
-            "defensive": {
-              "totalTackles": "1",
-              "soloTackles": "0",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",

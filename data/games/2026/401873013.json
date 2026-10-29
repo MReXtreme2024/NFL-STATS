@@ -180,6 +180,34 @@
           }
         },
         {
+          "id": "4431268",
+          "name": "Chimere Dike",
+          "stats": {
+            "receiving": {
+              "receptions": "0",
+              "receivingYards": "0",
+              "yardsPerReception": "0.0",
+              "receivingTouchdowns": "0",
+              "longReception": "0",
+              "receivingTargets": "1"
+            },
+            "kickReturns": {
+              "kickReturns": "2",
+              "kickReturnYards": "61",
+              "yardsPerKickReturn": "30.5",
+              "longKickReturn": "37",
+              "kickReturnTouchdowns": "0"
+            },
+            "puntReturns": {
+              "puntReturns": "1",
+              "puntReturnYards": "14",
+              "yardsPerPuntReturn": "14.0",
+              "longPuntReturn": "14",
+              "puntReturnTouchdowns": "0"
+            }
+          }
+        },
+        {
           "id": "4240532",
           "name": "Tony Adams",
           "stats": {
@@ -492,26 +520,6 @@
               "passesDefended": "0",
               "QBHits": "0",
               "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
-          "id": "4431268",
-          "name": "Chimere Dike",
-          "stats": {
-            "kickReturns": {
-              "kickReturns": "2",
-              "kickReturnYards": "61",
-              "yardsPerKickReturn": "30.5",
-              "longKickReturn": "37",
-              "kickReturnTouchdowns": "0"
-            },
-            "puntReturns": {
-              "puntReturns": "1",
-              "puntReturnYards": "14",
-              "yardsPerPuntReturn": "14.0",
-              "longPuntReturn": "14",
-              "puntReturnTouchdowns": "0"
             }
           }
         },

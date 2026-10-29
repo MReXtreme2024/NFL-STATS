@@ -247,8 +247,8 @@
           }
         },
         {
-          "id": "4685596",
-          "name": "Azareye'h Thomas",
+          "id": "3117255",
+          "name": "Harrison Phillips",
           "stats": {
             "defensive": {
               "totalTackles": "7",
@@ -262,8 +262,8 @@
           }
         },
         {
-          "id": "3117255",
-          "name": "Harrison Phillips",
+          "id": "4685596",
+          "name": "Azareye'h Thomas",
           "stats": {
             "defensive": {
               "totalTackles": "6",
@@ -292,21 +292,6 @@
           }
         },
         {
-          "id": "4612836",
-          "name": "Darrell Jackson Jr.",
-          "stats": {
-            "defensive": {
-              "totalTackles": "5",
-              "soloTackles": "1",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
           "id": "4685248",
           "name": "David Bailey",
           "stats": {
@@ -317,6 +302,21 @@
               "tacklesForLoss": "1",
               "passesDefended": "0",
               "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4612836",
+          "name": "Darrell Jackson Jr.",
+          "stats": {
+            "defensive": {
+              "totalTackles": "4",
+              "soloTackles": "2",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
               "defensiveTouchdowns": "0"
             }
           }
