@@ -32,12 +32,13 @@ export const MODEL = {
   starterGames: 2, // the expected starting QB has the most passes over this many recent team games
   listMinOpps: 1, // players expected to get fewer opportunities than this aren't listed as "out"
 };
+import { allocateSide } from '../docs/claude.js';
+
 export const OUT_STATUSES = new Set(['Out', 'Doubtful', 'Injured Reserve', 'Suspension', 'Physically Unable to Perform']);
 const OPP_TYPES = ['passAtt', 'rushAtt', 'targets'];
 const MADE = ['passYds', 'rushYds', 'recYds', 'rec', 'td'];
 const GROUP = { QB: 'QB', RB: 'RB', FB: 'RB', HB: 'RB', WR: 'WR', TE: 'TE' };
 
-const clamp = (x, [lo, hi]) => Math.min(hi, Math.max(lo, x));
 const opps = (t, type) => (type === 'touches' ? t.rushAtt + t.targets : t[type]);
 
 // Everything the model needs from this season's saved games (already turned into per-team game lines):
@@ -71,10 +72,11 @@ function rate(stat, mine, prior, state) {
   return (mine[stat] + K * leagueRate) / (opps(mine, opp) + K);
 }
 
-// One team's side of an upcoming game.
+// One team's inputs for the shared step (docs/claude.js): its expected score, and each player who has
+// played for it with his expected opportunities a game and steadied rates.
 // ctx: { home, neutral, implied (betting market's expected points or null), oppId, roster (ids or null),
 //        positions: { id: pos }, prior: { league, players }, injuries: Map(id -> status) }
-export function claudeSide(state, teamId, ctx) {
+export function prepareSide(state, teamId, ctx) {
   const list = state.teamGames.get(teamId) ?? [];
   const n = list.length;
   const zero = () => Object.fromEntries([...OPP_TYPES, ...MADE].map((s) => [s, 0]));
@@ -103,7 +105,12 @@ export function claudeSide(state, teamId, ctx) {
     }
   }
 
-  // Expected opportunities a game, with last season counted as extra games.
+  // The expected starting QB is the one with the most passes in the team's last two games.
+  const recent = list.slice(-MODEL.starterGames);
+  const recentPasses = (id) => recent.reduce((a, g) => a + (g.players.get(id)?.stats.passAtt ?? 0), 0);
+  const teamAvg = (type) => (n ? list.reduce((a, g) => a + g.totals[type], 0) / n : 0);
+
+  // Expected opportunities a game, with last season counted as extra games, and steadied rates.
   const rows = [...players.values()].map((p) => {
     const prior = ctx.prior?.players?.[p.id];
     const exp = {};
@@ -112,58 +119,28 @@ export function claudeSide(state, teamId, ctx) {
       exp[type] = (p.t[type] + G * (prior ? prior.t[type] / prior.gp : 0)) / (p.gp + G);
     }
     const status = ctx.injuries?.get(p.id) ?? '';
-    return { ...p, pos: ctx.positions?.[p.id] ?? '', group: GROUP[ctx.positions?.[p.id]] ?? 'other', status,
-      out: OUT_STATUSES.has(status), exp, prior: prior ? { player: prior, league: ctx.prior.league } : null };
+    const pr = prior ? { player: prior, league: ctx.prior.league } : null;
+    return {
+      id: p.id, name: p.name, pos: ctx.positions?.[p.id] ?? '', group: GROUP[ctx.positions?.[p.id]] ?? 'other', status,
+      out: OUT_STATUSES.has(status), seasonPassAtt: p.t.passAtt, recentPasses: recentPasses(p.id), exp,
+      rate100: Object.fromEntries(MADE.map((s) => [s, 100 * rate(s, p.t, pr, state)])),
+    };
   });
-  const active = rows.filter((r) => !r.out);
-
-  // Passing: only the expected starter (most passes in the last two games, not ruled out) throws, at his own
-  // expected passes a game (this season blended with last season).
-  const teamAvg = (type) => (n ? list.reduce((a, g) => a + g.totals[type], 0) / n : 0);
-  const recent = list.slice(-MODEL.starterGames);
-  const recentPasses = (id) => recent.reduce((a, g) => a + (g.players.get(id)?.stats.passAtt ?? 0), 0);
-  const qbs = active.filter((r) => r.t.passAtt > 0)
-    .sort((a, b) => recentPasses(b.id) - recentPasses(a.id) || b.t.passAtt - a.t.passAtt);
-  for (const r of active) if (r !== qbs[0]) r.exp.passAtt = 0;
-
-  // Carries and targets: share out what ruled-out players would have had, at the same position first,
-  // then scale to the team's usual totals.
-  for (const type of ['rushAtt', 'targets']) {
-    for (const o of rows.filter((r) => r.out && r.exp[type] > 0)) {
-      const same = active.filter((r) => r.group === o.group && r.exp[type] > 0);
-      const pool = same.length ? same : active.filter((r) => r.exp[type] > 0);
-      const total = pool.reduce((a, r) => a + r.exp[type], 0);
-      for (const r of pool) r.exp[type] += total ? (o.exp[type] * r.exp[type]) / total : 0;
-    }
-    const sum = active.reduce((a, r) => a + r.exp[type], 0);
-    const factor = sum ? clamp(teamAvg(type) / sum, MODEL.scaleRange) : 1;
-    for (const r of active) r.exp[type] *= factor;
-  }
 
   // Touchdowns follow the betting market's expected points against the team's usual.
   const withLine = list.filter((g) => g.implied !== null);
   const usual = withLine.length ? withLine.reduce((a, g) => a + g.implied, 0) / withLine.length : null;
   const tdFactor = market !== null && usual ? (market / usual) ** MODEL.marketTdPower : 1;
 
-  const projected = active.map((r) => ({
-    id: r.id, name: r.name, pos: r.pos, status: r.status,
-    passAtt: r.exp.passAtt, rushAtt: r.exp.rushAtt, targets: r.exp.targets,
-    passYds: r.exp.passAtt * rate('passYds', r.t, r.prior, state),
-    rushYds: r.exp.rushAtt * rate('rushYds', r.t, r.prior, state),
-    recYds: r.exp.targets * rate('recYds', r.t, r.prior, state),
-    rec: r.exp.targets * rate('rec', r.t, r.prior, state),
-    td: (r.exp.rushAtt + r.exp.targets) * rate('td', r.t, r.prior, state) * tdFactor,
-  }));
-  const sumOf = (s) => projected.reduce((a, p) => a + p[s], 0);
-  // Listed as out: ruled-out players who would have had a real role (or who have thrown passes this season).
-  const out = rows.filter((r) => r.out && (OPP_TYPES.some((t) => r.exp[t] >= MODEL.listMinOpps) || r.t.passAtt > 0))
-    .map((r) => ({ id: r.id, name: r.name, pos: r.pos, status: r.status }));
-
   return {
-    score, model, market,
-    passYds: sumOf('passYds'), rushYds: sumOf('rushYds'), td: sumOf('td'),
-    players: projected, out,
+    score, model, market, teamAvg: { rushAtt: teamAvg('rushAtt'), targets: teamAvg('targets') }, tdFactor,
+    scaleRange: MODEL.scaleRange, listMinOpps: MODEL.listMinOpps, rows,
   };
+}
+
+// One team's side of an upcoming game: its inputs, then the shared step.
+export function claudeSide(state, teamId, ctx) {
+  return allocateSide(prepareSide(state, teamId, ctx));
 }
 
 // Expected points from a betting line: home (O/U − spread) ÷ 2, away (O/U + spread) ÷ 2 (spread is the home line).

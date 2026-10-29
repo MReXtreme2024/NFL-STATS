@@ -6,7 +6,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { checkGame, checkSeason, playerTouchdowns, softChecks, splitPair } from './checks.js';
-import { claudeSide, impliedPoints, seasonState } from './model.js';
+import { impliedPoints, prepareSide, seasonState } from './model.js';
+import { allocateSide } from '../docs/claude.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -152,10 +153,16 @@ export function buildAppData(games, teams, positions, config, now,
   // Claude's formula for each upcoming game (decimals kept to 3 places, cut; shown cut further on the site).
   const state = seasonState(modelGames);
   const keep3 = (v) => (typeof v === 'number' ? Math.trunc(v * 1000) / 1000 + 0 : v);
-  const side = (g, teamId, oppId, home) => JSON.parse(JSON.stringify(claudeSide(state, teamId, {
-    home, neutral: g.neutral, implied: impliedPoints(g.odds, teamId), oppId,
-    roster: rosters[teamId] ?? null, positions, prior, injuries,
-  }), (k, v) => keep3(v)));
+  // The phone re-runs the last step from the saved inputs when Nate confirms inactives, so the site's
+  // figures are worked from the same (3-decimal) inputs.
+  const keep = (x) => JSON.parse(JSON.stringify(x, (k, v) => keep3(v)));
+  const side = (g, teamId, oppId, home) => {
+    const inputs = keep(prepareSide(state, teamId, {
+      home, neutral: g.neutral, implied: impliedPoints(g.odds, teamId), oppId,
+      roster: rosters[teamId] ?? null, positions, prior, injuries,
+    }));
+    return { ...keep(allocateSide(inputs)), inputs };
+  };
   const upcomingGames = (upcoming?.games ?? [])
     .filter((g) => byId.has(g.homeId) && byId.has(g.awayId))
     .sort((a, b) => a.start.localeCompare(b.start) || a.id.localeCompare(b.id))

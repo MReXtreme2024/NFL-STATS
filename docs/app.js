@@ -1,4 +1,5 @@
 import { MODES, SMART_STATS, TENTHS_STATS, playerStat, show, smartStat, smartWorking, teamAverage, working } from './calc.js';
+import { allocateSide } from './claude.js';
 
 const app = document.getElementById('app');
 const TZ = 'Australia/Melbourne';
@@ -248,7 +249,7 @@ function upcomingPage() {
 }
 
 // Players to project for an upcoming game: those on the current roster (when known) who have played for this team.
-const projectable = (t) => t.players.filter((p) => (t.roster?.length ? t.roster.includes(p.id) : p.gp > 0));
+const projectable = (t, inactive = []) => t.players.filter((p) => (t.roster?.length ? t.roster.includes(p.id) : p.gp > 0) && !inactive.includes(p.id));
 
 // 7. Matchup: for each projection stat, the two teams' players side by side, highest first,
 // only projections worth showing (1 or more; TDs 0.1 or more).
@@ -261,8 +262,86 @@ const CLAUDE_STATS = [
 ];
 const STATUS_TAG = { Questionable: 'Q' };
 
+// Inactives Nate confirms before kick-off, kept on his phone: { home: [playerId], away: [playerId] }.
+const INACTIVE_PREFIX = 'inactives:';
+function readInactives(gameId) {
+  try { return JSON.parse(localStorage.getItem(INACTIVE_PREFIX + gameId)) ?? null; } catch { return null; }
+}
+function saveInactives(gameId, value) {
+  try {
+    if (value) localStorage.setItem(INACTIVE_PREFIX + gameId, JSON.stringify(value));
+    else localStorage.removeItem(INACTIVE_PREFIX + gameId);
+  } catch { /* private mode: not kept */ }
+}
+// Forget inactives for games that are no longer upcoming.
+function tidyInactives() {
+  try {
+    const live = new Set((data.upcoming?.games ?? []).map((g) => INACTIVE_PREFIX + g.id));
+    for (const k of Object.keys(localStorage)) if (k.startsWith(INACTIVE_PREFIX) && !live.has(k)) localStorage.removeItem(k);
+  } catch { /* nothing to tidy */ }
+}
+
+// Claude's formula for a game: the weekly figures, re-worked on the phone with Nate's confirmed inactives.
+function claudeFor(g) {
+  const inactive = readInactives(g.id);
+  if (!g.claude || !inactive) return g.claude;
+  const redo = (side, key) => (side.inputs ? { ...side, ...allocateSide(side.inputs, inactive[key] ?? []) } : side);
+  return { ...g.claude, home: redo(g.claude.home, 'home'), away: redo(g.claude.away, 'away') };
+}
+
+function inactivesButton(g) {
+  if (!g.claude?.home?.inputs) return '';
+  const done = readInactives(g.id);
+  return `<a class="lineup-link${done ? ' done' : ''}" href="#/game/${g.id}/inactives">${done
+    ? '<span>✓ Inactives confirmed by you</span><span class="gp">Edit ›</span>'
+    : '<span>Confirm inactives</span><span class="gp">90 min before kick-off ›</span>'}</a>`;
+}
+
+let inactiveDraft = null; // { gameId, home: [id], away: [id] } while Nate is editing
+let inactivesFromMatchup = false;
+const GROUP_ORDER = { QB: 0, RB: 1, WR: 2, TE: 3, other: 4 };
+
+// 9. Inactives: tap a player to switch him between Active and Inactive; his numbers update straight away.
+function inactivesPage(g) {
+  const away = teamById(g.awayId);
+  const home = teamById(g.homeId);
+  if (inactiveDraft?.gameId !== g.id) {
+    const saved = readInactives(g.id);
+    const fromReport = (side) => side.inputs.rows.filter((r) => r.out).map((r) => r.id);
+    inactiveDraft = { gameId: g.id, home: saved?.home ?? fromReport(g.claude.home), away: saved?.away ?? fromReport(g.claude.away) };
+  }
+  const block = (t, key) => {
+    const side = g.claude[key];
+    const result = allocateSide(side.inputs, inactiveDraft[key]);
+    const opp = (r) => r.exp.passAtt + r.exp.rushAtt + r.exp.targets;
+    const rows = [...side.inputs.rows]
+      .filter((r) => opp(r) >= 0.5 || r.seasonPassAtt > 0) // players with a real role
+      .sort((a, b) => (GROUP_ORDER[a.group] ?? 4) - (GROUP_ORDER[b.group] ?? 4) || opp(b) - opp(a))
+      .map((r) => {
+        const off = inactiveDraft[key].includes(r.id);
+        const p = result.players.find((x) => x.id === r.id);
+        const figs = off ? '0 yds · 0.0 TD'
+          : [p.passYds >= 1 ? `${whole(p.passYds)} pass` : '', p.rushYds >= 1 ? `${whole(p.rushYds)} rush` : '',
+            p.recYds >= 1 ? `${whole(p.recYds)} rec · ${one(p.rec)} rec` : '', `${one(p.td)} TD`].filter(Boolean).join(' · ');
+        const tag = r.status ? ` <span class="tag">${esc(STATUS_TAG[r.status] ?? r.status)}</span>` : '';
+        return `<li><button class="lineup-row role-${off ? 'out' : 'confirmed'}" data-inactive="${r.id}" data-side="${key}" aria-pressed="${off}">
+          <span class="name">${esc(r.name)} <span class="pos">${esc(r.pos)}</span>${tag}<span class="mins">${figs}</span></span>
+          <span class="state">${off ? 'Inactive' : 'Active'}</span></button></li>`;
+      }).join('');
+    return `<section class="stat"><h3><span class="pill" style="${colours(t)}">${esc(t.code)}</span> ${inactiveDraft[key].length} inactive</h3>
+      <ul class="lineup">${rows}</ul></section>`;
+  };
+  return `${bar(`${away.code} ${g.neutral ? 'vs' : '@'} ${home.code} inactives`, `#/game/${g.id}`, 'Tap a player to switch Active / Inactive')}
+    <div class="stats">${block(away, 'away')}${block(home, 'home')}</div>
+    <div class="buttons lineup-actions">
+      <button class="button" data-inactives="reset">Back to injury report</button>
+      <button class="button primary" data-inactives="save">Save inactives</button>
+    </div>
+    <p class="working">NFL inactives are announced about 90 minutes before kick-off. Starting from the injury report (Out, Doubtful, Injured Reserve and suspended players inactive), mark who is actually inactive. Claude's formula re-works the game on your phone: inactive players are removed, their carries and targets go to teammates at the same position, and if the starting QB is inactive the next QB throws. Your formula leaves out inactive players.</p>`;
+}
+
 function claudeMatchup(g, away, home) {
-  const c = g.claude;
+  const c = claudeFor(g);
   if (!c) return '<p class="message">Claude\'s formula isn\'t ready for this game yet. It appears after the next weekly update.</p>';
   const scoreBox = (t, side) => {
     const parts = [`Stats model ${one(side.model)}`];
@@ -318,10 +397,11 @@ function matchupPage(g) {
   const mode = readMode();
   const away = teamById(g.awayId);
   const home = teamById(g.homeId);
-  const head = (sub) => `${bar(`${away.code} ${g.neutral ? 'vs' : '@'} ${home.code}`, '#/upcoming', sub)}${gameNav(g)}${formulaTabs(formula)}`;
+  const head = (sub) => `${bar(`${away.code} ${g.neutral ? 'vs' : '@'} ${home.code}`, '#/upcoming', sub)}${gameNav(g)}${inactivesButton(g)}${formulaTabs(formula)}`;
   if (formula === 'claude') return `${head(startText(g.start))}${claudeMatchup(g, away, home)}`;
+  const inactive = readInactives(g.id);
   const column = (t, s) => {
-    const items = projectable(t)
+    const items = projectable(t, inactive?.[t.id === g.homeId ? 'home' : 'away'] ?? [])
       .map((p) => ({ p, v: projections(t, p, mode)[s] }))
       .filter(({ v }) => worthShowing(v))
       .sort((a, b) => b.v - a.v || a.p.name.localeCompare(b.p.name))
@@ -392,7 +472,10 @@ function render() {
     html = teamsPage();
   } else if (parts[0] === 'upcoming') {
     html = upcomingPage(); title = 'Upcoming games';
+  } else if (game && parts[2] === 'inactives' && game.claude?.home?.inputs) {
+    html = inactivesPage(game); title = `${teamById(game.awayId).code} ${game.neutral ? 'vs' : '@'} ${teamById(game.homeId).code} inactives`;
   } else if (game) {
+    inactiveDraft = null;
     html = matchupPage(game); title = `${teamById(game.awayId).code} ${game.neutral ? 'vs' : '@'} ${teamById(game.homeId).code}`;
   } else if (team && parts.length === 2) {
     html = teamPage(team); title = team.name;
@@ -421,6 +504,23 @@ app.addEventListener('click', (e) => {
   if (formulaBtn) { saveFormula(formulaBtn.dataset.formula); render(); return; }
   const modeBtn = e.target.closest('[data-mode]');
   if (modeBtn) { saveMode(modeBtn.dataset.mode); render(); return; }
+  if (e.target.closest('.lineup-link')) inactivesFromMatchup = true;
+  const toggle = e.target.closest('[data-inactive]');
+  if (toggle && inactiveDraft) {
+    const list = inactiveDraft[toggle.dataset.side];
+    const id = toggle.dataset.inactive;
+    inactiveDraft[toggle.dataset.side] = list.includes(id) ? list.filter((x) => x !== id) : [...list, id];
+    const y = window.scrollY; render(); window.scrollTo(0, y); return;
+  }
+  const action = e.target.closest('[data-inactives]');
+  if (action && inactiveDraft) {
+    const gameId = inactiveDraft.gameId;
+    saveInactives(gameId, action.dataset.inactives === 'save' ? { home: inactiveDraft.home, away: inactiveDraft.away } : null);
+    inactiveDraft = null;
+    if (inactivesFromMatchup) history.back(); else location.replace(`#/game/${gameId}`);
+    inactivesFromMatchup = false;
+    return;
+  }
   const replaceLink = e.target.closest('a[data-replace]');
   if (replaceLink) { e.preventDefault(); location.replace(replaceLink.getAttribute('href')); return; }
   const row = e.target.closest('tr[data-href]');
@@ -454,6 +554,7 @@ try {
   const res = await fetch('data/app-data.json', { cache: 'no-cache' });
   if (!res.ok) throw new Error(res.status);
   data = await res.json();
+  tidyInactives();
   render();
 } catch {
   app.innerHTML = `<p class="message">Couldn't load the stats. Check your connection and try again.</p>`;
