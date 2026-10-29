@@ -112,3 +112,11 @@ Added at Nate's request (22 Oct 2026). Each run saves the next calendar week wit
 
 - Matchup pages have a **Confirm inactives** button. The last step of Claude's formula lives in `docs/claude.js` (`allocateSide`), shared by `updater/model.js` (`prepareSide` makes the inputs, `claudeSide` = both) and the app; each side of `upcoming.games[].claude` keeps its `inputs` (rates as `rate100`, all to 3 decimals; the site's figures are worked from the same rounded inputs). The phone re-runs `allocateSide(inputs, inactive)` with Nate's list (`{ home: [id], away: [id] }`, localStorage `inactives:<gameId>`, removed once the game leaves the upcoming list); it replaces the injury report. Nate's tab drops inactive players.
 - Replacement QB (Nate approved 29 Oct 2026): when the usual starting QB (most passes in the last two games) is out — injury report or Nate's inactives — the QB who takes over gets at least the team's usual passes a game (`teamAvg.passAtt`). Season pass-yds miss 59.43 → 56.30; Claude's formula overall −10.7% → −11.6% vs All team games.
+
+## Receiving yards (29 Oct 2026, Nate: "based on the percentage a player is targeted and his receptions, plus the defence")
+
+- `MODEL.receiving` in `updater/model.js`, each part switchable. Tested in the formula check (season REG-3 to REG-7 / latest week):
+  - **Defence — on**: rec yds × (opponent's receiving yards allowed a game, pulled toward the league with 6 games ÷ league)^0.5. Rec yds 18.88 → 18.86 season, 18.31 → 18.28 latest week. By position group (WR/TE/RB) and stronger settings were worse.
+  - **Target share — off**: recent share of team targets × team targets a game made rec yds worse (19.19) — targets are already scaled to the team's usual total, and the share drops last season's numbers.
+  - **Catch rate × yards per catch — off**: mixed (season worse, latest week slightly better at any steadying tried).
+- Game lines in `modelGames` now keep `oppId`. Re-test target share and catch split in the weekly checks as the season grows.

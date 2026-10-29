@@ -122,7 +122,7 @@ export function buildAppData(games, teams, positions, config, now,
 
       if (!modelGames.has(side.id)) modelGames.set(side.id, []);
       modelGames.get(side.id).push({
-        start: game.start, points: side.score, pointsAgainst: opp.score, implied: impliedPoints(game.odds, side.id),
+        start: game.start, oppId: opp.id, points: side.score, pointsAgainst: opp.score, implied: impliedPoints(game.odds, side.id),
         totals: gameTotals, players: new Map(lines.map(({ p, stats }) => [p.id, { name: p.name, stats }])),
       });
 

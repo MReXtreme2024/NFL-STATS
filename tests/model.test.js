@@ -43,7 +43,10 @@ test('a ruled-out player is removed, listed as out, and his targets go to the sa
 test("last season's opportunities count as extra games; his rate is pulled toward his last season", () => {
   const prior = { league: line({ passAtt: 1000, passYds: 7000, rushAtt: 1000, rushYds: 4000, targets: 1000, recYds: 7500, td: 40 }),
     players: { wr1: { gp: 10, t: line({ targets: 120, recYds: 1200, td: 8 }) } } };
+  const defence = MODEL.receiving.defence;
+  MODEL.receiving.defence = 0; // this test checks the steadying maths alone (its made-up games have no opponents)
   const s = claudeSide(state, '1', { ...ctx, prior });
+  MODEL.receiving.defence = defence;
   // targets a game: (24 + 1 × 12) ÷ (3 + 1) = 9, then scaled with the team: 9 + 6 + 2 = 17 → ×16/17
   assert.ok(Math.abs(player(s, 'wr1').targets - 9 * 16 / 17) < 1e-9);
   // rate: last season (1200 + 20 × 7.5) ÷ (120 + 20) = 9.642…; this season (192 + 40 × 9.642…) ÷ (24 + 40)
@@ -64,4 +67,23 @@ test('expected points from a betting line: home (O/U − spread) ÷ 2, away (O/U
   assert.equal(impliedPoints(odds, '9'), 25.5);
   assert.equal(impliedPoints(odds, '4'), 22);
   assert.equal(impliedPoints(null, '9'), null);
+});
+
+test("receiving yards follow how many the opponent's defence gives up (at the tested strength)", () => {
+  assert.ok(MODEL.receiving.defence > 0);
+  // Team 3's defence gave up twice the receiving yards (to team 2); team 4's gave up the usual (to team 1).
+  const doubled = (g) => {
+    const players = new Map([...g.players].map(([id, p]) => [id, { ...p, stats: { ...p.stats, recYds: p.stats.recYds * 2 } }]));
+    return { ...g, oppId: '3', players, totals: { ...g.totals, recYds: g.totals.recYds * 2 } };
+  };
+  const tg = new Map([
+    ['1', teamGames.get('1').map((g) => ({ ...g, oppId: '4' }))],
+    ['2', teamGames.get('2').map(doubled)],
+    ['3', teamGames.get('2').map((g) => ({ ...g, oppId: '2' }))],
+    ['4', teamGames.get('2').map((g) => ({ ...g, oppId: '1' }))],
+  ]);
+  const st = seasonState(tg);
+  const vsWeak = player(claudeSide(st, '1', { ...ctx, oppId: '3' }), 'wr1').recYds;
+  const vsUsual = player(claudeSide(st, '1', { ...ctx, oppId: '4' }), 'wr1').recYds;
+  assert.ok(vsWeak > vsUsual, `${vsWeak} vs ${vsUsual}`);
 });
