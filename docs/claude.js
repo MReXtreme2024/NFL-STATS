@@ -6,7 +6,7 @@
 const clamp = (x, [lo, hi]) => Math.min(hi, Math.max(lo, x));
 
 // One team's side of an upcoming game.
-//   input: { score, model, market, teamAvg: { rushAtt, targets }, tdFactor, scaleRange, listMinOpps, rows },
+//   input: { score, model, market, teamAvg: { passAtt, rushAtt, targets }, tdFactor, scaleRange, listMinOpps, rows },
 //     each row a player who has played for the team: { id, name, pos, group, status, out (from the injury
 //     report), seasonPassAtt, recentPasses, exp: { passAtt, rushAtt, targets } (a game), rate100: { passYds,
 //     rushYds, recYds, rec, td } (per 100 passes, carries, targets or carries + targets) }.
@@ -19,9 +19,12 @@ export function allocateSide(input, inactive = null) {
   const active = rows.filter((r) => !r.out);
 
   // Passing: only the expected starter (most passes in the last two games, not ruled out) throws.
-  const qbs = active.filter((r) => r.seasonPassAtt > 0)
-    .sort((a, b) => b.recentPasses - a.recentPasses || b.seasonPassAtt - a.seasonPassAtt);
+  const byRecent = (a, b) => b.recentPasses - a.recentPasses || b.seasonPassAtt - a.seasonPassAtt;
+  const qbs = active.filter((r) => r.seasonPassAtt > 0).sort(byRecent);
   for (const r of active) if (r !== qbs[0]) r.exp.passAtt = 0;
+  // If the usual starter is out, the QB who takes over gets the team's usual passes, not his backup average.
+  const usual = rows.filter((r) => r.seasonPassAtt > 0).sort(byRecent)[0];
+  if (qbs[0] && usual && usual.out && input.teamAvg.passAtt) qbs[0].exp.passAtt = Math.max(qbs[0].exp.passAtt, input.teamAvg.passAtt);
 
   // Carries and targets: share out what ruled-out players would have had, at the same position first,
   // then scale to the team's usual totals.

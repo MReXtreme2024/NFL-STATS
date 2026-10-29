@@ -133,7 +133,7 @@ export function prepareSide(state, teamId, ctx) {
   const tdFactor = market !== null && usual ? (market / usual) ** MODEL.marketTdPower : 1;
 
   return {
-    score, model, market, teamAvg: { rushAtt: teamAvg('rushAtt'), targets: teamAvg('targets') }, tdFactor,
+    score, model, market, teamAvg: { passAtt: teamAvg('passAtt'), rushAtt: teamAvg('rushAtt'), targets: teamAvg('targets') }, tdFactor,
     scaleRange: MODEL.scaleRange, listMinOpps: MODEL.listMinOpps, rows,
   };
 }

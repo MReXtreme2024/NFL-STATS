@@ -24,7 +24,7 @@ Average miss per player per game (lower is better). Players scored: Pass yds 33,
 | Smart | 63.08 | 14.52 | 19.88 | 1.52 | 0.42 | -8.5% |
 | Smart+ (tracking) | 62.11 | 14.50 | 19.80 | 1.51 | 0.42 | -9.1% |
 | Smart + market (tracking) | 62.58 | 14.49 | 19.88 | 1.52 | 0.41 | -8.8% |
-| Claude's formula (upcoming games) | 59.43 | 14.60 | 18.88 | 1.54 | 0.40 | -10.7% |
+| Claude's formula (upcoming games) | 56.30 | 14.60 | 18.88 | 1.54 | 0.40 | -11.6% |
 
 Average miss per player per game (lower is better). Players scored: Pass yds 159, Rush yds 653, Rec yds 1120, Rec 1123, TD 647.
 
