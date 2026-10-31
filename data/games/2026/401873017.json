@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "77.3",
+              "adjQBR": "77.4",
               "QBRating": "118.9"
             },
             "rushing": {
@@ -67,6 +67,11 @@
               "receivingTouchdowns": "0",
               "longReception": "19",
               "receivingTargets": "5"
+            },
+            "fumbles": {
+              "fumbles": "1",
+              "fumblesLost": "0",
+              "fumblesRecovered": "0"
             }
           }
         },
@@ -243,17 +248,6 @@
         {
           "id": "4036444",
           "name": "Ryan Neuzil",
-          "stats": {
-            "fumbles": {
-              "fumbles": "1",
-              "fumblesLost": "0",
-              "fumblesRecovered": "0"
-            }
-          }
-        },
-        {
-          "id": "4241474",
-          "name": "Brian Robinson Jr.",
           "stats": {
             "fumbles": {
               "fumbles": "1",
@@ -651,7 +645,7 @@
               "passingTouchdowns": "1",
               "interceptions": "2",
               "sacks-sackYardsLost": "2-11",
-              "adjQBR": "54.9",
+              "adjQBR": "55.0",
               "QBRating": "75.8"
             },
             "rushing": {
@@ -1203,7 +1197,7 @@
     }
   ],
   "odds": {
-    "provider": "Draft Kings",
+    "provider": "DraftKings",
     "homeId": "1",
     "spread": 2.5,
     "overUnder": 49.5
