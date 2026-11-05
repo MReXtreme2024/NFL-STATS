@@ -1,5 +1,6 @@
 import { MODES, SMART_STATS, TENTHS_STATS, playerStat, show, smartStat, smartWorking, teamAverage, working } from './calc.js';
 import { allocateSide } from './claude.js';
+import { LEVELS, lineAt } from './lines.js';
 
 const app = document.getElementById('app');
 const TZ = 'Australia/Melbourne';
@@ -16,6 +17,15 @@ const LONG = {
 const PROJ_STATS = ['passYds', 'rushYds', 'recYds', 'rec', 'td']; // the Projections page shows only these
 const MODE_KEY = 'playerMode';
 const FORMULA_KEY = 'matchupFormula';
+// Which over/under line Claude's formula shows under each player (0.8 = the 80/20 line), remembered.
+const LEVEL_KEY = 'claudeLine';
+function readLevel() {
+  try { const v = Number(localStorage.getItem(LEVEL_KEY)); return LEVELS.includes(v) ? v : 0.5; } catch { return 0.5; }
+}
+function saveLevel(v) {
+  try { localStorage.setItem(LEVEL_KEY, String(v)); } catch { /* private mode: not remembered */ }
+}
+const levelName = (v) => `${Math.round(v * 100)}/${Math.round((1 - v) * 100)}`;
 const D = { decimals: true };
 
 let data;
@@ -361,17 +371,27 @@ function claudeMatchup(g, away, home) {
       .map((p) => {
         const tag = p.status ? ` <span class="tag">${esc(STATUS_TAG[p.status] ?? p.status)}</span>` : '';
         const pos = p.pos ? ` <span class="pos">${esc(p.pos)}</span>` : '';
-        return `<li><a href="#/team/${t.id}/player/${p.id}"><span class="name">${esc(p.name)}${pos}${tag}<span class="mins">${sub(p)}</span></span><b>${show1(key, p[key])}</b></a></li>`;
+        return `<li><a href="#/team/${t.id}/player/${p.id}"><span class="name">${esc(p.name)}${pos}${tag}<span class="mins">${sub(p)}${lineText(key, p[key])}</span></span><b>${show1(key, p[key])}</b></a></li>`;
       }).join('');
     return `<div class="side"><div class="side-head" style="${colours(t)}">${esc(t.code)}</div>
       ${items ? `<ul>${items}</ul>` : '<p class="none">No projections</p>'}</div>`;
   };
+  // The chosen over/under line, learned from how results have landed around Claude's projections.
+  const level = readLevel();
+  const lineText = (key, v) => {
+    const cal = data.calibration?.[key];
+    if (!cal) return '';
+    const line = lineAt(v, cal, level);
+    return ` · ${levelName(level)} ${line === null ? '—' : line.toFixed(1)}`;
+  };
+  const levels = data.calibration?.recYds ? `<section class="levels-box"><p class="levels-title">Line shown under each player: he goes over it <b>${Math.round(level * 100)}%</b> of the time</p>
+    <div class="levels" role="group" aria-label="Over/under line">${LEVELS.map((v) => `<button data-level="${v}" aria-pressed="${v === level}">${levelName(v)}</button>`).join('')}</div></section>` : '';
   const sections = CLAUDE_STATS.map(([label, key, sub]) => `<section class="stat"><h3>${label}</h3>
       <div class="sides">${column(away, c.away, key, sub)}${column(home, c.home, key, sub)}</div></section>`).join('');
-  return `<section class="matchup">${scoreBox(away, c.away)}${scoreBox(home, c.home)}</section>
+  return `${levels}<section class="matchup">${scoreBox(away, c.away)}${scoreBox(home, c.home)}</section>
     ${outLine(away, c.away)}${outLine(home, c.home)}
     <div class="stats">${sections}</div>
-    <p class="working">How Claude's formula works: team scores blend a points model (10%) with the betting market's expected score (90%). Player figures are expected opportunities (passes, carries, targets: this season blended with last season) × efficiency pulled toward his own last season and the league average. The expected starting quarterback gets the team's passes; players ruled out (Out, Doubtful, Injured Reserve, suspended) are removed and their carries and targets shared among teammates at the same position; Q = questionable. Touchdowns follow carries + targets and the betting market's expected points. Yards are cut to whole numbers, the rest to one decimal.</p>`;
+    <p class="working">How Claude's formula works: team scores blend a points model (10%) with the betting market's expected score (90%). Player figures are expected opportunities (passes, carries, targets: this season blended with last season) × efficiency pulled toward his own last season and the league average. The expected starting quarterback gets the team's passes; players ruled out (Out, Doubtful, Injured Reserve, suspended) are removed and their carries and targets shared among teammates at the same position; Q = questionable. Touchdowns follow carries + targets and the betting market's expected points. Yards are cut to whole numbers, the rest to one decimal. The small line after each player's figures is the one he goes over the chosen share of the time (tap the buttons at the top: 80/20 = over 80% of the time, 50/50 = as likely over as under), learned from how real results have landed. "—" means no line is that close to the chosen share for him: touchdowns come in whole numbers, so usually only "over 0.5" (scores a TD) or "over 1.5" exist, at whatever chance he has. No line is ever certain, so the buttons stop at 95/5 and 5/95.</p>`;
 }
 
 // The upcoming game before or after this one (wrapping round), for swiping and the ‹ › arrows.
@@ -500,6 +520,8 @@ app.addEventListener('click', (e) => {
   if (sortBtn) { playerSort = sortBtn.dataset.sort; render(); return; }
   const projSortBtn = e.target.closest('[data-psort]');
   if (projSortBtn) { projectionSort = projSortBtn.dataset.psort; render(); return; }
+  const levelBtn = e.target.closest('[data-level]');
+  if (levelBtn) { saveLevel(Number(levelBtn.dataset.level)); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
   const formulaBtn = e.target.closest('[data-formula]');
   if (formulaBtn) { saveFormula(formulaBtn.dataset.formula); render(); return; }
   const modeBtn = e.target.closest('[data-mode]');

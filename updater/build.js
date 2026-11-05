@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { checkGame, checkSeason, playerTouchdowns, softChecks, splitPair } from './checks.js';
 import { impliedPoints, prepareSide, seasonState } from './model.js';
 import { allocateSide } from '../docs/claude.js';
+import { updateCalibration } from './calibrate.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -218,6 +219,10 @@ export function build(now = new Date()) {
     prior: readJson(path.join(ROOT, 'data', 'prior', `${config.season - 1}.json`), null),
     injuries: latestInjuries(config.season),
   });
+  // Claude's over/under lines: re-learn from every finished game how results land around the projections.
+  data.calibration = updateCalibration(path.join(ROOT, 'data'), config.season, games, {
+    prior: readJson(path.join(ROOT, 'data', 'prior', `${config.season - 1}.json`), null), positions,
+  }).calibration;
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, JSON.stringify(data) + '\n');
   return { data, problems: softChecks(games) };

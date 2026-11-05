@@ -120,3 +120,11 @@ Added at Nate's request (22 Oct 2026). Each run saves the next calendar week wit
   - **Target share — off**: recent share of team targets × team targets a game made rec yds worse (19.19) — targets are already scaled to the team's usual total, and the share drops last season's numbers.
   - **Catch rate × yards per catch — off**: mixed (season worse, latest week slightly better at any steadying tried).
 - Game lines in `modelGames` now keep `oppId`. Re-test target share and catch split in the weekly checks as the season grows.
+
+## Over/under lines (added 5 Nov 2026, Nate: "add the same line buttons to the NFL app", like the NBA app's)
+
+- Claude's formula matchups have a row of buttons at the top (95/5, 90/10 … 10/90, 5/95; remembered in localStorage `claudeLine`, default 50/50). Under each player's Passing, Rushing and Receiving yards and Touchdowns, the app shows the .5 line he goes over that share of the time (`lineAt` in `docs/lines.js`); "—" if no line comes within 5% of it (TDs are whole numbers, so usually only over 0.5 / 1.5 exist). No 100/0 or 0/100.
+- Chances come from `updater/calibrate.js`, run by `build.js` every update: each finished game is replayed with Claude's formula from only the earlier games (players who had played for the team but not in it count as Out), records cached in `data/calibration/<season>-results.json`, then re-learned into app-data `calibration`: yards and receptions get a lean, a spread (variance = k × projection) and the shape of the misses; TDs a lean and a Poisson count. Projections under 100 pass yds / 10 rush or rec yds / 1 rec / 0.1 TD aren't learned from.
+- Checked on 105 games with calibration learned only from games at least 4 days earlier: yards lines within ~4% of their level (e.g. rec yds 50/50 → 50%, 20/80 → 19%), except the safest receiving lines (95/5 → 88%).
+- Replay leans (5 Nov): results averaged 0.89 × the projection for rushing yards, 0.92 for receiving yards and receptions, 0.86 for TDs, 1.01 for passing yards. The lines allow for this; the formula itself is unchanged (suggest only, Nate decides).
+
