@@ -196,8 +196,11 @@ export function prepareSide(state, teamId, ctx) {
 }
 
 // One team's side of an upcoming game: its inputs, then the shared step.
+//   ctx.lean (optional): the learned self-correction (see docs/claude.js allocateSide).
 export function claudeSide(state, teamId, ctx) {
-  return allocateSide(prepareSide(state, teamId, ctx));
+  const input = prepareSide(state, teamId, ctx);
+  if (ctx.lean) input.lean = ctx.lean;
+  return allocateSide(input);
 }
 
 // Expected points from a betting line: home (O/U − spread) ÷ 2, away (O/U + spread) ÷ 2 (spread is the home line).

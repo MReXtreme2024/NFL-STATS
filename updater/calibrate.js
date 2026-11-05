@@ -14,6 +14,16 @@ export const LINE_STATS = ['passYds', 'rushYds', 'recYds', 'rec', 'td'];
 // Only real projections are learned from (not "3 rushing yards" for a receiver).
 const MIN_PROJ = { passYds: 100, rushYds: 10, recYds: 10, rec: 1, td: 0.1 };
 
+// Claude's self-correction (Nate approved 5 Nov 2026): rushing yards, receiving yards and TDs are multiplied by
+// how results have compared with the raw projections so far (passing yards were already about right;
+// correcting receptions made the weekly check worse).
+// The records above always keep the raw projection, so the correction is re-learned, not compounded.
+export const LEAN_STATS = ['rushYds', 'recYds', 'td'];
+export function leanOf(calibration) {
+  if (!LEAN_STATS.every((s) => calibration?.[s]?.bias > 0)) return null;
+  return Object.fromEntries(LEAN_STATS.map((s) => [s, calibration[s].bias]));
+}
+
 // Model game lines (as build.js makes them) from finished games.
 export function modelGamesOf(games) {
   const model = new Map();

@@ -10,6 +10,8 @@ const clamp = (x, [lo, hi]) => Math.min(hi, Math.max(lo, x));
 //     each row a player who has played for the team: { id, name, pos, group, status, out (from the injury
 //     report), seasonPassAtt, recentPasses, exp: { passAtt, rushAtt, targets } (a game), rate100: { passYds,
 //     rushYds, recYds, rec, td } (per 100 passes, carries, targets or carries + targets) }.
+//   input.lean (optional): { rushYds, recYds, td }, how results have compared with Claude's projections so far
+//     (e.g. 0.9 = 10% lower), re-learned after every game; each player's figure is multiplied by it.
 //   inactive (optional, confirmed by Nate before kick-off): [playerId]; it replaces the injury report.
 export function allocateSide(input, inactive = null) {
   const rows = input.rows.map((r) => ({
@@ -40,14 +42,15 @@ export function allocateSide(input, inactive = null) {
     for (const r of active) r.exp[type] *= factor;
   }
 
+  const lean = (s) => input.lean?.[s] ?? 1;
   const projected = active.map((r) => ({
     id: r.id, name: r.name, pos: r.pos, status: r.status,
     passAtt: r.exp.passAtt, rushAtt: r.exp.rushAtt, targets: r.exp.targets,
     passYds: (r.exp.passAtt * r.rate100.passYds) / 100,
-    rushYds: (r.exp.rushAtt * r.rate100.rushYds) / 100,
-    recYds: (r.exp.targets * r.rate100.recYds) / 100,
-    rec: (r.exp.targets * r.rate100.rec) / 100,
-    td: ((r.exp.rushAtt + r.exp.targets) * r.rate100.td * input.tdFactor) / 100,
+    rushYds: (r.exp.rushAtt * r.rate100.rushYds * lean('rushYds')) / 100,
+    recYds: (r.exp.targets * r.rate100.recYds * lean('recYds')) / 100,
+    rec: (r.exp.targets * r.rate100.rec * lean('rec')) / 100,
+    td: ((r.exp.rushAtt + r.exp.targets) * r.rate100.td * input.tdFactor * lean('td')) / 100,
   }));
   const sumOf = (s) => projected.reduce((a, p) => a + p[s], 0);
   // Listed as out: ruled-out players who would have had a real role (or who have thrown passes this season).

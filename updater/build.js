@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { checkGame, checkSeason, playerTouchdowns, softChecks, splitPair } from './checks.js';
 import { impliedPoints, prepareSide, seasonState } from './model.js';
 import { allocateSide } from '../docs/claude.js';
-import { updateCalibration } from './calibrate.js';
+import { leanOf, updateCalibration } from './calibrate.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -83,7 +83,7 @@ export function isoIn(date, timeZone) {
 // now: the check time; upcoming: { label, games } not yet played; rosters: { teamId: [playerId] }.
 // prior: last season's player totals (Claude's formula); injuries: Map(playerId -> status) from the latest report.
 export function buildAppData(games, teams, positions, config, now,
-  { upcoming = null, rosters = {}, prior = null, injuries = new Map() } = {}) {
+  { upcoming = null, rosters = {}, prior = null, injuries = new Map(), lean = null } = {}) {
   const byId = new Map(
     teams.map((t) => {
       const colour = normaliseHex(config.colourOverrides?.[t.code] ?? t.color);
@@ -162,6 +162,7 @@ export function buildAppData(games, teams, positions, config, now,
       home, neutral: g.neutral, implied: impliedPoints(g.odds, teamId), oppId,
       roster: rosters[teamId] ?? null, positions, prior, injuries,
     }));
+    if (lean) inputs.lean = lean; // learned self-correction (re-applied on the phone from the inputs)
     return { ...keep(allocateSide(inputs)), inputs };
   };
   const upcomingGames = (upcoming?.games ?? [])
@@ -213,16 +214,19 @@ export function build(now = new Date()) {
 
   games.forEach(checkGame);
   checkSeason(teams, games, readJson(file, null));
+  // Claude's over/under lines and self-correction: re-learn from every finished game how results land
+  // around the (raw) projections.
+  const { calibration } = updateCalibration(path.join(ROOT, 'data'), config.season, games, {
+    prior: readJson(path.join(ROOT, 'data', 'prior', `${config.season - 1}.json`), null), positions,
+  });
   const data = buildAppData(games, teams, positions, config, now, {
+    lean: leanOf(calibration),
     upcoming: readJson(path.join(ROOT, 'data', 'upcoming.json'), null),
     rosters: readJson(path.join(ROOT, 'data', 'rosters.json'), {}),
     prior: readJson(path.join(ROOT, 'data', 'prior', `${config.season - 1}.json`), null),
     injuries: latestInjuries(config.season),
   });
-  // Claude's over/under lines: re-learn from every finished game how results land around the projections.
-  data.calibration = updateCalibration(path.join(ROOT, 'data'), config.season, games, {
-    prior: readJson(path.join(ROOT, 'data', 'prior', `${config.season - 1}.json`), null), positions,
-  }).calibration;
+  data.calibration = calibration;
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, JSON.stringify(data) + '\n');
   return { data, problems: softChecks(games) };

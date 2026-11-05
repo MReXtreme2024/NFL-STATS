@@ -5,6 +5,7 @@
 //   Touchdowns: cal = { bias, poisson: true }: a count with average bias × projection.
 
 export const LINE_STATS = ['passYds', 'rushYds', 'recYds', 'rec', 'td'];
+export const LEAN_STATS = ['rushYds', 'recYds', 'td']; // corrected by the learned lean (updater/calibrate.js)
 export const LEVELS = [0.95, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05];
 
 // Chance of going over the line (22.5 → 23 or more). null if not learned yet.

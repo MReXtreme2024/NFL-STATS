@@ -38,3 +38,25 @@ test('learning: lean from results; touchdowns kept as a count', () => {
   assert.ok(Math.abs(cal.td.bias - 0.5) < 1e-9);
   assert.equal(cal.passYds, null); // too few results
 });
+
+test("Claude's self-correction: the learned lean scales rushing, receiving and TDs, never passing", async () => {
+  const { allocateSide } = await import('../docs/claude.js');
+  const { leanOf } = await import('../updater/calibrate.js');
+  const input = {
+    score: 24, model: 24, market: 24, teamAvg: { passAtt: 30, rushAtt: 25, targets: 30 }, tdFactor: 1, scaleRange: [0.8, 1.2], listMinOpps: 2,
+    rows: [{ id: 'qb', name: 'QB', pos: 'QB', group: 'QB', status: '', out: false, seasonPassAtt: 60, recentPasses: 60,
+      exp: { passAtt: 30, rushAtt: 5, targets: 0 }, rate100: { passYds: 700, rushYds: 400, recYds: 0, rec: 0, td: 5 } },
+    { id: 'rb', name: 'RB', pos: 'RB', group: 'RB', status: '', out: false, seasonPassAtt: 0, recentPasses: 0,
+      exp: { passAtt: 0, rushAtt: 20, targets: 30 }, rate100: { passYds: 0, rushYds: 450, recYds: 800, rec: 65, td: 4 } }],
+  };
+  const raw = allocateSide(input);
+  const lean = leanOf({ rushYds: { bias: 0.9 }, recYds: { bias: 0.95 }, td: { bias: 0.8 } });
+  const fixed = allocateSide({ ...input, lean });
+  const [r0, r1] = [raw.players.find((p) => p.id === 'rb'), fixed.players.find((p) => p.id === 'rb')];
+  assert.ok(Math.abs(r1.rushYds - 0.9 * r0.rushYds) < 1e-9);
+  assert.ok(Math.abs(r1.recYds - 0.95 * r0.recYds) < 1e-9);
+  assert.ok(Math.abs(r1.td - 0.8 * r0.td) < 1e-9);
+  assert.equal(r1.rec, r0.rec);
+  assert.equal(fixed.players[0].passYds, raw.players[0].passYds);
+  assert.equal(leanOf({ rushYds: { bias: 0.9 } }), null); // not learned yet: no correction
+});

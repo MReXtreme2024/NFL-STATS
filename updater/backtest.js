@@ -19,12 +19,15 @@ import { fileURLToPath } from 'node:url';
 import { MODES, playerStat, smartStat } from '../docs/calc.js';
 import { STATS, lineToStats, loadGames, recordedAny } from './build.js';
 import { claudeSide, seasonState } from './model.js';
+import { learn, leanOf } from './calibrate.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const config = JSON.parse(fs.readFileSync(path.join(ROOT, 'config.json'), 'utf8'));
 const strength = config.smartFormula;
 const readJson = (file, fallback) => (fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : fallback);
 const POSITIONS = readJson(path.join(ROOT, 'data', 'positions.json'), {});
+// Raw Claude's-formula records of finished games (updater/calibrate.js, kept up to date by build.js).
+const RECORDS = readJson(path.join(ROOT, 'data', 'calibration', `${config.season}-results.json`), {});
 const PRIOR = readJson(path.join(ROOT, 'data', 'prior', `${config.season - 1}.json`), null);
 
 const PROJ_STATS = ['passYds', 'rushYds', 'recYds', 'rec', 'td'];
@@ -70,7 +73,7 @@ function loadWeeks() {
         add(totals, st);
       }
       if (!teamGames.has(side.id)) teamGames.set(side.id, []);
-      teamGames.get(side.id).push({ key, oppId, implied, margin, totals, players, points: side.score,
+      teamGames.get(side.id).push({ key, start: g.start, oppId, implied, margin, totals, players, points: side.score,
         pointsAgainst: g.teams.find((t) => t !== side).score, home: side.homeAway === 'home', neutral: g.neutralSite });
     }
   }
@@ -89,6 +92,10 @@ function score(weekKeys, { order, teamGames }, strengths) {
       .map(([id, list]) => [id, list.filter((tg) => before.has(tg.key)).map((tg) => ({ ...tg,
         players: new Map([...tg.players].map(([pid, st]) => [pid, { name: pid, stats: st }])) }))]))) : null;
 
+    // Claude's self-correction as it stood before this week: learned from the saved records of earlier games.
+    const weekStart = [...teamGames.values()].flatMap((l) => l.filter((tg) => tg.key === key).map((tg) => tg.start)).sort()[0];
+    const lean = claudeState ? leanOf(learn(Object.values(RECORDS).filter((e) => e.start < weekStart).flatMap((e) => e.records))) : null;
+
     for (const list of teamGames.values()) {
       const now = list.find((tg) => tg.key === key);
       const hist = list.filter((tg) => before.has(tg.key));
@@ -98,7 +105,7 @@ function score(weekKeys, { order, teamGames }, strengths) {
       const ctx = { teamGames, before, league, hist, now };
       const claude = claudeState ? new Map(claudeSide(claudeState, [...teamGames].find(([, l]) => l === list)[0], {
         home: now.home, neutral: now.neutral, implied: now.implied, oppId: now.oppId, roster: null,
-        positions: POSITIONS, prior: PRIOR, injuries: qbsOut(hist, now),
+        positions: POSITIONS, prior: PRIOR, injuries: qbsOut(hist, now), lean,
       }).players.map((p) => [p.id, p])) : null;
 
       for (const [pid, actual] of now.players) {

@@ -1,6 +1,6 @@
 import { MODES, SMART_STATS, TENTHS_STATS, playerStat, show, smartStat, smartWorking, teamAverage, working } from './calc.js';
 import { allocateSide } from './claude.js';
-import { LEVELS, lineAt } from './lines.js';
+import { LEAN_STATS, LEVELS, lineAt } from './lines.js';
 
 const app = document.getElementById('app');
 const TZ = 'Australia/Melbourne';
@@ -381,7 +381,9 @@ function claudeMatchup(g, away, home) {
   const lineText = (key, v) => {
     const cal = data.calibration?.[key];
     if (!cal) return '';
-    const line = lineAt(v, cal, level);
+    // The shown figure already includes the learned correction (cal.bias); the line's chances work from the raw one.
+    const raw = LEAN_STATS.includes(key) && g.claude?.home?.inputs?.lean ? v / cal.bias : v;
+    const line = lineAt(raw, cal, level);
     return ` · ${levelName(level)} ${line === null ? '—' : line.toFixed(1)}`;
   };
   const levels = data.calibration?.recYds ? `<section class="levels-box"><p class="levels-title">Line shown under each player: he goes over it <b>${Math.round(level * 100)}%</b> of the time</p>
