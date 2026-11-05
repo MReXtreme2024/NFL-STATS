@@ -192,7 +192,7 @@
           "stats": {
             "defensive": {
               "totalTackles": "12",
-              "soloTackles": "9",
+              "soloTackles": "8",
               "sacks": "0",
               "tacklesForLoss": "1",
               "passesDefended": "1",
@@ -262,6 +262,21 @@
           }
         },
         {
+          "id": "4362840",
+          "name": "Kingsley Enagbare",
+          "stats": {
+            "defensive": {
+              "totalTackles": "4",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
           "id": "4035824",
           "name": "Brandon Stephens",
           "stats": {
@@ -277,8 +292,8 @@
           }
         },
         {
-          "id": "4426676",
-          "name": "Jowon Briggs",
+          "id": "3117255",
+          "name": "Harrison Phillips",
           "stats": {
             "defensive": {
               "totalTackles": "3",
@@ -287,21 +302,6 @@
               "tacklesForLoss": "0",
               "passesDefended": "0",
               "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
-          "id": "4362840",
-          "name": "Kingsley Enagbare",
-          "stats": {
-            "defensive": {
-              "totalTackles": "3",
-              "soloTackles": "0",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "1",
               "defensiveTouchdowns": "0"
             }
           }
@@ -322,8 +322,8 @@
           }
         },
         {
-          "id": "3117255",
-          "name": "Harrison Phillips",
+          "id": "4426676",
+          "name": "Jowon Briggs",
           "stats": {
             "defensive": {
               "totalTackles": "2",

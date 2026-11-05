@@ -717,6 +717,15 @@
               "receivingTouchdowns": "1",
               "longReception": "27",
               "receivingTargets": "15"
+            },
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "0",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
             }
           }
         },
@@ -1024,7 +1033,7 @@
           "stats": {
             "defensive": {
               "totalTackles": "3",
-              "soloTackles": "3",
+              "soloTackles": "2",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",

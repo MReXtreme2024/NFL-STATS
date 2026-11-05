@@ -261,7 +261,7 @@
           "name": "Robert Spears-Jennings",
           "stats": {
             "defensive": {
-              "totalTackles": "8",
+              "totalTackles": "9",
               "soloTackles": "4",
               "sacks": "0",
               "tacklesForLoss": "0",
@@ -407,6 +407,21 @@
           }
         },
         {
+          "id": "2978524",
+          "name": "Christian Kuntz",
+          "stats": {
+            "defensive": {
+              "totalTackles": "2",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
           "id": "4429490",
           "name": "Carson Bruener",
           "stats": {
@@ -432,21 +447,6 @@
               "tacklesForLoss": "0",
               "passesDefended": "0",
               "QBHits": "1",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
-          "id": "2978524",
-          "name": "Christian Kuntz",
-          "stats": {
-            "defensive": {
-              "totalTackles": "1",
-              "soloTackles": "1",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "0",
               "defensiveTouchdowns": "0"
             }
           }
@@ -671,7 +671,7 @@
               "yardsPerReception": "10.3",
               "receivingTouchdowns": "0",
               "longReception": "14",
-              "receivingTargets": "8"
+              "receivingTargets": "7"
             },
             "kickReturns": {
               "kickReturns": "2",
@@ -732,7 +732,7 @@
               "yardsPerReception": "6.2",
               "receivingTouchdowns": "0",
               "longReception": "12",
-              "receivingTargets": "11"
+              "receivingTargets": "12"
             }
           }
         },

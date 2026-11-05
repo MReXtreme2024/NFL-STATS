@@ -786,7 +786,7 @@
               "sacks": "1",
               "tacklesForLoss": "1",
               "passesDefended": "0",
-              "QBHits": "1",
+              "QBHits": "2",
               "defensiveTouchdowns": "0"
             }
           }
@@ -1027,8 +1027,8 @@
           "stats": {
             "kickReturns": {
               "kickReturns": "2",
-              "kickReturnYards": "27",
-              "yardsPerKickReturn": "13.5",
+              "kickReturnYards": "32",
+              "yardsPerKickReturn": "16.0",
               "longKickReturn": "18",
               "kickReturnTouchdowns": "0"
             },

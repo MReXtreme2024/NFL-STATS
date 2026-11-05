@@ -363,6 +363,21 @@
           }
         },
         {
+          "id": "3134316",
+          "name": "Matt Dickerson",
+          "stats": {
+            "defensive": {
+              "totalTackles": "4",
+              "soloTackles": "2",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
           "id": "4880675",
           "name": "Rayuan Lane III",
           "stats": {
@@ -393,21 +408,6 @@
               "tacklesForLoss": "1",
               "passesDefended": "0",
               "QBHits": "1",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
-          "id": "3134316",
-          "name": "Matt Dickerson",
-          "stats": {
-            "defensive": {
-              "totalTackles": "3",
-              "soloTackles": "2",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "0",
               "defensiveTouchdowns": "0"
             }
           }
@@ -553,21 +553,6 @@
           }
         },
         {
-          "id": "4430271",
-          "name": "Ruke Orhorhoro",
-          "stats": {
-            "defensive": {
-              "totalTackles": "2",
-              "soloTackles": "1",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "1",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
           "id": "3045207",
           "name": "Jourdan Lewis",
           "stats": {
@@ -638,6 +623,21 @@
               "tacklesForLoss": "0",
               "passesDefended": "0",
               "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4430271",
+          "name": "Ruke Orhorhoro",
+          "stats": {
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "1",
               "defensiveTouchdowns": "0"
             }
           }

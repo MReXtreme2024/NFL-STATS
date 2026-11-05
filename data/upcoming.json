@@ -11,7 +11,7 @@
         "provider": "DraftKings",
         "homeId": "33",
         "spread": 10,
-        "overUnder": 40.5
+        "overUnder": 39.5
       }
     },
     {
@@ -36,7 +36,7 @@
       "odds": {
         "provider": "DraftKings",
         "homeId": "11",
-        "spread": 6,
+        "spread": 5.5,
         "overUnder": 51.5
       }
     },
@@ -49,8 +49,8 @@
       "odds": {
         "provider": "DraftKings",
         "homeId": "12",
-        "spread": -9.5,
-        "overUnder": 46.5
+        "spread": -10,
+        "overUnder": 47.5
       }
     },
     {
@@ -75,8 +75,8 @@
       "odds": {
         "provider": "DraftKings",
         "homeId": "18",
-        "spread": -1.5,
-        "overUnder": 43.5
+        "spread": -3,
+        "overUnder": 42.5
       }
     },
     {
@@ -89,7 +89,7 @@
         "provider": "DraftKings",
         "homeId": "21",
         "spread": 3.5,
-        "overUnder": 39.5
+        "overUnder": 38.5
       }
     },
     {
@@ -115,7 +115,7 @@
         "provider": "DraftKings",
         "homeId": "29",
         "spread": 2.5,
-        "overUnder": 43.5
+        "overUnder": 44.5
       }
     },
     {
@@ -140,8 +140,8 @@
       "odds": {
         "provider": "DraftKings",
         "homeId": "17",
-        "spread": -3,
-        "overUnder": 46.5
+        "spread": -3.5,
+        "overUnder": 45.5
       }
     },
     {
@@ -154,7 +154,7 @@
         "provider": "DraftKings",
         "homeId": "25",
         "spread": -10,
-        "overUnder": 51.5
+        "overUnder": 52.5
       }
     },
     {
@@ -166,8 +166,8 @@
       "odds": {
         "provider": "DraftKings",
         "homeId": "26",
-        "spread": -10.5,
-        "overUnder": 41.5
+        "spread": -8.5,
+        "overUnder": 39.5
       }
     },
     {
@@ -180,7 +180,7 @@
         "provider": "DraftKings",
         "homeId": "3",
         "spread": -6,
-        "overUnder": 46.5
+        "overUnder": 47.5
       }
     },
     {
