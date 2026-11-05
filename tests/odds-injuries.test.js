@@ -28,3 +28,24 @@ test('injuries: player id from his player link; Active players left out', () => 
     { teamId: '22', playerId: '', name: 'No Link', pos: '', status: 'Questionable', date: '2026-10-24T10:00Z' },
   ]);
 });
+
+test('touchdowns: a return TD ESPN also lists as defensive counts once; end-zone fumble recoveries come from the scoring plays', async () => {
+  const { addFumbleRecoveryTDs, playerTouchdowns } = await import('../updater/checks.js');
+  assert.equal(playerTouchdowns({ kickReturns: { kickReturnTouchdowns: '1' }, defensive: { defensiveTouchdowns: '1' } }), 1);
+  assert.equal(playerTouchdowns({ defensive: { defensiveTouchdowns: '1' } }), 1);
+  assert.equal(playerTouchdowns({ rushing: { rushingTouchdowns: '1' }, puntReturns: { puntReturnTouchdowns: '1' } }), 2);
+  const game = {
+    scoringPlays: [
+      { teamId: '6', scoringType: 'TD', text: 'James Mitchell 0 Yd Fumble Recovery (Brandon Aubrey Kick)' },
+      { teamId: '6', scoringType: 'TD', text: 'Dak Prescott 5 Yd Rush (Brandon Aubrey Kick)' },
+    ],
+    teams: [{ id: '6', players: [
+      { name: 'James Mitchell', stats: { fumbles: { fumblesRecovered: '1' } } },
+      { name: 'Dak Prescott', stats: { rushing: { rushingTouchdowns: '1' } } },
+    ] }],
+  };
+  addFumbleRecoveryTDs(game);
+  assert.equal(playerTouchdowns(game.teams[0].players[0].stats), 1);
+  addFumbleRecoveryTDs(game); // already complete: nothing added twice
+  assert.equal(playerTouchdowns(game.teams[0].players[0].stats), 1);
+});

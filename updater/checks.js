@@ -61,14 +61,35 @@ export function checkSeason(teams, games, previous) {
 
 // Every TD a player scores: rushing, receiving, kick return, punt return and defensive.
 // Interception-return TDs are already inside the defensive column, so they aren't added again.
+// Each TD counted once: ESPN sometimes lists a kick or punt return TD under "defensive" as well (week 8 2026,
+// Dylan Laube), so returns and defensive TDs count as whichever is bigger. Fumble recoveries in the end zone
+// have no box-score column; addFumbleRecoveryTDs fills them in from the scoring plays.
 export function playerTouchdowns(stats) {
   return (
     num(stats.rushing?.rushingTouchdowns) +
     num(stats.receiving?.receivingTouchdowns) +
-    num(stats.kickReturns?.kickReturnTouchdowns) +
-    num(stats.puntReturns?.puntReturnTouchdowns) +
-    num(stats.defensive?.defensiveTouchdowns)
+    Math.max(num(stats.kickReturns?.kickReturnTouchdowns) + num(stats.puntReturns?.puntReturnTouchdowns), num(stats.defensive?.defensiveTouchdowns)) +
+    num(stats.fumbles?.fumbleRecoveryTouchdowns)
   );
+}
+
+// A touchdown scored by recovering a fumble in the end zone ("James Mitchell 0 Yd Fumble Recovery") isn't in any
+// box-score TD column. When a team's player TDs fall short of its TD plays, each such play is credited to the
+// named player (as fumbles.fumbleRecoveryTouchdowns). Changes the game in place; returns it.
+export function addFumbleRecoveryTDs(game) {
+  for (const t of game.teams) {
+    const plays = (game.scoringPlays ?? []).filter((s) => s.teamId === t.id && s.scoringType === 'TD');
+    let short = plays.length - t.players.reduce((total, p) => total + playerTouchdowns(p.stats), 0);
+    for (const s of plays) {
+      if (short <= 0) break;
+      const name = /^(.+?) \d+ Yd Fumble Recovery/.exec(s.text ?? '')?.[1];
+      const p = name && t.players.find((x) => x.name === name);
+      if (!p) continue;
+      p.stats.fumbles = { ...p.stats.fumbles, fumbleRecoveryTouchdowns: String(num(p.stats.fumbles?.fumbleRecoveryTouchdowns) + 1) };
+      short--;
+    }
+  }
+  return game;
 }
 
 // Soft checks: problems are reported (the run fails so Nate gets an email) but the site still publishes.

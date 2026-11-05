@@ -5,7 +5,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { checkGame, checkSeason, playerTouchdowns, softChecks, splitPair } from './checks.js';
+import { addFumbleRecoveryTDs, checkGame, checkSeason, playerTouchdowns, softChecks, splitPair } from './checks.js';
 import { impliedPoints, prepareSide, seasonState } from './model.js';
 import { allocateSide } from '../docs/claude.js';
 import { leanOf, updateCalibration } from './calibrate.js';
@@ -189,7 +189,7 @@ export function loadGames(gamesDir) {
   if (!fs.existsSync(gamesDir)) return [];
   return fs.readdirSync(gamesDir)
     .filter((f) => f.endsWith('.json'))
-    .map((f) => JSON.parse(fs.readFileSync(path.join(gamesDir, f), 'utf8')));
+    .map((f) => addFumbleRecoveryTDs(JSON.parse(fs.readFileSync(path.join(gamesDir, f), 'utf8'))));
 }
 
 const readJson = (file, fallback) => (fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : fallback);

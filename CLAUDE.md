@@ -89,6 +89,7 @@ Nate changed these on 22 Oct 2026 (same change as the NBA app); they replace PLA
 - ESPN labels this season 2026. Use ESPN's team abbreviations as given (KC, LAR, JAX…).
 - Map box-score stats by label/key, never by position. Passing `C/ATT` is text like "24/34".
 - Touchdowns: rushing, receiving, kick return, punt return and defensive TD columns. Count each TD once (a pick-six can show under both defensive and interceptions).
+  Return and defensive TDs count as whichever is bigger for a player (ESPN listed Dylan Laube's week-8 kick-return TD under both). An end-zone fumble-recovery TD has no column: `addFumbleRecoveryTDs` (run in `loadGames`) credits it to the player named in the scoring play when the team's player TDs fall short (week 8, James Mitchell). Added 5 Nov 2026 after both games failed the TD soft check.
 - No targets column in a box score → stop and ask Nate before using any other source.
 - Be polite: browser User-Agent, ~0.5 s between calls, up to 3 retries with growing waits.
 - Hard checks (stop the run, don't publish): 32 teams; no team GP goes down; no team above 17 regular-season games; per team per game, player receptions = player completions.
