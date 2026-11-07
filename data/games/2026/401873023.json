@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "1",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "79.9",
+              "adjQBR": "79.8",
               "QBRating": "106.6"
             },
             "fumbles": {
@@ -1225,7 +1225,7 @@
     }
   ],
   "odds": {
-    "provider": "DraftKings",
+    "provider": "Draft Kings",
     "homeId": "9",
     "spread": -3.5,
     "overUnder": 47.5
