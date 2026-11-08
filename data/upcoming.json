@@ -8,7 +8,7 @@
       "awayId": "4",
       "neutral": true,
       "odds": {
-        "provider": "Draft Kings",
+        "provider": "DraftKings",
         "homeId": "1",
         "spread": 3,
         "overUnder": 52.5
@@ -21,9 +21,9 @@
       "awayId": "6",
       "neutral": false,
       "odds": {
-        "provider": "Draft Kings",
+        "provider": "DraftKings",
         "homeId": "11",
-        "spread": 4.5,
+        "spread": 5.5,
         "overUnder": 51.5
       }
     },
@@ -34,7 +34,7 @@
       "awayId": "20",
       "neutral": false,
       "odds": {
-        "provider": "Draft Kings",
+        "provider": "DraftKings",
         "homeId": "12",
         "spread": -9.5,
         "overUnder": 48.5
@@ -47,7 +47,7 @@
       "awayId": "8",
       "neutral": false,
       "odds": {
-        "provider": "Draft Kings",
+        "provider": "DraftKings",
         "homeId": "15",
         "spread": 6.5,
         "overUnder": 49.5
@@ -60,9 +60,9 @@
       "awayId": "5",
       "neutral": false,
       "odds": {
-        "provider": "Draft Kings",
+        "provider": "DraftKings",
         "homeId": "18",
-        "spread": -3.5,
+        "spread": -3,
         "overUnder": 42.5
       }
     },
@@ -73,7 +73,7 @@
       "awayId": "19",
       "neutral": false,
       "odds": {
-        "provider": "Draft Kings",
+        "provider": "DraftKings",
         "homeId": "21",
         "spread": 3,
         "overUnder": 38.5
@@ -86,7 +86,7 @@
       "awayId": "14",
       "neutral": false,
       "odds": {
-        "provider": "Draft Kings",
+        "provider": "DraftKings",
         "homeId": "28",
         "spread": 4.5,
         "overUnder": 47.5
@@ -99,9 +99,9 @@
       "awayId": "7",
       "neutral": false,
       "odds": {
-        "provider": "Draft Kings",
+        "provider": "DraftKings",
         "homeId": "29",
-        "spread": 3,
+        "spread": 2.5,
         "overUnder": 44.5
       }
     },
@@ -112,7 +112,7 @@
       "awayId": "34",
       "neutral": false,
       "odds": {
-        "provider": "Draft Kings",
+        "provider": "DraftKings",
         "homeId": "24",
         "spread": 6,
         "overUnder": 40.5
@@ -125,9 +125,9 @@
       "awayId": "9",
       "neutral": false,
       "odds": {
-        "provider": "Draft Kings",
+        "provider": "DraftKings",
         "homeId": "17",
-        "spread": -3,
+        "spread": -3.5,
         "overUnder": 44.5
       }
     },
@@ -138,9 +138,9 @@
       "awayId": "13",
       "neutral": false,
       "odds": {
-        "provider": "Draft Kings",
+        "provider": "DraftKings",
         "homeId": "25",
-        "spread": -10,
+        "spread": -9.5,
         "overUnder": 51.5
       }
     },
@@ -151,7 +151,7 @@
       "awayId": "22",
       "neutral": false,
       "odds": {
-        "provider": "Draft Kings",
+        "provider": "DraftKings",
         "homeId": "26",
         "spread": -8.5,
         "overUnder": 39.5
@@ -164,7 +164,7 @@
       "awayId": "27",
       "neutral": false,
       "odds": {
-        "provider": "Draft Kings",
+        "provider": "DraftKings",
         "homeId": "3",
         "spread": -6,
         "overUnder": 47.5
@@ -177,7 +177,7 @@
       "awayId": "2",
       "neutral": false,
       "odds": {
-        "provider": "Draft Kings",
+        "provider": "DraftKings",
         "homeId": "16",
         "spread": 3,
         "overUnder": 43.5
