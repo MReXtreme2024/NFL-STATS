@@ -102,6 +102,8 @@ The NBA app (`MReXtreme2024/nba-stats`) is the starting point for look, layout a
 
 ## Schedule
 
+`.github/workflows/publish.yml` (added 8 Nov 2026) republishes the site whenever a change under `docs/` is pushed to `main`, so screen changes go live without waiting for the weekly run.
+
 The weekly run is at **12:07am** Wednesday, Australia/Melbourne (`cron: '7 0 * * 3'`), not 12:00am as in PLAN.md,
 plus **9:07am Saturday** (`cron: '7 9 * * 6'`, added 26 Oct 2026) so injury reports and betting lines are fresh before Sunday's games. Nate approved the move because GitHub delays or drops jobs scheduled exactly on the hour (the NBA app's first midnight run started about 5 hours late).
 
