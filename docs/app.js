@@ -87,6 +87,36 @@ function saveFormula(f) {
 }
 
 // The Your formula / Claude's formula tabs on the Upcoming games and matchup pages.
+// The Upcoming games page: Claude's formula (the games) or Rankings (every projected player across the
+// week's games, ranked by one stat). Nate swapped this in for the Your formula tab (8 Nov 2026, as in the NBA app).
+const VIEW_KEY = 'upcomingView';
+const RANK_KEY = 'rankStat';
+const RANK_STATS = [['passYds', 'Passing yards'], ['rushYds', 'Rushing yards'], ['rushRecYds', 'Rushing + receiving yards'], ['recYds', 'Receiving yards']];
+const readStored = (key, allowed, fallback) => {
+  try { const v = localStorage.getItem(key); return allowed.includes(v) ? v : fallback; } catch { return fallback; }
+};
+const store = (key, v) => { try { localStorage.setItem(key, v); } catch { /* private mode: not remembered */ } };
+function viewTabs(view) {
+  const btn = (v, label) => `<button data-view="${v}" aria-pressed="${view === v}">${label}</button>`;
+  return `<div class="switch tabs" role="group" aria-label="View">${btn('games', "Claude's formula")}${btn('rankings', 'Rankings')}</div>`;
+}
+
+// The row of over/under line buttons (95/5 … 5/95).
+function levelsBox(level) {
+  return data.calibration?.recYds ? `<section class="levels-box"><p class="levels-title">Line shown under each player: he goes over it <b>${Math.round(level * 100)}%</b> of the time</p>
+    <div class="levels" role="group" aria-label="Over/under line">${LEVELS.map((v) => `<button data-level="${v}" aria-pressed="${v === level}">${levelName(v)}</button>`).join('')}</div></section>` : '';
+}
+
+// " · 50/50 42.5" for a shown Claude's-formula figure (blank for stats without a learned line).
+function lineFor(g, key, v, level) {
+  const cal = data.calibration?.[key];
+  if (!cal) return '';
+  // The shown figure already includes the learned correction (cal.bias); the line's chances work from the raw one.
+  const raw = LEAN_STATS.includes(key) && g.claude?.home?.inputs?.lean ? v / cal.bias : v;
+  const line = lineAt(raw, cal, level);
+  return ` · ${levelName(level)} ${line === null ? '—' : line.toFixed(1)}`;
+}
+
 function formulaTabs(formula) {
   const btn = (f, label) => `<button data-formula="${f}" aria-pressed="${formula === f}">${label}</button>`;
   return `<div class="switch tabs" role="group" aria-label="Formula">${btn('nate', 'Your formula')}${btn('claude', "Claude's formula")}</div>`;
@@ -242,20 +272,47 @@ const pill = (t) => `<span class="pill" style="${colours(t)}">${esc(t.code)}</sp
 
 // 6. Upcoming games: the next week's games not yet started, from the weekly update.
 function upcomingPage() {
-  const formula = readFormula();
+  const view = readStored(VIEW_KEY, ['games', 'rankings'], 'games');
   const games = data.upcoming?.games ?? [];
   const rows = games.map((g) => {
-    const score = formula === 'claude' && g.claude
+    const score = g.claude
       ? `<span class="proj-score">${one(g.claude.away.score)} – ${one(g.claude.home.score)}</span>` : '';
     return `<li><a class="game-row" href="#/game/${g.id}">
       <span class="teams-line">${pill(teamById(g.awayId))}<span class="at">${g.neutral ? 'vs' : '@'}</span>${pill(teamById(g.homeId))}</span>
       <span class="when">${score}${startText(g.start)}</span></a></li>`;
   }).join('');
-  const body = games.length
-    ? `<ul class="games-list">${rows}</ul>`
-    : '<p class="message">No upcoming games right now. The list refreshes with each weekly update.</p>';
+  const body = !games.length
+    ? '<p class="message">No upcoming games right now. The list refreshes with each weekly update.</p>'
+    : view === 'rankings' ? rankings(games) : `<ul class="games-list">${rows}</ul>`;
   const label = data.upcoming?.label ? `${data.upcoming.label} · ` : '';
-  return `${bar('Upcoming games', '#/', `${label}Melbourne times · tap a game for projections`)}${formulaTabs(formula)}${body}`;
+  return `${bar('Upcoming games', '#/', `${label}Melbourne times · tap a game for projections`)}${viewTabs(view)}${body}`;
+}
+
+// Rankings: every player Claude projects in the week's games (with Nate's confirmed inactives), ranked by
+// passing, rushing, rushing + receiving or receiving yards, with the chosen over/under line. Tap a row for his game.
+function rankings(games) {
+  const stat = readStored(RANK_KEY, RANK_STATS.map(([k]) => k), 'passYds');
+  const level = readLevel();
+  const value = (p) => (stat === 'rushRecYds' ? p.rushYds + p.recYds : p[stat]);
+  const all = games.filter((g) => g.claude).flatMap((g) => {
+    const c = claudeFor(g);
+    return [[c.away, g.homeId, false], [c.home, g.awayId, true]].flatMap(([side, oppId, home]) => side.players
+      .map((p) => ({ p, g, team: teamById(home ? g.homeId : g.awayId), opp: teamById(oppId), home })));
+  }).filter(({ p }) => Math.trunc(value(p) + 1e-9) >= 1)
+    .sort((a, b) => value(b.p) - value(a.p) || a.p.name.localeCompare(b.p.name));
+  if (!all.length) return '<p class="message">Claude\'s formula isn\'t ready for these games yet. It appears after the next weekly update.</p>';
+  const items = all.map(({ p, g, team, opp, home }, i) => {
+    const tag = p.status ? ` <span class="tag">${esc(STATUS_TAG[p.status] ?? p.status)}</span>` : '';
+    const pos = p.pos ? ` <span class="pos">${esc(p.pos)}</span>` : '';
+    const at = g.neutral ? 'vs' : home ? 'vs' : '@';
+    return `<li><a href="#/game/${g.id}"><span class="rank">${i + 1}</span><span class="name">${pill(team)} ${esc(p.name)}${pos}${tag}<span class="mins">${at} ${esc(opp.code)} · ${startText(g.start)}${lineFor(g, stat, value(p), level)}</span></span><b>${whole(value(p))}</b></a></li>`;
+  }).join('');
+  const name = Object.fromEntries(RANK_STATS)[stat];
+  const btn = ([s, label]) => `<button data-rank="${s}" aria-pressed="${stat === s}">${label.replace(' yards', '')}</button>`;
+  return `<div class="switch" role="group" aria-label="Rank by">${RANK_STATS.map(btn).join('')}</div>
+    ${stat === 'rushRecYds' ? '' : levelsBox(level)}
+    <section class="stat"><h3>${name} · ${all.length} players, ${games.filter((g) => g.claude).length} games</h3><ul class="ranking">${items}</ul></section>
+    <p class="working">Claude's projected ${name.toLowerCase()} for every player in the week's games, highest first, using your confirmed inactives where you've saved them. ${stat === 'rushRecYds' ? 'Rushing + receiving yards has no over/under line yet (Claude learns lines for rushing and receiving separately).' : 'The small line is the one he goes over the chosen share of the time.'} Tap a player for his game.</p>`;
 }
 
 // Players to project for an upcoming game: those on the current roster (when known) who have played for this team.
@@ -378,16 +435,8 @@ function claudeMatchup(g, away, home) {
   };
   // The chosen over/under line, learned from how results have landed around Claude's projections.
   const level = readLevel();
-  const lineText = (key, v) => {
-    const cal = data.calibration?.[key];
-    if (!cal) return '';
-    // The shown figure already includes the learned correction (cal.bias); the line's chances work from the raw one.
-    const raw = LEAN_STATS.includes(key) && g.claude?.home?.inputs?.lean ? v / cal.bias : v;
-    const line = lineAt(raw, cal, level);
-    return ` · ${levelName(level)} ${line === null ? '—' : line.toFixed(1)}`;
-  };
-  const levels = data.calibration?.recYds ? `<section class="levels-box"><p class="levels-title">Line shown under each player: he goes over it <b>${Math.round(level * 100)}%</b> of the time</p>
-    <div class="levels" role="group" aria-label="Over/under line">${LEVELS.map((v) => `<button data-level="${v}" aria-pressed="${v === level}">${levelName(v)}</button>`).join('')}</div></section>` : '';
+  const lineText = (key, v) => lineFor(g, key, v, level);
+  const levels = levelsBox(level);
   const sections = CLAUDE_STATS.map(([label, key, sub]) => `<section class="stat"><h3>${label}</h3>
       <div class="sides">${column(away, c.away, key, sub)}${column(home, c.home, key, sub)}</div></section>`).join('');
   return `${levels}<section class="matchup">${scoreBox(away, c.away)}${scoreBox(home, c.home)}</section>
@@ -415,12 +464,13 @@ function gameNav(g) {
 }
 
 function matchupPage(g) {
-  const formula = readFormula();
   const mode = readMode();
   const away = teamById(g.awayId);
   const home = teamById(g.homeId);
-  const head = (sub) => `${bar(`${away.code} ${g.neutral ? 'vs' : '@'} ${home.code}`, '#/upcoming', sub)}${gameNav(g)}${inactivesButton(g)}${formulaTabs(formula)}`;
-  if (formula === 'claude') return `${head(startText(g.start))}${claudeMatchup(g, away, home)}`;
+  // Matchups show Claude's formula (Nate removed the Your formula tab, 8 Nov 2026); his formula shows only
+  // while a game has no Claude projection yet.
+  const head = (sub) => `${bar(`${away.code} ${g.neutral ? 'vs' : '@'} ${home.code}`, '#/upcoming', sub)}${gameNav(g)}${inactivesButton(g)}${g.claude ? '' : '<p class="out-line">Claude\'s formula isn\'t ready for this game yet (it appears after the next weekly update), so this shows your formula.</p>'}`;
+  if (g.claude) return `${head(startText(g.start))}${claudeMatchup(g, away, home)}`;
   const inactive = readInactives(g.id);
   const column = (t, s) => {
     const items = projectable(t, inactive?.[t.id === g.homeId ? 'home' : 'away'] ?? [])
@@ -524,6 +574,10 @@ app.addEventListener('click', (e) => {
   if (projSortBtn) { projectionSort = projSortBtn.dataset.psort; render(); return; }
   const levelBtn = e.target.closest('[data-level]');
   if (levelBtn) { saveLevel(Number(levelBtn.dataset.level)); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
+  const viewBtn = e.target.closest('[data-view]');
+  if (viewBtn) { store(VIEW_KEY, viewBtn.dataset.view); render(); return; }
+  const rankBtn = e.target.closest('[data-rank]');
+  if (rankBtn) { store(RANK_KEY, rankBtn.dataset.rank); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
   const formulaBtn = e.target.closest('[data-formula]');
   if (formulaBtn) { saveFormula(formulaBtn.dataset.formula); render(); return; }
   const modeBtn = e.target.closest('[data-mode]');
