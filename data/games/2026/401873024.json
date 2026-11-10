@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "4-27",
-              "adjQBR": "60.9",
+              "adjQBR": "56.6",
               "QBRating": "96.2"
             },
             "rushing": {
@@ -637,7 +637,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "1-6",
-              "adjQBR": "71.0",
+              "adjQBR": "74.1",
               "QBRating": "137.3"
             }
           }
@@ -653,7 +653,7 @@
               "passingTouchdowns": "0",
               "interceptions": "1",
               "sacks-sackYardsLost": "4-36",
-              "adjQBR": "14.7",
+              "adjQBR": "16.7",
               "QBRating": "41.8"
             },
             "rushing": {
@@ -1319,7 +1319,7 @@
     }
   ],
   "odds": {
-    "provider": "DraftKings",
+    "provider": "Draft Kings",
     "homeId": "6",
     "spread": -7,
     "overUnder": 54.5
