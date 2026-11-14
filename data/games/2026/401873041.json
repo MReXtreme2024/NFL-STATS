@@ -201,21 +201,6 @@
           }
         },
         {
-          "id": "4035232",
-          "name": "Tyrel Dodson",
-          "stats": {
-            "defensive": {
-              "totalTackles": "8",
-              "soloTackles": "7",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
           "id": "4243256",
           "name": "Devin Lloyd",
           "stats": {
@@ -225,6 +210,21 @@
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "1",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4035232",
+          "name": "Tyrel Dodson",
+          "stats": {
+            "defensive": {
+              "totalTackles": "7",
+              "soloTackles": "6",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
               "QBHits": "0",
               "defensiveTouchdowns": "0"
             }
@@ -265,10 +265,10 @@
           "name": "Patrick Jones II",
           "stats": {
             "defensive": {
-              "totalTackles": "6",
-              "soloTackles": "4",
+              "totalTackles": "5",
+              "soloTackles": "3",
               "sacks": "1",
-              "tacklesForLoss": "3",
+              "tacklesForLoss": "2",
               "passesDefended": "0",
               "QBHits": "1",
               "defensiveTouchdowns": "0"
@@ -306,6 +306,26 @@
           }
         },
         {
+          "id": "4431426",
+          "name": "Corey Thornton",
+          "stats": {
+            "defensive": {
+              "totalTackles": "4",
+              "soloTackles": "2",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "3",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            },
+            "interceptions": {
+              "interceptions": "1",
+              "interceptionYards": "9",
+              "interceptionTouchdowns": "0"
+            }
+          }
+        },
+        {
           "id": "4360773",
           "name": "Nick Hampton",
           "stats": {
@@ -317,26 +337,6 @@
               "passesDefended": "0",
               "QBHits": "0",
               "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
-          "id": "4431426",
-          "name": "Corey Thornton",
-          "stats": {
-            "defensive": {
-              "totalTackles": "3",
-              "soloTackles": "1",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "3",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            },
-            "interceptions": {
-              "interceptions": "1",
-              "interceptionYards": "9",
-              "interceptionTouchdowns": "0"
             }
           }
         },

@@ -349,7 +349,7 @@
           "name": "Cam Bynum",
           "stats": {
             "defensive": {
-              "totalTackles": "4",
+              "totalTackles": "5",
               "soloTackles": "1",
               "sacks": "0",
               "tacklesForLoss": "0",
@@ -465,21 +465,6 @@
           }
         },
         {
-          "id": "4374171",
-          "name": "Austin Ajiake",
-          "stats": {
-            "defensive": {
-              "totalTackles": "2",
-              "soloTackles": "2",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
           "id": "4427635",
           "name": "Adetomiwa Adebawore",
           "stats": {
@@ -490,6 +475,21 @@
               "tacklesForLoss": "0",
               "passesDefended": "1",
               "QBHits": "3",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4374171",
+          "name": "Austin Ajiake",
+          "stats": {
+            "defensive": {
+              "totalTackles": "2",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
               "defensiveTouchdowns": "0"
             }
           }
@@ -578,7 +578,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-6",
-              "adjQBR": "81.4",
+              "adjQBR": "80.6",
               "QBRating": "114.2"
             },
             "rushing": {

@@ -32,7 +32,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "7-41",
-              "adjQBR": "20.2",
+              "adjQBR": "20.4",
               "QBRating": "66.9"
             },
             "rushing": {
@@ -619,7 +619,7 @@
               "yardsPerReception": "18.0",
               "receivingTouchdowns": "0",
               "longReception": "27",
-              "receivingTargets": "4"
+              "receivingTargets": "3"
             }
           }
         },
@@ -667,6 +667,20 @@
               "receivingTouchdowns": "0",
               "longReception": "16",
               "receivingTargets": "5"
+            }
+          }
+        },
+        {
+          "id": "2531358",
+          "name": "Chris Manhertz",
+          "stats": {
+            "receiving": {
+              "receptions": "0",
+              "receivingYards": "0",
+              "yardsPerReception": "0.0",
+              "receivingTouchdowns": "0",
+              "longReception": "0",
+              "receivingTargets": "1"
             }
           }
         },
@@ -764,6 +778,21 @@
           }
         },
         {
+          "id": "4431321",
+          "name": "Dru Phillips",
+          "stats": {
+            "defensive": {
+              "totalTackles": "5",
+              "soloTackles": "2",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
           "id": "4426326",
           "name": "Kayvon Thibodeaux",
           "stats": {
@@ -800,21 +829,6 @@
             "defensive": {
               "totalTackles": "4",
               "soloTackles": "2",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
-          "id": "4431321",
-          "name": "Dru Phillips",
-          "stats": {
-            "defensive": {
-              "totalTackles": "4",
-              "soloTackles": "1",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",
@@ -879,21 +893,6 @@
               "tacklesForLoss": "2",
               "passesDefended": "0",
               "QBHits": "2",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
-          "id": "4427207",
-          "name": "Trace Ford",
-          "stats": {
-            "defensive": {
-              "totalTackles": "2",
-              "soloTackles": "2",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "0",
               "defensiveTouchdowns": "0"
             }
           }
@@ -976,6 +975,21 @@
         {
           "id": "4240706",
           "name": "Jason Pinnock",
+          "stats": {
+            "defensive": {
+              "totalTackles": "1",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4427207",
+          "name": "Trace Ford",
           "stats": {
             "defensive": {
               "totalTackles": "1",

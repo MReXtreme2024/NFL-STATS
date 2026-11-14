@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "8-40",
-              "adjQBR": "11.8",
+              "adjQBR": "11.9",
               "QBRating": "80.5"
             },
             "rushing": {
@@ -622,7 +622,7 @@
               "passingTouchdowns": "5",
               "interceptions": "1",
               "sacks-sackYardsLost": "1-10",
-              "adjQBR": "89.7",
+              "adjQBR": "89.8",
               "QBRating": "125.5"
             },
             "rushing": {
@@ -844,8 +844,8 @@
               "fumblesRecovered": "1"
             },
             "defensive": {
-              "totalTackles": "5",
-              "soloTackles": "3",
+              "totalTackles": "6",
+              "soloTackles": "4",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "1",
@@ -859,7 +859,7 @@
           "name": "Azeez Al-Shaair",
           "stats": {
             "defensive": {
-              "totalTackles": "9",
+              "totalTackles": "10",
               "soloTackles": "4",
               "sacks": "0",
               "tacklesForLoss": "0",
@@ -915,32 +915,12 @@
           }
         },
         {
-          "id": "4426434",
-          "name": "Derek Stingley Jr.",
-          "stats": {
-            "defensive": {
-              "totalTackles": "4",
-              "soloTackles": "3",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "3",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            },
-            "interceptions": {
-              "interceptions": "1",
-              "interceptionYards": "0",
-              "interceptionTouchdowns": "0"
-            }
-          }
-        },
-        {
           "id": "4361366",
           "name": "Tommy Togiai",
           "stats": {
             "defensive": {
               "totalTackles": "4",
-              "soloTackles": "2",
+              "soloTackles": "1",
               "sacks": "0",
               "tacklesForLoss": "1",
               "passesDefended": "0",
@@ -1006,6 +986,26 @@
               "passesDefended": "0",
               "QBHits": "0",
               "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4426434",
+          "name": "Derek Stingley Jr.",
+          "stats": {
+            "defensive": {
+              "totalTackles": "3",
+              "soloTackles": "2",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "3",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            },
+            "interceptions": {
+              "interceptions": "1",
+              "interceptionYards": "0",
+              "interceptionTouchdowns": "0"
             }
           }
         },

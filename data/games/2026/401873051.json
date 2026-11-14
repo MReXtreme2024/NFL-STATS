@@ -60,7 +60,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "1-6",
-              "adjQBR": "40.8",
+              "adjQBR": "40.9",
               "QBRating": "101.2"
             }
           }
@@ -271,11 +271,26 @@
           }
         },
         {
+          "id": "4696782",
+          "name": "Elijah Williams",
+          "stats": {
+            "defensive": {
+              "totalTackles": "6",
+              "soloTackles": "2",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
           "id": "4259252",
           "name": "James Pierre",
           "stats": {
             "defensive": {
-              "totalTackles": "6",
+              "totalTackles": "5",
               "soloTackles": "5",
               "sacks": "0",
               "tacklesForLoss": "0",
@@ -311,21 +326,6 @@
               "tacklesForLoss": "0",
               "passesDefended": "0",
               "QBHits": "2",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
-          "id": "4696782",
-          "name": "Elijah Williams",
-          "stats": {
-            "defensive": {
-              "totalTackles": "5",
-              "soloTackles": "2",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "0",
               "defensiveTouchdowns": "0"
             }
           }
@@ -430,8 +430,8 @@
           "name": "Jacob Thomas",
           "stats": {
             "defensive": {
-              "totalTackles": "3",
-              "soloTackles": "3",
+              "totalTackles": "4",
+              "soloTackles": "2",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",
@@ -599,7 +599,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "4-29",
-              "adjQBR": "74.7",
+              "adjQBR": "74.8",
               "QBRating": "87.3"
             },
             "rushing": {

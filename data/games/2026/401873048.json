@@ -182,8 +182,8 @@
           "name": "Julian Love",
           "stats": {
             "defensive": {
-              "totalTackles": "8",
-              "soloTackles": "6",
+              "totalTackles": "9",
+              "soloTackles": "7",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",
@@ -501,7 +501,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-18",
-              "adjQBR": "39.3",
+              "adjQBR": "39.4",
               "QBRating": "83.5"
             },
             "rushing": {

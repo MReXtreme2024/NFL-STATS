@@ -603,7 +603,7 @@
               "passingTouchdowns": "1",
               "interceptions": "3",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "59.3",
+              "adjQBR": "59.4",
               "QBRating": "58.9"
             },
             "rushing": {
@@ -755,7 +755,7 @@
           "name": "Nakobe Dean",
           "stats": {
             "defensive": {
-              "totalTackles": "18",
+              "totalTackles": "19",
               "soloTackles": "7",
               "sacks": "0",
               "tacklesForLoss": "1",
@@ -785,7 +785,7 @@
           "name": "Jeremy Chinn",
           "stats": {
             "defensive": {
-              "totalTackles": "10",
+              "totalTackles": "9",
               "soloTackles": "6",
               "sacks": "0",
               "tacklesForLoss": "0",

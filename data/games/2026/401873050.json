@@ -32,7 +32,7 @@
               "passingTouchdowns": "2",
               "interceptions": "4",
               "sacks-sackYardsLost": "1-2",
-              "adjQBR": "51.9",
+              "adjQBR": "52.0",
               "QBRating": "61.5"
             },
             "rushing": {
@@ -88,7 +88,7 @@
               "yardsPerReception": "13.9",
               "receivingTouchdowns": "1",
               "longReception": "56",
-              "receivingTargets": "9"
+              "receivingTargets": "10"
             },
             "fumbles": {
               "fumbles": "1",
@@ -611,7 +611,7 @@
               "passingTouchdowns": "0",
               "interceptions": "2",
               "sacks-sackYardsLost": "4-17",
-              "adjQBR": "24.7",
+              "adjQBR": "24.9",
               "QBRating": "54.6"
             },
             "rushing": {

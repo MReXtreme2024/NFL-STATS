@@ -2,19 +2,6 @@
   "label": "Week 10",
   "games": [
     {
-      "id": "401873052",
-      "start": "2026-11-13T01:15Z",
-      "homeId": "19",
-      "awayId": "28",
-      "neutral": false,
-      "odds": {
-        "provider": "Draft Kings",
-        "homeId": "19",
-        "spread": -2.5,
-        "overUnder": 41.5
-      }
-    },
-    {
       "id": "401873053",
       "start": "2026-11-15T14:30Z",
       "homeId": "8",
@@ -24,7 +11,7 @@
         "provider": "Draft Kings",
         "homeId": "8",
         "spread": -2.5,
-        "overUnder": 51.5
+        "overUnder": 49.5
       }
     },
     {
@@ -36,8 +23,8 @@
       "odds": {
         "provider": "Draft Kings",
         "homeId": "1",
-        "spread": 3.5,
-        "overUnder": 45.5
+        "spread": 3,
+        "overUnder": 47.5
       }
     },
     {
@@ -50,7 +37,7 @@
         "provider": "Draft Kings",
         "homeId": "5",
         "spread": 4.5,
-        "overUnder": 39.5
+        "overUnder": 40.5
       }
     },
     {
@@ -62,8 +49,8 @@
       "odds": {
         "provider": "Draft Kings",
         "homeId": "9",
-        "spread": -3.5,
-        "overUnder": 41.5
+        "spread": -2.5,
+        "overUnder": 42.5
       }
     },
     {
@@ -88,8 +75,8 @@
       "odds": {
         "provider": "Draft Kings",
         "homeId": "11",
-        "spread": -2.5,
-        "overUnder": 40.5
+        "spread": -3.5,
+        "overUnder": 38.5
       }
     },
     {
@@ -101,7 +88,7 @@
       "odds": {
         "provider": "Draft Kings",
         "homeId": "18",
-        "spread": -1.5,
+        "spread": -2.5,
         "overUnder": 48.5
       }
     },
@@ -127,7 +114,7 @@
       "odds": {
         "provider": "Draft Kings",
         "homeId": "13",
-        "spread": 6,
+        "spread": 6.5,
         "overUnder": 40.5
       }
     },
@@ -141,7 +128,7 @@
         "provider": "Draft Kings",
         "homeId": "22",
         "spread": 9.5,
-        "overUnder": 40.5
+        "overUnder": 39.5
       }
     },
     {
@@ -153,7 +140,7 @@
       "odds": {
         "provider": "Draft Kings",
         "homeId": "6",
-        "spread": 3.5,
+        "spread": 4.5,
         "overUnder": 55.5
       }
     },
@@ -179,7 +166,7 @@
       "odds": {
         "provider": "Draft Kings",
         "homeId": "33",
-        "spread": -5.5,
+        "spread": -4.5,
         "overUnder": 38.5
       }
     }
