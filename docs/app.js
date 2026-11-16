@@ -1,4 +1,4 @@
-import { MODES, SMART_STATS, TENTHS_STATS, playerStat, show, smartStat, smartWorking, teamAverage, working } from './calc.js';
+import { MODES, SMART_STATS, TENTHS_STATS, cut, hundredths, playerStat, show, smartStat, smartWorking, teamAverage, working } from './calc.js';
 import { allocateSide } from './claude.js';
 import { LEAN_STATS, LEVELS, lineAt } from './lines.js';
 
@@ -98,7 +98,7 @@ const readStored = (key, allowed, fallback) => {
 const store = (key, v) => { try { localStorage.setItem(key, v); } catch { /* private mode: not remembered */ } };
 function viewTabs(view) {
   const btn = (v, label) => `<button data-view="${v}" aria-pressed="${view === v}">${label}</button>`;
-  return `<div class="switch tabs" role="group" aria-label="View">${btn('games', "Claude's formula")}${btn('rankings', 'Rankings')}</div>`;
+  return `<div class="switch tabs three" role="group" aria-label="View">${btn('games', "Claude's formula")}${btn('rankings', 'Rankings')}${btn('diffs', 'Differences')}</div>`;
 }
 
 // The row of over/under line buttons (95/5 … 5/95).
@@ -272,7 +272,7 @@ const pill = (t) => `<span class="pill" style="${colours(t)}">${esc(t.code)}</sp
 
 // 6. Upcoming games: the next week's games not yet started, from the weekly update.
 function upcomingPage() {
-  const view = readStored(VIEW_KEY, ['games', 'rankings'], 'games');
+  const view = readStored(VIEW_KEY, ['games', 'rankings', 'diffs'], 'games');
   const games = data.upcoming?.games ?? [];
   const rows = games.map((g) => {
     const score = g.claude
@@ -283,9 +283,35 @@ function upcomingPage() {
   }).join('');
   const body = !games.length
     ? '<p class="message">No upcoming games right now. The list refreshes with each weekly update.</p>'
-    : view === 'rankings' ? rankings(games) : `<ul class="games-list">${rows}</ul>`;
+    : view === 'rankings' ? rankings(games) : view === 'diffs' ? differences(games) : `<ul class="games-list">${rows}</ul>`;
   const label = data.upcoming?.label ? `${data.upcoming.label} · ` : '';
   return `${bar('Upcoming games', '#/', `${label}Melbourne times · tap a game for projections`)}${viewTabs(view)}${body}`;
+}
+
+// Differences (16 Nov 2026, Nate's request, like the NBA app's): for each game, both teams' expected figure =
+// (team's average + what the opponent gives up) ÷ 2, in whole numbers (hundredths, cut), and the gap between
+// them, ranked biggest first, per stat.
+const DIFF_KEY = 'diffStat';
+// (Team receiving yards always equal team passing yards, so touchdowns take that slot.)
+const DIFF_STATS = [['passYds', 'Passing'], ['rushYds', 'Rushing'], ['rushRecYds', 'Total yds'], ['td', 'TDs']];
+const expectedGame = (t, o, s) => cut(100 * (t.totals[s] * o.gp + o.allowed[s] * t.gp), 2 * t.gp * o.gp);
+function differences(games) {
+  const stat = readStored(DIFF_KEY, DIFF_STATS.map(([k]) => k), 'passYds');
+  const rows = games.map((g) => {
+    const away = teamById(g.awayId);
+    const home = teamById(g.homeId);
+    if (!away.gp || !home.gp || !away.allowed || !home.allowed) return null;
+    const a = expectedGame(away, home, stat);
+    const h = expectedGame(home, away, stat);
+    const [top, other, topV, otherV] = a >= h ? [away, home, a, h] : [home, away, h, a];
+    return { g, top, other, topV, otherV, gap: topV - otherV };
+  }).filter(Boolean).sort((x, y) => y.gap - x.gap);
+  const where = (g, t) => (g.neutral ? 'neutral' : t.id === g.homeId ? 'home' : 'away');
+  const items = rows.map(({ g, top, other, topV, otherV, gap }, i) => `<li><a href="#/game/${g.id}"><span class="rank">${i + 1}</span><span class="name">${pill(top)} over ${esc(other.code)}<span class="mins">${esc(top.code)} ${hundredths(topV)} – ${esc(other.code)} ${hundredths(otherV)} · ${where(g, top)} · ${startText(g.start)}</span></span><b>+${hundredths(gap)}</b></a></li>`).join('');
+  const name = { passYds: 'passing yards', rushYds: 'rushing yards', rushRecYds: 'total yards (rushing + passing)', td: 'touchdowns' }[stat];
+  return `<div class="switch four" role="group" aria-label="Stat">${DIFF_STATS.map(([k, label]) => `<button data-diff="${k}" aria-pressed="${stat === k}">${label}</button>`).join('')}</div>
+    <section class="stat"><h3>Expected ${name} · biggest gap first · ${rows.length} games</h3>${items ? `<ul class="ranking">${items}</ul>` : '<p class="none">No games yet</p>'}</section>
+    <p class="working">For each game: both teams' expected ${name} = (team's average a game + what the opponent gives up a game) ÷ 2, and how far ahead the higher team is. Season averages up to the last update; tap a game to open it. Whole-number maths, cut to 2 decimals.</p>`;
 }
 
 // Rankings: every player Claude projects in the week's games (with Nate's confirmed inactives), ranked by
@@ -576,6 +602,8 @@ app.addEventListener('click', (e) => {
   if (levelBtn) { saveLevel(Number(levelBtn.dataset.level)); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
   const viewBtn = e.target.closest('[data-view]');
   if (viewBtn) { store(VIEW_KEY, viewBtn.dataset.view); render(); return; }
+  const diffBtn = e.target.closest('[data-diff]');
+  if (diffBtn) { store(DIFF_KEY, diffBtn.dataset.diff); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
   const rankBtn = e.target.closest('[data-rank]');
   if (rankBtn) { store(RANK_KEY, rankBtn.dataset.rank); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
   const formulaBtn = e.target.closest('[data-formula]');

@@ -137,3 +137,8 @@ Added at Nate's request (22 Oct 2026). Each run saves the next calendar week wit
 - Upcoming games tabs: **Claude's formula** (the games, with Claude's projected scores) / **Rankings** (localStorage `upcomingView`): every player Claude projects across the week's games (with Nate's confirmed inactives), ranked by Passing / Rushing / Rushing + receiving / Receiving yards (`rankStat`), with opponent, kick-off and the chosen over/under line (rushing + receiving has none yet); only projections of 1 or more; rows open the game.
 - The Your formula tab is gone from Upcoming games and matchup pages: matchups show Claude's formula, falling back to Nate's matchup only while a game has no Claude projection. Nate's formula stays on team Projections and Player pages.
 
+## Differences (16 Nov 2026, Nate: "add the difference tab to the NFL app", like the NBA app's)
+
+- Upcoming games tabs: Claude's formula / Rankings / **Differences** (`upcomingView` 'diffs'). For each game, both teams' expected figure = (team's average + what the opponent gives up) ÷ 2 in whole numbers, cut(100 × (total × oppGP + oppAllowed × GP), 2 × GP × oppGP), shown in hundredths; games ranked by the gap, biggest first, per stat (Passing / Rushing / Total yds = rushing + passing / TDs; localStorage `diffStat`). Team receiving yards always equal team passing yards, so TDs replace receiving here.
+- `buildAppData` adds `teams[].allowed`: the opponents' player-line totals in each game (all ten stats).
+

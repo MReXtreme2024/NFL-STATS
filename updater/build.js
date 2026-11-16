@@ -89,7 +89,7 @@ export function buildAppData(games, teams, positions, config, now,
       const colour = normaliseHex(config.colourOverrides?.[t.code] ?? t.color);
       return [t.id, {
         id: t.id, code: t.code, name: t.name, colour, textColour: textColourFor(colour),
-        gp: 0, totals: zeroTotals(), games: [], playersById: new Map(), roster: rosters[t.id] ?? null,
+        gp: 0, totals: zeroTotals(), allowed: zeroTotals(), games: [], playersById: new Map(), roster: rosters[t.id] ?? null,
       }];
     }),
   );
@@ -111,6 +111,8 @@ export function buildAppData(games, teams, positions, config, now,
 
       team.gp++;
       addInto(team.totals, gameTotals);
+      // What the opponent gained in this game (from its player lines): the team's "allowed" totals.
+      for (const p of opp.players) { const st = lineToStats(p.stats); if (recordedAny(st)) addInto(team.allowed, st); }
       team.games.push({
         id: game.id,
         week: game.week,
