@@ -6,34 +6,34 @@ Smart steadying settings in config.json: pass 100, rush 25, rec 40, td 400.
 
 | Option | Pass yds | Rush yds | Rec yds | Rec | TD | Overall vs All team games |
 |---|---:|---:|---:|---:|---:|---:|
-| All team games | 145.67 | 13.88 | 23.07 | 1.93 | 0.40 | 0.0% |
-| Games he played | 119.67 | 12.75 | 24.07 | 1.71 | 0.42 | -5.7% |
-| Smart | 117.67 | 11.63 | 23.21 | 1.57 | 0.43 | -9.0% |
-| Smart+ (tracking) | 115.33 | 11.88 | 24.29 | 1.71 | 0.44 | -6.1% |
-| Smart + market (tracking) | 118.67 | 11.50 | 23.21 | 1.57 | 0.44 | -8.6% |
-| Claude's formula (upcoming games) | 65.00 | 14.88 | 23.36 | 1.64 | 0.41 | -11.9% |
+| All team games | 88.28 | 13.20 | 21.18 | 1.63 | 0.41 | 0.0% |
+| Games he played | 75.86 | 12.95 | 20.61 | 1.43 | 0.43 | -5.1% |
+| Smart | 77.00 | 13.38 | 20.24 | 1.41 | 0.40 | -6.5% |
+| Smart+ (tracking) | 74.28 | 12.90 | 20.42 | 1.45 | 0.40 | -7.1% |
+| Smart + market (tracking) | 75.97 | 13.08 | 20.24 | 1.41 | 0.39 | -7.5% |
+| Claude's formula (upcoming games) | 77.52 | 13.10 | 19.85 | 1.49 | 0.37 | -7.8% |
 
-Average miss per player per game (lower is better). Players scored: Pass yds 3, Rush yds 8, Rec yds 14, Rec 14, TD 12.
+Average miss per player per game (lower is better). Players scored: Pass yds 29, Rush yds 144, Rec yds 222, Rec 222, TD 171.
 
 ### Season so far (REG-3 to REG-10)
 
 | Option | Pass yds | Rush yds | Rec yds | Rec | TD | Overall vs All team games |
 |---|---:|---:|---:|---:|---:|---:|
-| All team games | 71.59 | 14.43 | 19.89 | 1.55 | 0.47 | 0.0% |
-| Games he played | 65.00 | 14.41 | 20.12 | 1.46 | 0.50 | -1.7% |
-| Smart | 62.68 | 14.05 | 19.51 | 1.45 | 0.41 | -7.3% |
-| Smart+ (tracking) | 62.87 | 13.98 | 19.49 | 1.44 | 0.41 | -7.6% |
-| Smart + market (tracking) | 62.82 | 13.98 | 19.51 | 1.45 | 0.41 | -7.6% |
-| Claude's formula (upcoming games) | 56.76 | 13.94 | 18.61 | 1.49 | 0.38 | -10.7% |
+| All team games | 72.62 | 14.27 | 20.03 | 1.56 | 0.47 | 0.0% |
+| Games he played | 65.59 | 14.23 | 20.15 | 1.45 | 0.49 | -2.1% |
+| Smart | 63.67 | 13.98 | 19.57 | 1.44 | 0.41 | -7.2% |
+| Smart+ (tracking) | 63.55 | 13.85 | 19.56 | 1.44 | 0.41 | -7.5% |
+| Smart + market (tracking) | 63.67 | 13.88 | 19.57 | 1.44 | 0.40 | -7.6% |
+| Claude's formula (upcoming games) | 59.03 | 13.83 | 18.73 | 1.49 | 0.38 | -10.2% |
 
-Average miss per player per game (lower is better). Players scored: Pass yds 228, Rush yds 952, Rec yds 1581, Rec 1584, TD 989.
+Average miss per player per game (lower is better). Players scored: Pass yds 254, Rush yds 1088, Rec yds 1789, Rec 1792, TD 1148.
 
 ### Smart settings check (season so far, overall vs All team games)
 
-- pass: 50 → -7.3%, 100 → -7.3%, 200 → -7.3%, 400 → -7.1%
-- rush: 10 → -7.3%, 25 → -7.3%, 50 → -7.3%, 100 → -7.3%
-- rec: 10 → -7.2%, 20 → -7.2%, 40 → -7.3%, 80 → -7.3%
-- td: 100 → -7.1%, 200 → -7.3%, 400 → -7.3%, 1000 → -7.3%
+- pass: 50 → -7.2%, 100 → -7.2%, 200 → -7.1%, 400 → -7.0%
+- rush: 10 → -7.2%, 25 → -7.2%, 50 → -7.2%, 100 → -7.1%
+- rec: 10 → -7.1%, 20 → -7.1%, 40 → -7.2%, 80 → -7.2%
+- td: 100 → -7.0%, 200 → -7.1%, 400 → -7.2%, 1000 → -7.2%
 
-Keep the current settings: nothing tried beats them by half a percentage point or more (current -7.3%).
+Keep the current settings: nothing tried beats them by half a percentage point or more (current -7.2%).
 
