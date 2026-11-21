@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "8-59",
-              "adjQBR": "47.4",
+              "adjQBR": "45.9",
               "QBRating": "85.4"
             },
             "rushing": {
@@ -55,7 +55,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "14.1",
+              "adjQBR": "13.3",
               "QBRating": "56.2"
             }
           }
@@ -246,7 +246,7 @@
           "name": "Isaiah McDuffie",
           "stats": {
             "defensive": {
-              "totalTackles": "9",
+              "totalTackles": "10",
               "soloTackles": "3",
               "sacks": "0",
               "tacklesForLoss": "0",
@@ -397,21 +397,6 @@
           }
         },
         {
-          "id": "4685315",
-          "name": "Dani Dennis-Sutton",
-          "stats": {
-            "defensive": {
-              "totalTackles": "3",
-              "soloTackles": "1",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
           "id": "4820574",
           "name": "Chris McClellan",
           "stats": {
@@ -432,6 +417,21 @@
           "stats": {
             "defensive": {
               "totalTackles": "3",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "0",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4685315",
+          "name": "Dani Dennis-Sutton",
+          "stats": {
+            "defensive": {
+              "totalTackles": "2",
               "soloTackles": "1",
               "sacks": "0",
               "tacklesForLoss": "0",
@@ -633,7 +633,7 @@
               "passingTouchdowns": "2",
               "interceptions": "1",
               "sacks-sackYardsLost": "3-24",
-              "adjQBR": "73.1",
+              "adjQBR": "73.2",
               "QBRating": "94.4"
             },
             "rushing": {
@@ -951,6 +951,21 @@
           }
         },
         {
+          "id": "4259252",
+          "name": "James Pierre",
+          "stats": {
+            "defensive": {
+              "totalTackles": "2",
+              "soloTackles": "2",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "1",
+              "QBHits": "0",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
           "id": "4430280",
           "name": "Ivan Pace Jr.",
           "stats": {
@@ -1076,21 +1091,6 @@
           }
         },
         {
-          "id": "4259252",
-          "name": "James Pierre",
-          "stats": {
-            "defensive": {
-              "totalTackles": "1",
-              "soloTackles": "1",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "1",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
           "id": "4360637",
           "name": "Jeshaun Jones",
           "stats": {
@@ -1201,7 +1201,7 @@
     }
   ],
   "odds": {
-    "provider": "DraftKings",
+    "provider": "Draft Kings",
     "homeId": "9",
     "spread": -2.5,
     "overUnder": 42.5

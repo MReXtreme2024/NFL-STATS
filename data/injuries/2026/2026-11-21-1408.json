@@ -1,0 +1,1621 @@
+{
+ "fetched": "2026-11-21T14:08:03+11:00",
+ "injuries": [
+  {
+   "teamId": "22",
+   "playerId": "4367199",
+   "name": "Jon Gaines II",
+   "pos": "G",
+   "status": "Out",
+   "date": "2026-11-21T01:38Z"
+  },
+  {
+   "teamId": "22",
+   "playerId": "4240619",
+   "name": "Zachary Carter",
+   "pos": "DT",
+   "status": "Injured Reserve",
+   "date": "2026-11-21T01:35Z"
+  },
+  {
+   "teamId": "22",
+   "playerId": "4430841",
+   "name": "Carson Beck",
+   "pos": "QB",
+   "status": "Questionable",
+   "date": "2026-11-20T21:02Z"
+  },
+  {
+   "teamId": "22",
+   "playerId": "3045147",
+   "name": "James Conner",
+   "pos": "RB",
+   "status": "Injured Reserve",
+   "date": "2026-11-18T21:40Z"
+  },
+  {
+   "teamId": "22",
+   "playerId": "4038524",
+   "name": "Gardner Minshew II",
+   "pos": "QB",
+   "status": "Injured Reserve",
+   "date": "2026-11-18T04:40Z"
+  },
+  {
+   "teamId": "22",
+   "playerId": "4428996",
+   "name": "Jordan Burch",
+   "pos": "LB",
+   "status": "Injured Reserve",
+   "date": "2026-11-18T01:52Z"
+  },
+  {
+   "teamId": "22",
+   "playerId": "3918331",
+   "name": "Andrew Wingard",
+   "pos": "S",
+   "status": "Injured Reserve",
+   "date": "2026-11-18T01:19Z"
+  },
+  {
+   "teamId": "1",
+   "playerId": "4037626",
+   "name": "Divine Deablo",
+   "pos": "LB",
+   "status": "Out",
+   "date": "2026-11-17T12:21Z"
+  },
+  {
+   "teamId": "1",
+   "playerId": "4870612",
+   "name": "Zachariah Branch",
+   "pos": "WR",
+   "status": "Out",
+   "date": "2026-11-17T12:20Z"
+  },
+  {
+   "teamId": "33",
+   "playerId": "3858276",
+   "name": "Jaylinn Hawkins",
+   "pos": "S",
+   "status": "Out",
+   "date": "2026-11-20T20:17Z"
+  },
+  {
+   "teamId": "33",
+   "playerId": "4035245",
+   "name": "Nnamdi Madubuike",
+   "pos": "DT",
+   "status": "Out",
+   "date": "2026-11-20T20:09Z"
+  },
+  {
+   "teamId": "33",
+   "playerId": "3126356",
+   "name": "Marlon Humphrey",
+   "pos": "CB",
+   "status": "Out",
+   "date": "2026-11-19T17:07Z"
+  },
+  {
+   "teamId": "33",
+   "playerId": "3916387",
+   "name": "Lamar Jackson",
+   "pos": "QB",
+   "status": "Injured Reserve",
+   "date": "2026-11-18T15:52Z"
+  },
+  {
+   "teamId": "2",
+   "playerId": "4036060",
+   "name": "Damar Hamlin",
+   "pos": "S",
+   "status": "Questionable",
+   "date": "2026-11-20T22:18Z"
+  },
+  {
+   "teamId": "2",
+   "playerId": "4573699",
+   "name": "Jackson Hawes",
+   "pos": "TE",
+   "status": "Questionable",
+   "date": "2026-11-20T22:16Z"
+  },
+  {
+   "teamId": "2",
+   "playerId": "4568624",
+   "name": "Dorian Williams",
+   "pos": "LB",
+   "status": "Out",
+   "date": "2026-11-20T19:56Z"
+  },
+  {
+   "teamId": "2",
+   "playerId": "4379778",
+   "name": "Christian Benford",
+   "pos": "CB",
+   "status": "Out",
+   "date": "2026-11-20T19:46Z"
+  },
+  {
+   "teamId": "2",
+   "playerId": "4385690",
+   "name": "Dalton Kincaid",
+   "pos": "TE",
+   "status": "Doubtful",
+   "date": "2026-11-20T18:16Z"
+  },
+  {
+   "teamId": "2",
+   "playerId": "4684527",
+   "name": "T.J. Sanders",
+   "pos": "DT",
+   "status": "Questionable",
+   "date": "2026-11-19T21:35Z"
+  },
+  {
+   "teamId": "2",
+   "playerId": "4606712",
+   "name": "Ar'maj Reed-Adams",
+   "pos": "G",
+   "status": "Injured Reserve",
+   "date": "2026-11-18T01:37Z"
+  },
+  {
+   "teamId": "29",
+   "playerId": "4035462",
+   "name": "Isaiah Simmons",
+   "pos": "S",
+   "status": "Out",
+   "date": "2026-11-21T00:59Z"
+  },
+  {
+   "teamId": "29",
+   "playerId": "4372780",
+   "name": "Tommy Tremble",
+   "pos": "TE",
+   "status": "Questionable",
+   "date": "2026-11-20T23:29Z"
+  },
+  {
+   "teamId": "29",
+   "playerId": "3917853",
+   "name": "Mike Jackson",
+   "pos": "CB",
+   "status": "Injured Reserve",
+   "date": "2026-11-20T19:34Z"
+  },
+  {
+   "teamId": "29",
+   "playerId": "3117253",
+   "name": "Bobby Okereke",
+   "pos": "LB",
+   "status": "Out",
+   "date": "2026-11-20T19:19Z"
+  },
+  {
+   "teamId": "29",
+   "playerId": "4678008",
+   "name": "Jonathon Brooks",
+   "pos": "RB",
+   "status": "Injured Reserve",
+   "date": "2026-11-20T17:32Z"
+  },
+  {
+   "teamId": "29",
+   "playerId": "2576925",
+   "name": "Darren Waller",
+   "pos": "TE",
+   "status": "Questionable",
+   "date": "2026-11-20T16:38Z"
+  },
+  {
+   "teamId": "29",
+   "playerId": "4256062",
+   "name": "Brady Christensen",
+   "pos": "G",
+   "status": "Injured Reserve",
+   "date": "2026-11-14T19:38Z"
+  },
+  {
+   "teamId": "3",
+   "playerId": "4361093",
+   "name": "Kyler Gordon",
+   "pos": "CB",
+   "status": "Out",
+   "date": "2026-11-20T21:00Z"
+  },
+  {
+   "teamId": "3",
+   "playerId": "4869748",
+   "name": "Zavion Thomas",
+   "pos": "WR",
+   "status": "Questionable",
+   "date": "2026-11-20T20:43Z"
+  },
+  {
+   "teamId": "3",
+   "playerId": "4257364",
+   "name": "Zavier Scott",
+   "pos": "RB",
+   "status": "Injured Reserve",
+   "date": "2026-11-05T21:19Z"
+  },
+  {
+   "teamId": "3",
+   "playerId": "3116726",
+   "name": "Kentavius Street",
+   "pos": "DT",
+   "status": "Injured Reserve",
+   "date": "2026-11-05T04:55Z"
+  },
+  {
+   "teamId": "4",
+   "playerId": "3125082",
+   "name": "Dalton Risner",
+   "pos": "G",
+   "status": "Questionable",
+   "date": "2026-11-20T02:16Z"
+  },
+  {
+   "teamId": "4",
+   "playerId": "4570546",
+   "name": "Swayze Bozeman",
+   "pos": "LB",
+   "status": "Injured Reserve",
+   "date": "2026-11-20T01:56Z"
+  },
+  {
+   "teamId": "4",
+   "playerId": "3051746",
+   "name": "Oren Burks",
+   "pos": "LB",
+   "status": "Questionable",
+   "date": "2026-11-20T01:00Z"
+  },
+  {
+   "teamId": "4",
+   "playerId": "4426422",
+   "name": "Dax Hill",
+   "pos": "CB",
+   "status": "Questionable",
+   "date": "2026-11-20T00:55Z"
+  },
+  {
+   "teamId": "4",
+   "playerId": "4368003",
+   "name": "Andrei Iosivas",
+   "pos": "WR",
+   "status": "Injured Reserve",
+   "date": "2026-11-19T21:37Z"
+  },
+  {
+   "teamId": "4",
+   "playerId": "4646773",
+   "name": "Dylan Fairchild",
+   "pos": "G",
+   "status": "Questionable",
+   "date": "2026-11-19T21:30Z"
+  },
+  {
+   "teamId": "5",
+   "playerId": "4569620",
+   "name": "Ronnie Hickman",
+   "pos": "S",
+   "status": "Out",
+   "date": "2026-11-17T12:20Z"
+  },
+  {
+   "teamId": "5",
+   "playerId": "2515270",
+   "name": "Michael Burton",
+   "pos": "FB",
+   "status": "Injured Reserve",
+   "date": "2026-11-14T18:01Z"
+  },
+  {
+   "teamId": "6",
+   "playerId": "3929850",
+   "name": "P.J. Locke",
+   "pos": "S",
+   "status": "Out",
+   "date": "2026-11-21T01:18Z"
+  },
+  {
+   "teamId": "6",
+   "playerId": "4043089",
+   "name": "Jalen Thompson",
+   "pos": "S",
+   "status": "Injured Reserve",
+   "date": "2026-11-20T22:39Z"
+  },
+  {
+   "teamId": "6",
+   "playerId": "4372096",
+   "name": "Luke Schoonmaker",
+   "pos": "TE",
+   "status": "Questionable",
+   "date": "2026-11-20T22:34Z"
+  },
+  {
+   "teamId": "6",
+   "playerId": "4426485",
+   "name": "Jonathan Mingo",
+   "pos": "WR",
+   "status": "Out",
+   "date": "2026-11-20T22:32Z"
+  },
+  {
+   "teamId": "6",
+   "playerId": "4685266",
+   "name": "Jaishawn Barham",
+   "pos": "LB",
+   "status": "Questionable",
+   "date": "2026-11-20T20:32Z"
+  },
+  {
+   "teamId": "6",
+   "playerId": "4242355",
+   "name": "Jake Ferguson",
+   "pos": "TE",
+   "status": "Out",
+   "date": "2026-11-18T23:05Z"
+  },
+  {
+   "teamId": "6",
+   "playerId": "4248911",
+   "name": "DaRon Bland",
+   "pos": "CB",
+   "status": "Out",
+   "date": "2026-11-16T19:32Z"
+  },
+  {
+   "teamId": "6",
+   "playerId": "4685263",
+   "name": "Tyler Booker",
+   "pos": "G",
+   "status": "Out",
+   "date": "2026-11-16T19:21Z"
+  },
+  {
+   "teamId": "7",
+   "playerId": "4432208",
+   "name": "Caleb Lohner",
+   "pos": "TE",
+   "status": "Injured Reserve",
+   "date": "2026-11-21T00:17Z"
+  },
+  {
+   "teamId": "7",
+   "playerId": "4039059",
+   "name": "Brandon Jones",
+   "pos": "S",
+   "status": "Questionable",
+   "date": "2026-11-21T00:10Z"
+  },
+  {
+   "teamId": "7",
+   "playerId": "4066109",
+   "name": "Eyioma Uwazurike",
+   "pos": "DE",
+   "status": "Injured Reserve",
+   "date": "2026-11-08T03:38Z"
+  },
+  {
+   "teamId": "8",
+   "playerId": "3139387",
+   "name": "D.J. Reed",
+   "pos": "CB",
+   "status": "Questionable",
+   "date": "2026-11-20T22:43Z"
+  },
+  {
+   "teamId": "8",
+   "playerId": "4912274",
+   "name": "Sione Vaki",
+   "pos": "RB",
+   "status": "Questionable",
+   "date": "2026-11-20T21:26Z"
+  },
+  {
+   "teamId": "8",
+   "playerId": "4361788",
+   "name": "Cade Mays",
+   "pos": "C",
+   "status": "Out",
+   "date": "2026-11-20T20:39Z"
+  },
+  {
+   "teamId": "8",
+   "playerId": "4372099",
+   "name": "Aidan Hutchinson",
+   "pos": "DE",
+   "status": "Injured Reserve",
+   "date": "2026-11-18T22:02Z"
+  },
+  {
+   "teamId": "8",
+   "playerId": "4361861",
+   "name": "Tyler Lacy",
+   "pos": "DT",
+   "status": "Questionable",
+   "date": "2026-11-18T21:24Z"
+  },
+  {
+   "teamId": "8",
+   "playerId": "4566092",
+   "name": "Ennis Rakestraw Jr.",
+   "pos": "CB",
+   "status": "Questionable",
+   "date": "2026-11-18T21:24Z"
+  },
+  {
+   "teamId": "8",
+   "playerId": "4027919",
+   "name": "Khalil Dorsey",
+   "pos": "CB",
+   "status": "Questionable",
+   "date": "2026-11-18T21:23Z"
+  },
+  {
+   "teamId": "8",
+   "playerId": "4036507",
+   "name": "Joe Bachie",
+   "pos": "LB",
+   "status": "Questionable",
+   "date": "2026-11-18T21:23Z"
+  },
+  {
+   "teamId": "9",
+   "playerId": "4047365",
+   "name": "Josh Jacobs",
+   "pos": "RB",
+   "status": "Out",
+   "date": "2026-11-17T15:35Z"
+  },
+  {
+   "teamId": "9",
+   "playerId": "14931",
+   "name": "Kevin Zeitler",
+   "pos": "G",
+   "status": "Out",
+   "date": "2026-11-17T12:21Z"
+  },
+  {
+   "teamId": "9",
+   "playerId": "4426411",
+   "name": "Sean Rhyan",
+   "pos": "G",
+   "status": "Out",
+   "date": "2026-11-17T12:21Z"
+  },
+  {
+   "teamId": "9",
+   "playerId": "3124005",
+   "name": "Zaire Franklin",
+   "pos": "LB",
+   "status": "Out",
+   "date": "2026-11-17T12:21Z"
+  },
+  {
+   "teamId": "9",
+   "playerId": "5076652",
+   "name": "Brandon Cisse",
+   "pos": "CB",
+   "status": "Questionable",
+   "date": "2026-11-17T00:27Z"
+  },
+  {
+   "teamId": "9",
+   "playerId": "4430191",
+   "name": "Skyy Moore",
+   "pos": "WR",
+   "status": "Questionable",
+   "date": "2026-11-16T20:17Z"
+  },
+  {
+   "teamId": "9",
+   "playerId": "4361423",
+   "name": "Micah Parsons",
+   "pos": "DE",
+   "status": "Out",
+   "date": "2026-11-16T19:31Z"
+  },
+  {
+   "teamId": "9",
+   "playerId": "4259305",
+   "name": "Bo Melton",
+   "pos": "WR",
+   "status": "Questionable",
+   "date": "2026-11-15T19:56Z"
+  },
+  {
+   "teamId": "34",
+   "playerId": "4429022",
+   "name": "Kayshon Boutte",
+   "pos": "WR",
+   "status": "Questionable",
+   "date": "2026-11-20T16:18Z"
+  },
+  {
+   "teamId": "34",
+   "playerId": "4839498",
+   "name": "Keylan Rutledge",
+   "pos": "G",
+   "status": "Questionable",
+   "date": "2026-11-20T04:23Z"
+  },
+  {
+   "teamId": "34",
+   "playerId": "2970204",
+   "name": "Sheldon Rankins",
+   "pos": "DT",
+   "status": "Questionable",
+   "date": "2026-11-20T02:50Z"
+  },
+  {
+   "teamId": "34",
+   "playerId": "4428989",
+   "name": "Chris Braswell",
+   "pos": "DE",
+   "status": "Doubtful",
+   "date": "2026-11-20T01:51Z"
+  },
+  {
+   "teamId": "34",
+   "playerId": "3045474",
+   "name": "Wyatt Teller",
+   "pos": "G",
+   "status": "Out",
+   "date": "2026-11-20T00:20Z"
+  },
+  {
+   "teamId": "34",
+   "playerId": "4428656",
+   "name": "Nate Thomas",
+   "pos": "OT",
+   "status": "Out",
+   "date": "2026-11-19T23:50Z"
+  },
+  {
+   "teamId": "34",
+   "playerId": "4429059",
+   "name": "Woody Marks",
+   "pos": "RB",
+   "status": "Out",
+   "date": "2026-11-19T23:50Z"
+  },
+  {
+   "teamId": "34",
+   "playerId": "4432708",
+   "name": "Marvin Harrison Jr.",
+   "pos": "WR",
+   "status": "Out",
+   "date": "2026-11-19T23:50Z"
+  },
+  {
+   "teamId": "34",
+   "playerId": "4362732",
+   "name": "Jake Andrews",
+   "pos": "C",
+   "status": "Out",
+   "date": "2026-11-19T23:50Z"
+  },
+  {
+   "teamId": "11",
+   "playerId": "4683423",
+   "name": "Riley Leonard",
+   "pos": "QB",
+   "status": "Out",
+   "date": "2026-11-20T20:31Z"
+  },
+  {
+   "teamId": "11",
+   "playerId": "4686468",
+   "name": "Seth McGowan",
+   "pos": "RB",
+   "status": "Questionable",
+   "date": "2026-11-20T03:28Z"
+  },
+  {
+   "teamId": "11",
+   "playerId": "4427250",
+   "name": "Sauce Gardner",
+   "pos": "CB",
+   "status": "Out",
+   "date": "2026-11-20T00:04Z"
+  },
+  {
+   "teamId": "11",
+   "playerId": "4362580",
+   "name": "Bernhard Raimann",
+   "pos": "OT",
+   "status": "Out",
+   "date": "2026-11-19T23:48Z"
+  },
+  {
+   "teamId": "11",
+   "playerId": "3863182",
+   "name": "Jerry Tillery",
+   "pos": "DT",
+   "status": "Out",
+   "date": "2026-11-19T23:48Z"
+  },
+  {
+   "teamId": "11",
+   "playerId": "4892240",
+   "name": "Jalen Travis",
+   "pos": "OT",
+   "status": "Out",
+   "date": "2026-11-19T23:48Z"
+  },
+  {
+   "teamId": "11",
+   "playerId": "4037361",
+   "name": "Charvarius Ward",
+   "pos": "CB",
+   "status": "Out",
+   "date": "2026-11-19T23:48Z"
+  },
+  {
+   "teamId": "11",
+   "playerId": "4362523",
+   "name": "Will Mallory",
+   "pos": "TE",
+   "status": "Out",
+   "date": "2026-11-19T23:48Z"
+  },
+  {
+   "teamId": "11",
+   "playerId": "4601021",
+   "name": "Jaylon Carlies",
+   "pos": "LB",
+   "status": "Injured Reserve",
+   "date": "2026-11-18T00:24Z"
+  },
+  {
+   "teamId": "11",
+   "playerId": "3917142",
+   "name": "Akeem Davis-Gaither",
+   "pos": "LB",
+   "status": "Injured Reserve",
+   "date": "2026-11-14T17:34Z"
+  },
+  {
+   "teamId": "30",
+   "playerId": "4875266",
+   "name": "B.J. Green II",
+   "pos": "DE",
+   "status": "Injured Reserve",
+   "date": "2026-11-21T01:27Z"
+  },
+  {
+   "teamId": "30",
+   "playerId": "4573319",
+   "name": "Danny Striggow",
+   "pos": "DE",
+   "status": "Questionable",
+   "date": "2026-11-21T01:25Z"
+  },
+  {
+   "teamId": "30",
+   "playerId": "3134316",
+   "name": "Matt Dickerson",
+   "pos": "DE",
+   "status": "Questionable",
+   "date": "2026-11-18T21:25Z"
+  },
+  {
+   "teamId": "30",
+   "playerId": "4242391",
+   "name": "Robert Hainsey",
+   "pos": "C",
+   "status": "Out",
+   "date": "2026-11-18T16:05Z"
+  },
+  {
+   "teamId": "12",
+   "playerId": "4591008",
+   "name": "Omarr Norman-Lott",
+   "pos": "DT",
+   "status": "Questionable",
+   "date": "2026-11-21T01:05Z"
+  },
+  {
+   "teamId": "12",
+   "playerId": "4043041",
+   "name": "Jaylon Moore",
+   "pos": "OT",
+   "status": "Out",
+   "date": "2026-11-21T01:03Z"
+  },
+  {
+   "teamId": "12",
+   "playerId": "4242459",
+   "name": "Trey Smith",
+   "pos": "G",
+   "status": "Out",
+   "date": "2026-11-21T01:02Z"
+  },
+  {
+   "teamId": "12",
+   "playerId": "4871063",
+   "name": "Peter Woods",
+   "pos": "DT",
+   "status": "Questionable",
+   "date": "2026-11-20T20:27Z"
+  },
+  {
+   "teamId": "12",
+   "playerId": "4567048",
+   "name": "Kenneth Walker III",
+   "pos": "RB",
+   "status": "Out",
+   "date": "2026-11-20T20:13Z"
+  },
+  {
+   "teamId": "12",
+   "playerId": "4430723",
+   "name": "Jared Wiley",
+   "pos": "TE",
+   "status": "Injured Reserve",
+   "date": "2026-11-19T01:06Z"
+  },
+  {
+   "teamId": "13",
+   "playerId": "3045172",
+   "name": "Folorunso Fatukasi",
+   "pos": "DT",
+   "status": "Questionable",
+   "date": "2026-11-21T00:31Z"
+  },
+  {
+   "teamId": "13",
+   "playerId": "4429109",
+   "name": "Tonka Hemingway",
+   "pos": "DT",
+   "status": "Out",
+   "date": "2026-11-21T00:25Z"
+  },
+  {
+   "teamId": "13",
+   "playerId": "4249087",
+   "name": "Matt Gay",
+   "pos": "PK",
+   "status": "Questionable",
+   "date": "2026-11-20T21:59Z"
+  },
+  {
+   "teamId": "13",
+   "playerId": "4432665",
+   "name": "Brock Bowers",
+   "pos": "TE",
+   "status": "Questionable",
+   "date": "2026-11-20T21:14Z"
+  },
+  {
+   "teamId": "24",
+   "playerId": "4574105",
+   "name": "Isas Waxter",
+   "pos": "CB",
+   "status": "Questionable",
+   "date": "2026-11-21T01:40Z"
+  },
+  {
+   "teamId": "24",
+   "playerId": "4838693",
+   "name": "Rodney Shelley",
+   "pos": "CB",
+   "status": "Out",
+   "date": "2026-11-21T01:34Z"
+  },
+  {
+   "teamId": "24",
+   "playerId": "4360745",
+   "name": "Kendall Williamson",
+   "pos": "S",
+   "status": "Out",
+   "date": "2026-11-21T01:31Z"
+  },
+  {
+   "teamId": "24",
+   "playerId": "4432571",
+   "name": "Tarheeb Still",
+   "pos": "CB",
+   "status": "Questionable",
+   "date": "2026-11-21T00:26Z"
+  },
+  {
+   "teamId": "24",
+   "playerId": "4241597",
+   "name": "Daiyan Henley",
+   "pos": "LB",
+   "status": "Out",
+   "date": "2026-11-21T00:06Z"
+  },
+  {
+   "teamId": "24",
+   "playerId": "4685553",
+   "name": "Brenen Thompson",
+   "pos": "WR",
+   "status": "Doubtful",
+   "date": "2026-11-21T00:04Z"
+  },
+  {
+   "teamId": "24",
+   "playerId": "4241263",
+   "name": "Charlie Kolar",
+   "pos": "TE",
+   "status": "Questionable",
+   "date": "2026-11-20T21:39Z"
+  },
+  {
+   "teamId": "24",
+   "playerId": "4612826",
+   "name": "Ladd McConkey",
+   "pos": "WR",
+   "status": "Questionable",
+   "date": "2026-11-20T21:34Z"
+  },
+  {
+   "teamId": "24",
+   "playerId": "4411189",
+   "name": "Trey Pipkins III",
+   "pos": "OT",
+   "status": "Injured Reserve",
+   "date": "2026-11-16T23:47Z"
+  },
+  {
+   "teamId": "24",
+   "playerId": "4433914",
+   "name": "Branson Taylor",
+   "pos": "G",
+   "status": "Injured Reserve",
+   "date": "2026-11-16T23:41Z"
+  },
+  {
+   "teamId": "14",
+   "playerId": "16800",
+   "name": "Davante Adams",
+   "pos": "WR",
+   "status": "Injured Reserve",
+   "date": "2026-11-20T23:18Z"
+  },
+  {
+   "teamId": "14",
+   "playerId": "4570037",
+   "name": "Terrance Ferguson",
+   "pos": "TE",
+   "status": "Injured Reserve",
+   "date": "2026-11-20T17:21Z"
+  },
+  {
+   "teamId": "14",
+   "playerId": "4426515",
+   "name": "Puka Nacua",
+   "pos": "WR",
+   "status": "Injured Reserve",
+   "date": "2026-11-20T17:09Z"
+  },
+  {
+   "teamId": "14",
+   "playerId": "2575907",
+   "name": "Joe Cardona",
+   "pos": "LS",
+   "status": "Out",
+   "date": "2026-11-17T12:22Z"
+  },
+  {
+   "teamId": "14",
+   "playerId": "4362474",
+   "name": "Steve Avila",
+   "pos": "G",
+   "status": "Out",
+   "date": "2026-11-17T12:22Z"
+  },
+  {
+   "teamId": "14",
+   "playerId": "3052180",
+   "name": "Coleman Shelton",
+   "pos": "C",
+   "status": "Doubtful",
+   "date": "2026-11-17T01:07Z"
+  },
+  {
+   "teamId": "14",
+   "playerId": "4430155",
+   "name": "Dylan McMahon",
+   "pos": "C",
+   "status": "Injured Reserve",
+   "date": "2026-11-17T00:48Z"
+  },
+  {
+   "teamId": "15",
+   "playerId": "4567225",
+   "name": "Jaylin Simpson",
+   "pos": "S",
+   "status": "Doubtful",
+   "date": "2026-11-21T01:26Z"
+  },
+  {
+   "teamId": "15",
+   "playerId": "2977680",
+   "name": "Bradley Pinion",
+   "pos": "P",
+   "status": "Out",
+   "date": "2026-11-21T01:24Z"
+  },
+  {
+   "teamId": "15",
+   "playerId": "4040537",
+   "name": "Aaron Brewer",
+   "pos": "C",
+   "status": "Questionable",
+   "date": "2026-11-21T01:21Z"
+  },
+  {
+   "teamId": "15",
+   "playerId": "4875079",
+   "name": "Marcellas Dial Jr.",
+   "pos": "CB",
+   "status": "Questionable",
+   "date": "2026-11-20T23:56Z"
+  },
+  {
+   "teamId": "15",
+   "playerId": "4430681",
+   "name": "Jared Wayne",
+   "pos": "WR",
+   "status": "Out",
+   "date": "2026-11-20T23:48Z"
+  },
+  {
+   "teamId": "15",
+   "playerId": "4431664",
+   "name": "Dante Trader Jr.",
+   "pos": "S",
+   "status": "Doubtful",
+   "date": "2026-11-20T19:10Z"
+  },
+  {
+   "teamId": "15",
+   "playerId": "4036660",
+   "name": "Darrell Baker Jr.",
+   "pos": "CB",
+   "status": "Out",
+   "date": "2026-11-19T02:09Z"
+  },
+  {
+   "teamId": "15",
+   "playerId": "4837188",
+   "name": "Jordan Phillips",
+   "pos": "DT",
+   "status": "Injured Reserve",
+   "date": "2026-11-18T19:24Z"
+  },
+  {
+   "teamId": "15",
+   "playerId": "4683276",
+   "name": "Zeek Biggers",
+   "pos": "DT",
+   "status": "Injured Reserve",
+   "date": "2026-11-18T00:26Z"
+  },
+  {
+   "teamId": "15",
+   "playerId": "4242512",
+   "name": "Malik Willis",
+   "pos": "QB",
+   "status": "Injured Reserve",
+   "date": "2026-11-16T17:27Z"
+  },
+  {
+   "teamId": "16",
+   "playerId": "4044540",
+   "name": "Isaiah Rodgers",
+   "pos": "CB",
+   "status": "Questionable",
+   "date": "2026-11-20T22:27Z"
+  },
+  {
+   "teamId": "16",
+   "playerId": "3917315",
+   "name": "Kyler Murray",
+   "pos": "QB",
+   "status": "Out",
+   "date": "2026-11-20T19:49Z"
+  },
+  {
+   "teamId": "16",
+   "playerId": "4875564",
+   "name": "Bo Richter",
+   "pos": "LB",
+   "status": "Injured Reserve",
+   "date": "2026-11-19T01:59Z"
+  },
+  {
+   "teamId": "16",
+   "playerId": "4568007",
+   "name": "Jay Ward",
+   "pos": "S",
+   "status": "Questionable",
+   "date": "2026-11-18T22:23Z"
+  },
+  {
+   "teamId": "16",
+   "playerId": "4429205",
+   "name": "Jordan Addison",
+   "pos": "WR",
+   "status": "Out",
+   "date": "2026-11-18T19:25Z"
+  },
+  {
+   "teamId": "17",
+   "playerId": "4047646",
+   "name": "A.J. Brown",
+   "pos": "WR",
+   "status": "Doubtful",
+   "date": "2026-11-20T20:03Z"
+  },
+  {
+   "teamId": "17",
+   "playerId": "4431452",
+   "name": "Drake Maye",
+   "pos": "QB",
+   "status": "Out",
+   "date": "2026-11-20T19:15Z"
+  },
+  {
+   "teamId": "17",
+   "playerId": "4047941",
+   "name": "Brenden Schooler",
+   "pos": "S",
+   "status": "Out",
+   "date": "2026-11-17T12:23Z"
+  },
+  {
+   "teamId": "17",
+   "playerId": "4428394",
+   "name": "Walter Rouse",
+   "pos": "OL",
+   "status": "Out",
+   "date": "2026-11-17T12:22Z"
+  },
+  {
+   "teamId": "17",
+   "playerId": "4362890",
+   "name": "Ben Brown",
+   "pos": "C",
+   "status": "Out",
+   "date": "2026-11-17T12:22Z"
+  },
+  {
+   "teamId": "17",
+   "playerId": "3916923",
+   "name": "Carlton Davis III",
+   "pos": "CB",
+   "status": "Out",
+   "date": "2026-11-17T12:22Z"
+  },
+  {
+   "teamId": "17",
+   "playerId": "3915525",
+   "name": "Dre'Mont Jones",
+   "pos": "DE",
+   "status": "Questionable",
+   "date": "2026-11-15T17:32Z"
+  },
+  {
+   "teamId": "17",
+   "playerId": "3129446",
+   "name": "Robert Spillane",
+   "pos": "LB",
+   "status": "Questionable",
+   "date": "2026-11-15T17:18Z"
+  },
+  {
+   "teamId": "18",
+   "playerId": "4430379",
+   "name": "Asim Richards",
+   "pos": "OT",
+   "status": "Out",
+   "date": "2026-11-21T01:07Z"
+  },
+  {
+   "teamId": "18",
+   "playerId": "3917331",
+   "name": "Erik McCoy",
+   "pos": "C",
+   "status": "Out",
+   "date": "2026-11-21T01:05Z"
+  },
+  {
+   "teamId": "18",
+   "playerId": "4606711",
+   "name": "Taliese Fuaga",
+   "pos": "OT",
+   "status": "Out",
+   "date": "2026-11-21T01:03Z"
+  },
+  {
+   "teamId": "18",
+   "playerId": "4429568",
+   "name": "Martin Emerson Jr.",
+   "pos": "CB",
+   "status": "Out",
+   "date": "2026-11-20T22:05Z"
+  },
+  {
+   "teamId": "18",
+   "playerId": "4241993",
+   "name": "Pete Werner",
+   "pos": "LB",
+   "status": "Questionable",
+   "date": "2026-11-20T22:03Z"
+  },
+  {
+   "teamId": "18",
+   "playerId": "4605498",
+   "name": "Decamerion Richardson",
+   "pos": "CB",
+   "status": "Questionable",
+   "date": "2026-11-18T21:59Z"
+  },
+  {
+   "teamId": "18",
+   "playerId": "4685479",
+   "name": "Christen Miller",
+   "pos": "DT",
+   "status": "Injured Reserve",
+   "date": "2026-11-15T01:04Z"
+  },
+  {
+   "teamId": "19",
+   "playerId": "4360516",
+   "name": "Tyrone Tracy Jr.",
+   "pos": "RB",
+   "status": "Injured Reserve",
+   "date": "2026-11-18T20:16Z"
+  },
+  {
+   "teamId": "20",
+   "playerId": "4243375",
+   "name": "Dylan Parham",
+   "pos": "G",
+   "status": "Questionable",
+   "date": "2026-11-21T01:18Z"
+  },
+  {
+   "teamId": "20",
+   "playerId": "3117255",
+   "name": "Harrison Phillips",
+   "pos": "DT",
+   "status": "Questionable",
+   "date": "2026-11-21T01:15Z"
+  },
+  {
+   "teamId": "20",
+   "playerId": "4002046",
+   "name": "David Onyemata",
+   "pos": "DT",
+   "status": "Injured Reserve",
+   "date": "2026-11-21T01:01Z"
+  },
+  {
+   "teamId": "20",
+   "playerId": "4683815",
+   "name": "Trevin Wallace",
+   "pos": "LB",
+   "status": "Questionable",
+   "date": "2026-11-20T22:59Z"
+  },
+  {
+   "teamId": "20",
+   "playerId": "4569371",
+   "name": "Isaiah Williams",
+   "pos": "WR",
+   "status": "Out",
+   "date": "2026-11-20T16:11Z"
+  },
+  {
+   "teamId": "20",
+   "playerId": "4723820",
+   "name": "Omar Cooper Jr.",
+   "pos": "WR",
+   "status": "Out",
+   "date": "2026-11-20T15:18Z"
+  },
+  {
+   "teamId": "20",
+   "playerId": "4362094",
+   "name": "Joseph Ossai",
+   "pos": "DE",
+   "status": "Questionable",
+   "date": "2026-11-18T22:04Z"
+  },
+  {
+   "teamId": "21",
+   "playerId": "3917657",
+   "name": "Zack Baun",
+   "pos": "LB",
+   "status": "Out",
+   "date": "2026-11-21T00:16Z"
+  },
+  {
+   "teamId": "21",
+   "playerId": "4431545",
+   "name": "Will Shipley",
+   "pos": "RB",
+   "status": "Injured Reserve",
+   "date": "2026-11-20T21:47Z"
+  },
+  {
+   "teamId": "21",
+   "playerId": "4431573",
+   "name": "Smael Mondon Jr.",
+   "pos": "LB",
+   "status": "Doubtful",
+   "date": "2026-11-20T21:23Z"
+  },
+  {
+   "teamId": "21",
+   "playerId": "4428850",
+   "name": "Dontayvion Wicks",
+   "pos": "WR",
+   "status": "Out",
+   "date": "2026-11-20T20:58Z"
+  },
+  {
+   "teamId": "23",
+   "playerId": "3929846",
+   "name": "DeShon Elliott",
+   "pos": "S",
+   "status": "Questionable",
+   "date": "2026-11-20T22:13Z"
+  },
+  {
+   "teamId": "23",
+   "playerId": "4429164",
+   "name": "Nick Herbig",
+   "pos": "LB",
+   "status": "Questionable",
+   "date": "2026-11-20T22:11Z"
+  },
+  {
+   "teamId": "23",
+   "playerId": "4242207",
+   "name": "Patrick Queen",
+   "pos": "LB",
+   "status": "Questionable",
+   "date": "2026-11-20T22:09Z"
+  },
+  {
+   "teamId": "23",
+   "playerId": "4431492",
+   "name": "Roman Wilson",
+   "pos": "WR",
+   "status": "Injured Reserve",
+   "date": "2026-11-20T20:09Z"
+  },
+  {
+   "teamId": "23",
+   "playerId": "4035687",
+   "name": "Michael Pittman Jr.",
+   "pos": "WR",
+   "status": "Injured Reserve",
+   "date": "2026-11-20T19:51Z"
+  },
+  {
+   "teamId": "23",
+   "playerId": "4431258",
+   "name": "Gennings Dunker",
+   "pos": "G",
+   "status": "Injured Reserve",
+   "date": "2026-11-19T02:00Z"
+  },
+  {
+   "teamId": "23",
+   "playerId": "4368304",
+   "name": "Mason McCormick",
+   "pos": "G",
+   "status": "Injured Reserve",
+   "date": "2026-11-19T01:44Z"
+  },
+  {
+   "teamId": "25",
+   "playerId": "4686308",
+   "name": "C.J. West",
+   "pos": "DT",
+   "status": "Injured Reserve",
+   "date": "2026-11-21T00:55Z"
+  },
+  {
+   "teamId": "25",
+   "playerId": "4240542",
+   "name": "Nate Hobbs",
+   "pos": "CB",
+   "status": "Injured Reserve",
+   "date": "2026-11-21T00:54Z"
+  },
+  {
+   "teamId": "25",
+   "playerId": "3916903",
+   "name": "Dre Greenlaw",
+   "pos": "LB",
+   "status": "Questionable",
+   "date": "2026-11-21T00:49Z"
+  },
+  {
+   "teamId": "25",
+   "playerId": "4685397",
+   "name": "Jordan James",
+   "pos": "RB",
+   "status": "Questionable",
+   "date": "2026-11-21T00:45Z"
+  },
+  {
+   "teamId": "25",
+   "playerId": "4241464",
+   "name": "Mac Jones",
+   "pos": "QB",
+   "status": "Questionable",
+   "date": "2026-11-21T00:40Z"
+  },
+  {
+   "teamId": "25",
+   "playerId": "16737",
+   "name": "Mike Evans",
+   "pos": "WR",
+   "status": "Questionable",
+   "date": "2026-11-20T19:26Z"
+  },
+  {
+   "teamId": "25",
+   "playerId": "4372561",
+   "name": "Isaac Guerendo",
+   "pos": "RB",
+   "status": "Out",
+   "date": "2026-11-20T00:28Z"
+  },
+  {
+   "teamId": "25",
+   "playerId": "3895856",
+   "name": "Christian Kirk",
+   "pos": "WR",
+   "status": "Injured Reserve",
+   "date": "2026-11-19T15:22Z"
+  },
+  {
+   "teamId": "25",
+   "playerId": "4565200",
+   "name": "Upton Stout",
+   "pos": "CB",
+   "status": "Questionable",
+   "date": "2026-11-18T23:27Z"
+  },
+  {
+   "teamId": "25",
+   "playerId": "4039029",
+   "name": "Khalid Kareem",
+   "pos": "DE",
+   "status": "Questionable",
+   "date": "2026-11-18T23:26Z"
+  },
+  {
+   "teamId": "25",
+   "playerId": "3116097",
+   "name": "Luke Gifford",
+   "pos": "LB",
+   "status": "Questionable",
+   "date": "2026-11-18T23:25Z"
+  },
+  {
+   "teamId": "25",
+   "playerId": "4710714",
+   "name": "De'Zhaun Stribling",
+   "pos": "WR",
+   "status": "Injured Reserve",
+   "date": "2026-11-18T20:26Z"
+  },
+  {
+   "teamId": "25",
+   "playerId": "4360438",
+   "name": "Brandon Aiyuk",
+   "pos": "WR",
+   "status": "Out",
+   "date": "2026-11-18T17:55Z"
+  },
+  {
+   "teamId": "26",
+   "playerId": "2971622",
+   "name": "Leonard Williams",
+   "pos": "DT",
+   "status": "Out",
+   "date": "2026-11-17T12:23Z"
+  },
+  {
+   "teamId": "26",
+   "playerId": "3129308",
+   "name": "Quenton Nelson",
+   "pos": "G",
+   "status": "Out",
+   "date": "2026-11-17T12:23Z"
+  },
+  {
+   "teamId": "26",
+   "playerId": "4426376",
+   "name": "Charles Cross",
+   "pos": "OT",
+   "status": "Out",
+   "date": "2026-11-17T12:23Z"
+  },
+  {
+   "teamId": "26",
+   "playerId": "4429835",
+   "name": "George Holani",
+   "pos": "RB",
+   "status": "Questionable",
+   "date": "2026-11-16T20:50Z"
+  },
+  {
+   "teamId": "26",
+   "playerId": "3912547",
+   "name": "Sam Darnold",
+   "pos": "QB",
+   "status": "Out",
+   "date": "2026-11-16T18:03Z"
+  },
+  {
+   "teamId": "26",
+   "playerId": "3115312",
+   "name": "Jarran Reed",
+   "pos": "DT",
+   "status": "Questionable",
+   "date": "2026-11-15T22:20Z"
+  },
+  {
+   "teamId": "26",
+   "playerId": "4245171",
+   "name": "Abraham Lucas",
+   "pos": "OT",
+   "status": "Questionable",
+   "date": "2026-11-15T22:03Z"
+  },
+  {
+   "teamId": "27",
+   "playerId": "4248533",
+   "name": "Josh Hayes",
+   "pos": "CB",
+   "status": "Injured Reserve",
+   "date": "2026-11-21T01:19Z"
+  },
+  {
+   "teamId": "27",
+   "playerId": "4686334",
+   "name": "Yaya Diaby",
+   "pos": "LB",
+   "status": "Questionable",
+   "date": "2026-11-20T23:55Z"
+  },
+  {
+   "teamId": "27",
+   "playerId": "4034790",
+   "name": "Antoine Winfield Jr.",
+   "pos": "S",
+   "status": "Out",
+   "date": "2026-11-20T23:52Z"
+  },
+  {
+   "teamId": "27",
+   "playerId": "3052587",
+   "name": "Baker Mayfield",
+   "pos": "QB",
+   "status": "Questionable",
+   "date": "2026-11-20T16:13Z"
+  },
+  {
+   "teamId": "27",
+   "playerId": "4430834",
+   "name": "Jalen McMillan",
+   "pos": "WR",
+   "status": "Injured Reserve",
+   "date": "2026-11-09T19:19Z"
+  },
+  {
+   "teamId": "10",
+   "playerId": "4695280",
+   "name": "Micah Robinson",
+   "pos": "CB",
+   "status": "Questionable",
+   "date": "2026-11-21T00:05Z"
+  },
+  {
+   "teamId": "10",
+   "playerId": "4870805",
+   "name": "Anthony Hill Jr.",
+   "pos": "LB",
+   "status": "Questionable",
+   "date": "2026-11-20T22:53Z"
+  },
+  {
+   "teamId": "10",
+   "playerId": "4240532",
+   "name": "Tony Adams",
+   "pos": "S",
+   "status": "Questionable",
+   "date": "2026-11-20T22:45Z"
+  },
+  {
+   "teamId": "10",
+   "playerId": "4428557",
+   "name": "Tyjae Spears",
+   "pos": "RB",
+   "status": "Questionable",
+   "date": "2026-11-20T21:01Z"
+  },
+  {
+   "teamId": "10",
+   "playerId": "4871023",
+   "name": "Carnell Tate",
+   "pos": "WR",
+   "status": "Questionable",
+   "date": "2026-11-20T20:44Z"
+  },
+  {
+   "teamId": "10",
+   "playerId": "4710000",
+   "name": "Fernando Carmona",
+   "pos": "G",
+   "status": "Injured Reserve",
+   "date": "2026-11-18T21:49Z"
+  },
+  {
+   "teamId": "10",
+   "playerId": "4569587",
+   "name": "Wan'Dale Robinson",
+   "pos": "WR",
+   "status": "Injured Reserve",
+   "date": "2026-11-18T17:29Z"
+  },
+  {
+   "teamId": "28",
+   "playerId": "3051890",
+   "name": "Laremy Tunsil",
+   "pos": "OT",
+   "status": "Injured Reserve",
+   "date": "2026-11-21T00:56Z"
+  },
+  {
+   "teamId": "28",
+   "playerId": "4567156",
+   "name": "Treylon Burks",
+   "pos": "WR",
+   "status": "Questionable",
+   "date": "2026-11-20T21:50Z"
+  },
+  {
+   "teamId": "28",
+   "playerId": "4697815",
+   "name": "Rachaad White",
+   "pos": "RB",
+   "status": "Questionable",
+   "date": "2026-11-20T21:09Z"
+  },
+  {
+   "teamId": "28",
+   "playerId": "4575131",
+   "name": "Jacory Croskey-Merritt",
+   "pos": "RB",
+   "status": "Injured Reserve",
+   "date": "2026-11-20T19:55Z"
+  },
+  {
+   "teamId": "28",
+   "playerId": "4360378",
+   "name": "Quan Martin",
+   "pos": "S",
+   "status": "Questionable",
+   "date": "2026-11-20T00:54Z"
+  }
+ ]
+}

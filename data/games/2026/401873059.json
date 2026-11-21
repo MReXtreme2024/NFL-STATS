@@ -631,7 +631,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-28",
-              "adjQBR": "20.4",
+              "adjQBR": "19.8",
               "QBRating": "73.6"
             },
             "rushing": {
@@ -1238,7 +1238,7 @@
     }
   ],
   "odds": {
-    "provider": "DraftKings",
+    "provider": "Draft Kings",
     "homeId": "11",
     "spread": -5.5,
     "overUnder": 37.5
