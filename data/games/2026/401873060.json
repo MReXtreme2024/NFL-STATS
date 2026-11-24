@@ -32,7 +32,7 @@
               "passingTouchdowns": "1",
               "interceptions": "1",
               "sacks-sackYardsLost": "8-59",
-              "adjQBR": "45.9",
+              "adjQBR": "42.3",
               "QBRating": "85.4"
             },
             "rushing": {
@@ -55,7 +55,7 @@
               "passingTouchdowns": "0",
               "interceptions": "0",
               "sacks-sackYardsLost": "0-0",
-              "adjQBR": "13.3",
+              "adjQBR": "11.8",
               "QBRating": "56.2"
             }
           }
@@ -633,7 +633,7 @@
               "passingTouchdowns": "2",
               "interceptions": "1",
               "sacks-sackYardsLost": "3-24",
-              "adjQBR": "73.2",
+              "adjQBR": "73.3",
               "QBRating": "94.4"
             },
             "rushing": {
