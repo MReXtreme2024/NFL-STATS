@@ -236,7 +236,7 @@
           "stats": {
             "defensive": {
               "totalTackles": "6",
-              "soloTackles": "1",
+              "soloTackles": "0",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "2",
@@ -251,11 +251,26 @@
           "stats": {
             "defensive": {
               "totalTackles": "5",
-              "soloTackles": "5",
+              "soloTackles": "4",
               "sacks": "1",
               "tacklesForLoss": "1",
               "passesDefended": "1",
               "QBHits": "1",
+              "defensiveTouchdowns": "0"
+            }
+          }
+        },
+        {
+          "id": "4371973",
+          "name": "Roger McCreary",
+          "stats": {
+            "defensive": {
+              "totalTackles": "5",
+              "soloTackles": "1",
+              "sacks": "0",
+              "tacklesForLoss": "0",
+              "passesDefended": "1",
+              "QBHits": "0",
               "defensiveTouchdowns": "0"
             }
           }
@@ -291,15 +306,15 @@
           }
         },
         {
-          "id": "4371973",
-          "name": "Roger McCreary",
+          "id": "4431615",
+          "name": "Tyleik Williams",
           "stats": {
             "defensive": {
-              "totalTackles": "4",
-              "soloTackles": "1",
+              "totalTackles": "3",
+              "soloTackles": "0",
               "sacks": "0",
               "tacklesForLoss": "0",
-              "passesDefended": "1",
+              "passesDefended": "0",
               "QBHits": "0",
               "defensiveTouchdowns": "0"
             }
@@ -342,21 +357,6 @@
             "defensive": {
               "totalTackles": "2",
               "soloTackles": "1",
-              "sacks": "0",
-              "tacklesForLoss": "0",
-              "passesDefended": "0",
-              "QBHits": "0",
-              "defensiveTouchdowns": "0"
-            }
-          }
-        },
-        {
-          "id": "4431615",
-          "name": "Tyleik Williams",
-          "stats": {
-            "defensive": {
-              "totalTackles": "2",
-              "soloTackles": "0",
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",
@@ -527,7 +527,7 @@
               "passingTouchdowns": "2",
               "interceptions": "0",
               "sacks-sackYardsLost": "4-33",
-              "adjQBR": "61.8",
+              "adjQBR": "59.3",
               "QBRating": "96.4"
             },
             "rushing": {

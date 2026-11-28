@@ -32,7 +32,7 @@
               "passingTouchdowns": "3",
               "interceptions": "0",
               "sacks-sackYardsLost": "1-7",
-              "adjQBR": "64.9",
+              "adjQBR": "64.8",
               "QBRating": "120.0"
             }
           }
@@ -584,7 +584,7 @@
               "sacks": "0",
               "tacklesForLoss": "0",
               "passesDefended": "0",
-              "QBHits": "0",
+              "QBHits": "1",
               "defensiveTouchdowns": "0"
             }
           }
@@ -630,7 +630,7 @@
               "passingTouchdowns": "1",
               "interceptions": "0",
               "sacks-sackYardsLost": "3-25",
-              "adjQBR": "38.0",
+              "adjQBR": "39.0",
               "QBRating": "82.1"
             },
             "rushing": {
